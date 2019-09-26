@@ -5,10 +5,18 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-item>Item</ion-item>
-    <ion-item>Item</ion-item>
-    <ion-item>Item</ion-item>
-    <ion-item>Sair</ion-item>
+    <ion-list>
+      <ion-item (click)="telaBarChart()">
+        Bar Chart
+      </ion-item>
+      <ion-item (click)="telaLineChart()">
+        Line Chart
+      </ion-item>
+      <ion-item (click)="telaDoughnutChart()">
+        Doughnut Chart
+      </ion-item>
+      <ion-item>Sair</ion-item>
+    </ion-list>
   </ion-content>
 </ion-menu>
 

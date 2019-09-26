@@ -6,11 +6,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { BarChartPage } from '../pages/test/bar-chart';
+import { DoughnutChartPage } from '../pages/test/doughnut-chart';
+import { LineChartPage } from '../pages/test/line-chart';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    BarChartPage,
+    DoughnutChartPage,
+    LineChartPage
   ],
   imports: [
     BrowserModule,
@@ -19,7 +25,10 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    BarChartPage,
+    DoughnutChartPage,
+    LineChartPage
   ],
   providers: [
     StatusBar,
