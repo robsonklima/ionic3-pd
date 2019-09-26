@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar no-border-bottom>
-      <ion-title>Svg Map</ion-title>
+      <ion-title>Mapa de SLA por Filial</ion-title>
     </ion-navbar>
   </ion-header>
   
@@ -10,7 +10,7 @@
         x="0px" y="0px" viewBox="0 0 450 460" enable-background="new 0 0 450 460" xml:space="preserve" 
         width="450px" height="460px">
         <g>
-          <a (click)="alerta('FTO')" name="FTO" code="FTO">
+          <a (click)="telaIndicadoresFilial('FTO')" name="FTO" code="FTO">
             <title>Tocantins</title>
             <path id="teste1111" runat="server" stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
               stroke-linejoin="round" d="M289.558,235.641
@@ -18,7 +18,7 @@
             S234.852,233.695,289.558,235.641z"></path>
             <text transform="matrix(1 0 0 1 287.0137 188.3208)" class="fontMapa" fill="#FFFFFF">TO</text>
           </a>
-          <a (click)="alerta('FBA')" name="FBA" code="FBA">
+          <a (click)="telaIndicadoresFilial('FBA')" name="FBA" code="FBA">
             <title>Bahia</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round"
               d="M313.276,197.775
@@ -31,7 +31,7 @@
             c-0.546-1.725-5.396-6.079-0.026-7.175c-3.175,0.959-1.944-4.027,0.875-3.012C316.726,200.733,314.044,200.527,313.276,197.775z"></path>
             <text transform="matrix(1 0 0 1 359.7324 210.1221)" class="fontMapa" fill="#FFFFFF">BA</text>
           </a>
-          <a (click)="alerta('FBA')" name="FBA" code="FBA">
+          <a (click)="telaIndicadoresFilial('FBA')" name="FBA" code="FBA">
             <title>Sergipe</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M408.561,191.735
             c0.521-1.505,2.465-0.725,3.533-0.794c2.273-0.164,0.494-2.738,1.095-3.778c2.026-3.793-2.738-5.999-1.998-10.408
@@ -39,7 +39,7 @@
             C413.545,202.212,407.055,193.721,408.561,191.735z"></path>
             <text transform="matrix(1 0 0 1 412.912 190.669)" class="fontMapa" fill="#FFFFFF">SE</text>
           </a>
-          <a (click)="alerta('FPE')" code="FPE" name="PE">
+          <a (click)="telaIndicadoresFilial('FPE')" code="FPE" name="PE">
             <title>Pernambuco</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M373.011,167.238
             c2.709-0.795,6.218-14.106,8.325-15.106c4.136-1.986,17.255-1.437,17.8,4.903c-0.437-0.068,8.189-2.273,7.479-1.466
@@ -50,7 +50,7 @@
             c0.219,0.108-8.244,6.681-7.506,3.314C383.556,170.4,374.241,168.566,373.011,167.238z"></path>
             <text transform="matrix(1 0 0 1 401.3984 165.8003)" class="fontMapa" fill="#FFFFFF">PE</text>
           </a>
-          <a (click)="alerta('FPE')"name="FPE" code="FPE">
+          <a (click)="telaIndicadoresFilial('FPE')"name="FPE" code="FPE">
             <title>Alagoas</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M413.953,169.018
             c3.78,3.313,9.424,5.505,12.547,5.491c3.229-0.013,5.009-3.328,7.421-4.794c1.177-0.712,10.297-1.93,9.174,1.042
@@ -58,7 +58,7 @@
             c-3.668-2.261-7.998-3.769-11.201-6.342C410.615,172.646,412.751,171.359,413.953,169.018z"></path>
             <text transform="matrix(1 0 0 1 425.789 180.895)" class="fontMapa" fill="#FFFFFF">AL</text>
           </a>
-          <a (click)="alerta('FRN')" name="FRN" code="FRN">
+          <a (click)="telaIndicadoresFilial('FRN')" name="FRN" code="FRN">
             <title>Rio Grande do Norte</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round"
               d="M404.698,138.795
@@ -67,7 +67,7 @@
             c1.532-5.847-12.654,1.78-5.424-8.683c2.545-3.67-6.302-0.808-6.711,0.725C410.121,144.013,407.217,139.151,404.698,138.795z"></path>
             <text transform="matrix(1 0 0 1 418.541 133.9009)" class="fontMapa" fill="#FFFFFF">RN</text>
           </a>
-          <a (click)="alerta('FCE')" name="FCE" code="FCE">
+          <a (click)="telaIndicadoresFilial('FCE')" name="FCE" code="FCE">
             <title>Ceará</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M372.379,104.409
             c0.437-1.368,2.961-3.627,1.043-5.025c12.106-1.328,17.581-0.849,27.66,6.723c4.026,3.054,6.822,5.574,10.571,9.147
@@ -78,7 +78,7 @@
             C373.035,102.314,374.815,105.971,372.379,104.409z"></path>
             <text transform="matrix(1 0 0 1 386.8379 129.0347)" class="fontMapa" fill="#FFFFFF">CE</text>
           </a>
-          <a (click)="alerta('FCE')" name="FCE" code="FCE">
+          <a (click)="telaIndicadoresFilial('FCE')" name="FCE" code="FCE">
             <title>Piauí</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M320.781,185.478
             c2.465-5.149-7.505-20.801-7.505-20.801s47.354-65.868,54.285-66.841c0.299-0.042,6.243,1.768,6.463,2.219
@@ -89,7 +89,7 @@
             C328.176,198.748,327.409,180.727,320.781,185.478z"></path>
             <text transform="matrix(1 0 0 1 355.127 158.1045)" class="fontMapa" fill="#FFFFFF">PI</text>
           </a>
-          <a (click)="alerta('FMA')" name="FMA" code="FMA">
+          <a (click)="telaIndicadoresFilial('FMA')" name="FMA" code="FMA">
             <title>Maranhão</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M288.845,127.827
             c4.108-2.726,31.195-48.985,31.386-50.395c1.235,0.397,6.084,7.435,7.562,5.025c0.493,0.013-0.328,2.15-0.547,2.396
@@ -105,7 +105,7 @@
             C290.983,125.675,290.983,128.044,288.845,127.827z"></path>
             <text transform="matrix(1 0 0 1 318.2754 126.7036)" class="fontMapa" fill="#FFFFFF">MA</text>
           </a>
-          <a (click)="alerta('FPA')" name="FPA" code="FPA">
+          <a (click)="telaIndicadoresFilial('FPA')" name="FPA" code="FPA">
             <title>Amapá</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M225.198,39.089
             c3.274,1.165,3.985-1.315,6.572-1.74c3.616-0.603,5.683,2.725,9.037,2.067c4.055-0.78,7.093-8.025,7.314-11.598
@@ -114,7 +114,7 @@
             C221.814,36.458,223.334,38.417,225.198,39.089z"></path>
             <text transform="matrix(1 0 0 1 245.9023 52.6099)" class="fontMapa" fill="#FFFFFF">AP</text>
           </a>
-          <a (click)="alerta('FPA')" name="FPA" code="FPA">
+          <a (click)="telaIndicadoresFilial('FPA')" name="FPA" code="FPA">
             <title>Pará</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M173.378,50.619
             c2.259,2.63,5.629-4.478,7.901-3.82c3.19,0.918,1.478-1.108,5.026-1.752c1.931,0.806,3.096,0.273,3.519-1.631
@@ -132,7 +132,7 @@
             C319.302,76.912,319.74,78.76,319.139,77.664z"></path>
             <text transform="matrix(1 0 0 1 232.7725 122.5137)" class="fontMapa" fill="#FFFFFF">PA</text>
           </a>
-          <a (click)="alerta('FAM')" name="FAM" code="FAM">
+          <a (click)="telaIndicadoresFilial('FAM')" name="FAM" code="FAM">
             <title>Roraima</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M113.18,24.107
             c-0.972-2.753-7.861-5.889-6.999-8.984c0.068-0.232,13.229,6.053,12.79,2.808c0.398,1.329,1.219,1.889,2.439,1.685
@@ -144,7 +144,7 @@
             s-12.517-52.736-20.335-54.063C115.261,36.417,111.523,25.682,113.18,24.107z"></path>
             <text transform="matrix(1 0 0 1 136.2939 42.3862)" class="fontMapa" fill="#FFFFFF">RR</text>
           </a>
-          <a (click)="alerta('FAM')" name="FAM" code="FAM">
+          <a (click)="telaIndicadoresFilial('FAM')" name="FAM" code="FAM">
             <title>Amazonas</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round"
               d="M10.078,136.412
@@ -166,7 +166,7 @@
             c-8.601-4.381-16.61-8.981-26.088-11.05c-10.282-2.259-20.635-4.793-29.878-10.011C4.121,145.766,12.433,144.779,10.078,136.412z"></path>
             <text transform="matrix(1 0 0 1 98.1406 119.0591)" class="fontMapa" fill="#FFFFFF">AM</text>
           </a>
-          <a (click)="alerta('FRO')" name="FRO" code="FRO">
+          <a (click)="telaIndicadoresFilial('FRO')" name="FRO" code="FRO">
             <title>Acre</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round"
               d="M3.656,148.545
@@ -177,7 +177,7 @@
             c6.299-3.41-3.107-11.9-5.216-15.679c-0.52-0.918-3.588-4.655-3.629-5.957C1.642,150.174,6.612,151.968,3.656,148.545z"></path>
             <text transform="matrix(1 0 0 1 47.7017 184.9355)" class="fontMapa" fill="#FFFFFF">AC</text>
           </a>
-          <a (click)="alerta('FRO')" name="FRO" code="FRO">
+          <a (click)="telaIndicadoresFilial('FRO')" name="FRO" code="FRO">
             <title>Rondônia</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M83.34,180.232
             c0.931-1.574,5.341-4.668,6.312-4.656c1.355-0.067,2.671,0.138,3.958,0.603c3.012,1.44,2.039-1.135,5.341-0.123
@@ -190,7 +190,7 @@
             c-0.384-6.081-1.028-1.986-3.382-1.903C94.336,180.686,85.957,181.671,83.34,180.232z"></path>
             <text transform="matrix(1 0 0 1 118.1299 195.3193)" class="fontMapa" fill="#FFFFFF">RO</text>
           </a>
-          <a (click)="alerta('FMT')" name="FMT" code="FMT">
+          <a (click)="telaIndicadoresFilial('FMT')" name="FMT" code="FMT">
             <title>Mato Grosso</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M142.237,173.962
             c4-0.316-1.888-6.452,5-5.738c7.914,0.808,16.295,0.328,24.279,0.218c1.629-0.013,8.902,1.288,7.395-1.833
@@ -206,7 +206,7 @@
             C143.581,176.618,141.937,174.714,142.237,173.962z"></path>
             <text transform="matrix(1 0 0 1 200.0244 218.4175)" class="fontMapa" fill="#FFFFFF">MT</text>
           </a>
-          <a (click)="alerta('FMS')" name="FMS" code="FMS">
+          <a (click)="telaIndicadoresFilial('FMS')" name="FMS" code="FMS">
             <title>Mato Grosso do Sul</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round"
               d="M183.198,294.536
@@ -220,7 +220,7 @@
             c0.932-2.847,1.411-9.912,0.453-11.856c-0.165-0.331-3.52-7.232-2.547-8.108C186.306,297.688,182.334,299.415,183.198,294.536z"></path>
             <text transform="matrix(1 0 0 1 213.2939 306.7236)" class="fontMapa" fill="#FFFFFF">MS</text>
           </a>
-          <a (click)="alerta('FTO')" name="FGO" code="FGO">
+          <a (click)="telaIndicadoresFilial('FTO')" name="FGO" code="FGO">
             <title>Goiás</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M237.768,270.519
             c0.628-2.904,1.835-7.396,4.709-8.766c1.015-1.644,1.754-5.147,2.275-5.586c2.408-2.247,3.889-3.783,6.63-4.656
@@ -237,7 +237,7 @@
             c-3.724-0.604,1.04-3.231,0.22-4.109c-1.89-1.916-4.382,1.756-3.588-3.012C239.602,274.627,237.055,273.038,237.768,270.519z"></path>
             <text transform="matrix(1 0 0 1 266.9111 254.2139)" class="fontMapa" fill="#FFFFFF">GO</text>
           </a>
-          <a (click)="alerta('FPR')" name="FPR" code="FPR">
+          <a (click)="telaIndicadoresFilial('FPR')" name="FPR" code="FPR">
             <title>Paraná</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M222.225,363.694
             c1.807-2.138,1.889-4.881,2.424-7.479c0.301-1.453,0.465-7.86,1.369-8.736c2.3-0.684,2.3-3.315,2.726-5.204
@@ -246,7 +246,7 @@
             c-3.875-1.449-2.698-6.491-6.054-8.216C226.663,364.623,222.498,367.8,222.225,363.694z"></path>
             <text transform="matrix(1 0 0 1 248.4453 356.1045)" class="fontMapa" fill="#FFFFFF">PR</text>
           </a>
-          <a (click)="alerta('FSC')" name="FSC" code="FSC">
+          <a (click)="telaIndicadoresFilial('FSC')" name="FSC" code="FSC">
             <title>Santa Catarina</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M231.029,383.959
             c1.669-3.338-0.284-10.516,4.573-10.569c6.631-0.109,13.639,3.559,20.402,3.888c1.317,0.055,5.231,2.163,4.357-1.15
@@ -255,7 +255,7 @@
             C276.085,411.866,233.534,382.918,231.029,383.959z"></path>
             <text transform="matrix(1 0 0 1 266.9111 387.7646)" class="fontMapa" fill="#FFFFFF">SC</text>
           </a>
-          <a (click)="alerta('FRS')" name="FRS" code="FRS">
+          <a (click)="telaIndicadoresFilial('FRS')" name="FRS" code="FRS">
             <title>Rio Grande do Sul</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round"
               d="M191.236,416.881
@@ -268,7 +268,7 @@
             c-2.3-1.999-4.793-5.479-7.737-6.68c-3.478-1.367-5.615,5.145-9.052,0.821C189.168,418.854,190.332,418.032,191.236,416.881z"></path>
             <text transform="matrix(1 0 0 1 231.0313 414.4658)" class="fontMapa" fill="#FFFFFF">RS</text>
           </a>
-          <a (click)="alerta('FSP')" name="FSP" code="FSP">
+          <a (click)="telaIndicadoresFilial('FSP')" name="FSP" code="FSP">
             <title>São Paulo</title>
             <path id="areaSaoPaulo" runat="server" stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
               stroke-linejoin="round" d="M239.3,330.554
@@ -281,7 +281,7 @@
             c-0.848-2.956-6.628-1.451-9.066-1.862c-0.162,0.163-8.846-2.684-10.079-2.684c-1.616-0.029-6.791-3.396-7.121-0.274
             C247.982,330.386,239.876,331.21,239.3,330.554z"></path>
           </a>
-          <a (click)="alerta('FMG')" name="FMG" code="FMG">
+          <a (click)="telaIndicadoresFilial('FMG')" name="FMG" code="FMG">
             <title>Minas Gerais</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M262.881,297.305
             c-1.696-5.094,15.531-19.882,18.844-13.421c5.531-7.367,15.886,1.588,19.773-3.944c0.988-1.367,3.015-1.453,3.725-2.957
@@ -301,7 +301,7 @@
             c-4.708-0.353-5.53-1.613-9.858,0.631C262.993,300.562,262.336,299.274,262.881,297.305z"></path>
             <text transform="matrix(1 0 0 1 328.4063 286.4561)" class="fontMapa" fill="#FFFFFF">MG</text>
           </a>
-          <a (click)="alerta('FRJ')" name="FRJ" code="FRJ">
+          <a (click)="telaIndicadoresFilial('FRJ')" name="FRJ" code="FRJ">
             <title>Rio de Janeiro</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M332.886,337.429
             c-1.26-2.768,8.409-4.795,7.89-6.71c-3.177-1.864-4.602,1.148-6.63-2.959c4.274-0.686,9.533-4.49,13.831-3.562
@@ -313,7 +313,7 @@
             C336.717,337.908,333.927,342.41,332.886,337.429z"></path>
             <text transform="matrix(1 0 0 1 357.465 328.681)" class="fontMapa" fill="#FFFFFF">RJ</text>
           </a>
-          <a (click)="alerta('FES')" name="FES" code="FES">
+          <a (click)="telaIndicadoresFilial('FES')" name="FES" code="FES">
             <title>Espírito Santo</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M367.119,308.834
             c1.044-1.999-0.298-5.451,1.841-6.326c3.697-1.453,3.858-0.467,5.941-4.49c0.767-1.563,3.999-5.807,2.848-7.835
@@ -323,14 +323,14 @@
             c-1.64-0.274-3.202-0.768-4.736-1.451C368.819,311.297,369.424,309.055,367.119,308.834z"></path>
             <text transform="matrix(1 0 0 1 378.305 295.497)" class="fontMapa" fill="#FFFFFF">ES</text>
           </a>
-          <a (click)="alerta('FDF')" name="FDF" code="FDF">
+          <a (click)="telaIndicadoresFilial('FDF')" name="FDF" code="FDF">
             <title>Distrito Federal</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M292.461,246.197
             c0,0,12.929-2.903,14.188,0c1.233,2.903,0.659,10.683-1.424,11.504c-2.08,0.849-14.296-1.806-14.023-3.313
             C291.503,252.853,292.461,246.197,292.461,246.197z"></path>
             <text transform="matrix(1 0 0 1 293.414 254.214)" class="fontMapa" fill="#FFFFFF">DF</text>
           </a>
-          <a (click)="alerta('FRN')" name="FRN" code="FRN">
+          <a (click)="telaIndicadoresFilial('FRN')" name="FRN" code="FRN">
             <title>Paraíba</title>
             <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" d="M401.575,141.096
             c2.081-3.081,16.791-6.82,19.117-4.616c0,1.918,7.259,1.686,10.133,2.712c-0.492,3.038,12.652,1.533,14.408,2.259

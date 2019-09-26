@@ -1,7 +1,8 @@
 import { Component, OnInit} from '@angular/core';
-import { AlertController, LoadingController } from 'ionic-angular';
+import { AlertController, LoadingController, NavController } from 'ionic-angular';
 import { SLAFilialService } from '../../services/sla-filial';
 import { SLAFilial } from '../../models/sla-filial';
+import { IndicadoresFilialPage } from '../indicadores-filial/indicadores-filial';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class MapaSvgPage {
   constructor(
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
+    private navCtrl: NavController,
     private slaFilialService: SLAFilialService
   ) {}
 
@@ -48,6 +50,10 @@ export class MapaSvgPage {
     } else if (slas[0].percentual >= 95) {
       return 'green';
     }
+  }
+
+  public telaIndicadoresFilial(nomeFilial: string) {
+    this.navCtrl.push(IndicadoresFilialPage, { nomeFilial: nomeFilial });
   }
 
   public alerta(msg: string) {
