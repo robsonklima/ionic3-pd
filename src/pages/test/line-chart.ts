@@ -69,7 +69,7 @@ export class LineChartPage {
             label: "Média",
             fill: true,
             lineTension: 0.1,
-            backgroundColor: "rgba(128,128,128,0.4)",
+            backgroundColor: "rgba(128,128,128,0.3)",
             borderColor: "rgba(128,128,128,1)",
             borderCapStyle: "butt",
             borderDash: [],
