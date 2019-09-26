@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { BarChartPage } from '../pages/test/bar-chart';
 import { DoughnutChartPage } from '../pages/test/doughnut-chart';
 import { LineChartPage } from '../pages/test/line-chart';
+import { SvgMapPage } from '../pages/test/svg-map';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       this.menuCtrl.enable(true);
-      this.nav.setRoot(this.loginPage);
+      this.nav.setRoot(this.homePage);
     });
   }
 
@@ -47,6 +48,12 @@ export class MyApp {
   public telaLineChart() {
     this.menuCtrl.close().then(() => {
       this.nav.push(LineChartPage);  
+    })
+  }
+
+  public telaSvgMap() {
+    this.menuCtrl.close().then(() => {
+      this.nav.push(SvgMapPage);  
     })
   }
 

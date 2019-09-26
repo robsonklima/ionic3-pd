@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { BarChartPage } from '../pages/test/bar-chart';
 import { DoughnutChartPage } from '../pages/test/doughnut-chart';
 import { LineChartPage } from '../pages/test/line-chart';
+import { SvgMapPage } from '../pages/test/svg-map';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LineChartPage } from '../pages/test/line-chart';
     HomePage,
     BarChartPage,
     DoughnutChartPage,
-    LineChartPage
+    LineChartPage,
+    SvgMapPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { LineChartPage } from '../pages/test/line-chart';
     HomePage,
     BarChartPage,
     DoughnutChartPage,
-    LineChartPage
+    LineChartPage,
+    SvgMapPage
   ],
   providers: [
     StatusBar,
