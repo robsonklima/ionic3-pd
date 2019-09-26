@@ -28,7 +28,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       this.menuCtrl.enable(true);
-      this.nav.setRoot(this.homePage);
+      this.nav.setRoot(this.loginPage);
     });
   }
 
@@ -51,9 +51,7 @@ export class MyApp {
   }
 
   public sair() {
-    this.menuCtrl.close().then(() => {
-      this.nav.setRoot(this.loginPage);
-    });
+    this.nav.setRoot(this.loginPage);
   }
 }
 
