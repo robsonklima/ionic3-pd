@@ -1,42 +1,13 @@
 svg-map-page {
 	#svg-map { margin-top: 10%; width: 100%; }
-  	#svg-map path { fill:#0094d9; }
-	
-	#svg-map a.tocantins path { fill:#008000 }
-	#svg-map a.bahia path { fill:#008000 }
-	#svg-map a.sergipe path { fill:#008000 }
-	#svg-map a.pernambuco path { fill:#008000 }
-	#svg-map a.alagoas path { fill:#008000 }
-	#svg-map a.riograndedonorte path { fill:#008000 }
-	#svg-map a.ceara path { fill:#8B0000 }
-	#svg-map a.piaui path { fill:#008000 }
-	#svg-map a.maranhao path { fill:#008000 }
-	#svg-map a.amapa path { fill:#008000 }
-	#svg-map a.para path { fill:#FFA500 }
-	#svg-map a.roraima path { fill:#8B0000 }
-	#svg-map a.amazonas path { fill:#FFA500 }
-	#svg-map a.acre path { fill:#008000 }
-	#svg-map a.rondonia path { fill:#8B0000 }
-	#svg-map a.matogrosso path { fill:#8B0000 }
-	#svg-map a.matogrossodosul path { fill:#008000 }
-	#svg-map a.goias path { fill:#008000 }
-	#svg-map a.parana path { fill:#008000 }
-	#svg-map a.santacatarina path { fill:#008000 }
-	#svg-map a.riograndedosul path { fill:#8B0000 }
-	#svg-map a.saopaulo path { fill:#008000 }
-	#svg-map a.minasgerais path { fill:#8B0000 }
-	#svg-map a.riodejaneiro path { fill:#FFA500 }
-	#svg-map a.espiritosanto path { fill:#FFA500 }
-	#svg-map a.distritofederal path { fill:#008000 }
-	#svg-map a.paraiba path { fill:#008000 }
+	#svg-map path { fill: #4CAF50; }
 	
 	#svg-map text { fill:#fff; font:12px Arial-BoldMT, sans-serif; cursor:pointer }
-	#svg-map a{ text-decoration:none }
+	#svg-map a{ text-decoration: none }
 	#svg-map a:hover { cursor:pointer; text-decoration:none }
 	#svg-map a:hover path{ fill:#808080 !important }
-	#svg-map .circle { fill:#66ccff }
 	#svg-map a:hover .circle { fill:#808080 !important; cursor:pointer }
 	
 	ion-scroll { white-space: nowrap; height: 100%; width: 100%; }
-	ion-content { background-color: #616161 !important; }
+	ion-content { background-color: #607D8B !important; }
 }

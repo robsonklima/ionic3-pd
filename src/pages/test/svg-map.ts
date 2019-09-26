@@ -24,7 +24,7 @@ export class SvgMapPage {
 
   public alerta(msg: string) {
     const alerta = this.alertCtrl.create({
-      title: 'Alerta!',
+      title: null,
       subTitle: msg,
       buttons: ['OK']
     });
