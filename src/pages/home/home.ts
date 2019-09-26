@@ -4,7 +4,7 @@ import { NavController, MenuController } from 'ionic-angular';
 import { BarChartPage } from '../test/bar-chart';
 import { DoughnutChartPage } from '../test/doughnut-chart';
 import { LineChartPage } from '../test/line-chart';
-import { SvgMapPage } from '../test/svg-map';
+import { MapaSvgPage } from '../mapa-svg/mapa-svg';
 
 
 @Component({
@@ -17,6 +17,12 @@ export class HomePage {
     public nav: NavController,
     private menu: MenuController
   ) {}
+
+  public telaMapaSvg() {
+    this.menu.close().then(() => {
+      this.nav.push(MapaSvgPage);  
+    })
+  }
 
   public telaBarChart() {
     this.menu.close().then(() => {
@@ -33,12 +39,6 @@ export class HomePage {
   public telaLineChart() {
     this.menu.close().then(() => {
       this.nav.push(LineChartPage);  
-    })
-  }
-
-  public telaSvgMap() {
-    this.menu.close().then(() => {
-      this.nav.push(SvgMapPage);  
     })
   }
 }

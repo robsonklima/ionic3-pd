@@ -10,7 +10,10 @@ import { HomePage } from '../pages/home/home';
 import { BarChartPage } from '../pages/test/bar-chart';
 import { DoughnutChartPage } from '../pages/test/doughnut-chart';
 import { LineChartPage } from '../pages/test/line-chart';
-import { SvgMapPage } from '../pages/test/svg-map';
+import { MapaSvgPage } from '../pages/mapa-svg/mapa-svg';
+
+import { SLAFilialService } from '../services/sla-filial';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -20,11 +23,12 @@ import { SvgMapPage } from '../pages/test/svg-map';
     BarChartPage,
     DoughnutChartPage,
     LineChartPage,
-    SvgMapPage
+    MapaSvgPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,12 +38,13 @@ import { SvgMapPage } from '../pages/test/svg-map';
     BarChartPage,
     DoughnutChartPage,
     LineChartPage,
-    SvgMapPage
+    MapaSvgPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SLAFilialService
   ]
 })
 export class AppModule {}
