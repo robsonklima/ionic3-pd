@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import { AlertController } from 'ionic-angular';
 
 
 @Component({
@@ -7,6 +8,17 @@ import { Component} from '@angular/core';
 })
 export class SvgMapPage {
   
-  constructor() {}
+  constructor(
+    private alertCtrl: AlertController
+  ) {}
 
+  public alerta(msg: string) {
+    const alerta = this.alertCtrl.create({
+      title: 'Alerta!',
+      subTitle: msg,
+      buttons: ['OK']
+    });
+
+    alerta.present();
+  }
 }
