@@ -8,6 +8,22 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <p>Home Page</p>
+<ion-content>
+  <ion-list>
+    <ion-list-header class="sem-borda">
+      Gráficos
+    </ion-list-header>
+    <a ion-item (click)="telaSvgMap()">
+      Svg Map
+    </a>
+    <a ion-item (click)="telaBarChart()">
+      Bar Chart
+    </a>
+    <a ion-item (click)="telaLineChart()">
+      Line Chart
+    </a>
+    <a ion-item (click)="telaDoughnutChart()">
+      Doughnut Chart
+    </a>
+  </ion-list>
 </ion-content>

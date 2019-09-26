@@ -1,5 +1,10 @@
 import { Component} from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
+
+import { BarChartPage } from '../test/bar-chart';
+import { DoughnutChartPage } from '../test/doughnut-chart';
+import { LineChartPage } from '../test/line-chart';
+import { SvgMapPage } from '../test/svg-map';
 
 
 @Component({
@@ -9,7 +14,31 @@ import { NavController } from 'ionic-angular';
 export class HomePage {
   
   constructor(
-    public navCtrl: NavController
+    public nav: NavController,
+    private menu: MenuController
   ) {}
 
+  public telaBarChart() {
+    this.menu.close().then(() => {
+      this.nav.push(BarChartPage);  
+    })
+  }
+
+  public telaDoughnutChart() {
+    this.menu.close().then(() => {
+      this.nav.push(DoughnutChartPage);  
+    })
+  }
+
+  public telaLineChart() {
+    this.menu.close().then(() => {
+      this.nav.push(LineChartPage);  
+    })
+  }
+
+  public telaSvgMap() {
+    this.menu.close().then(() => {
+      this.nav.push(SvgMapPage);  
+    })
+  }
 }

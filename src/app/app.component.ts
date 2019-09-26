@@ -5,10 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
-import { BarChartPage } from '../pages/test/bar-chart';
-import { DoughnutChartPage } from '../pages/test/doughnut-chart';
-import { LineChartPage } from '../pages/test/line-chart';
-import { SvgMapPage } from '../pages/test/svg-map';
 
 
 @Component({
@@ -31,30 +27,6 @@ export class MyApp {
       this.menuCtrl.enable(true);
       this.nav.setRoot(this.homePage);
     });
-  }
-
-  public telaBarChart() {
-    this.menuCtrl.close().then(() => {
-      this.nav.push(BarChartPage);  
-    })
-  }
-
-  public telaDoughnutChart() {
-    this.menuCtrl.close().then(() => {
-      this.nav.push(DoughnutChartPage);  
-    })
-  }
-
-  public telaLineChart() {
-    this.menuCtrl.close().then(() => {
-      this.nav.push(LineChartPage);  
-    })
-  }
-
-  public telaSvgMap() {
-    this.menuCtrl.close().then(() => {
-      this.nav.push(SvgMapPage);  
-    })
   }
 
   public sair() {

@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { AlertController } from 'ionic-angular';
+import { AlertController, LoadingController } from 'ionic-angular';
 
 
 @Component({
@@ -9,8 +9,18 @@ import { AlertController } from 'ionic-angular';
 export class SvgMapPage {
   
   constructor(
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController
   ) {}
+
+  ionViewWillEnter() {
+    const loader = this.loadingCtrl.create({
+      content: "Carregando Mapa...",
+      duration: 1600
+    });
+    
+    loader.present();
+  }
 
   public alerta(msg: string) {
     const alerta = this.alertCtrl.create({
