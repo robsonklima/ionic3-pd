@@ -1,5 +1,5 @@
 mapa-svg-page {
-	#svg-map { margin-top: 10%; width: 100%; }
+	#svg-map { margin-top: 10%; width: 100%; position:fixed; }
 	#svg-map path { fill: #4CAF50; }
 	
 	#svg-map text { fill:#fff; font:12px Arial-BoldMT, sans-serif; cursor:pointer }

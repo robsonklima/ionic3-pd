@@ -1,5 +1,9 @@
 indicadores-filial-page {
-  .sem-borda {
-    border: 0px;
-  } 
+  .bg { position: absolute; }
+
+  .item-block, ion-list-header  { background-color:rgba(0, 0, 0, 0.00) !important; }
+
+  //.item-inner { border-bottom: 1px solid rgba(180, 180, 180, 0.1) !important; }
+
+  ion-list-header { border: 5px !important; } 
 }

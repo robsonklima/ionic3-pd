@@ -1,32 +1,35 @@
 <ion-header>
-    <ion-navbar no-border-bottom>
-      <ion-title>Indicadores da {{ nomeFilial }}</ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content>
-    <ion-list>
-      <ion-list-header class="sem-borda">
-        Selecione o Indicador para Acessar os Detalhes
-      </ion-list-header>
-      <a ion-item (click)="telaSLAFilial(nomeFilial)">
-        SLA
-      </a>
+  <ion-navbar no-border-bottom>
+    <ion-title>Indicadores da {{ nomeFilial }}</ion-title>
+  </ion-navbar>
+</ion-header>
 
-      <a ion-item (click)="telaPendenciaFilial(nomeFilial)">
-        Pendência
-      </a>
+<ion-content>
+  <!-- <img class="bg" src="./assets/imgs/{{ nomeFilial }}.png"/> -->
 
-      <a ion-item (click)="telaReincidenciaFilial(nomeFilial)">
-        Reincidência
-      </a>
+  <ion-list>
+    <ion-list-header>
+      Clique para Acessar os Detalhes
+    </ion-list-header>
+    
+    <a ion-item (click)="telaSLAFilial(nomeFilial)">
+      SLA
+    </a>
 
-      <a ion-item>
-        Troca de Peças
-      </a>
+    <a ion-item (click)="telaPendenciaFilial(nomeFilial)">
+      Pendência
+    </a>
 
-      <a ion-item>
-        Técnicos
-      </a>
-    </ion-list>
-  </ion-content>
+    <a ion-item (click)="telaReincidenciaFilial(nomeFilial)">
+      Reincidência
+    </a>
+
+    <a ion-item>
+      Troca de Peças
+    </a>
+
+    <a ion-item>
+      Técnicos
+    </a>
+  </ion-list>
+</ion-content>
