@@ -13,7 +13,6 @@ export class ReincidenciaFilialPage {
   private doughnutChart: Chart;
   
   constructor(
-    private nav: NavController,
     private navParams: NavParams
   ) {
     this.nomeFilial = this.navParams.get('nomeFilial');
