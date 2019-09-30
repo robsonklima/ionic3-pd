@@ -23,8 +23,7 @@
     <ion-list *ngSwitchCase="'sla'">
       <ion-item *ngFor="let sla of slaFiliais; let i = index">
         <ion-icon name='star' item-start *ngIf="sla.percentual >= 95" color="secondary"></ion-icon>
-        <ion-icon name='star-half' item-start *ngIf="sla.percentual >= 92 && sla.percentual < 95" color="primary">
-        </ion-icon>
+        <ion-icon name='star-half' item-start *ngIf="sla.percentual >= 92 && sla.percentual < 95" color="orange"></ion-icon>
         <ion-icon name='star-outline' item-start *ngIf="sla.percentual < 92" color="danger"></ion-icon>
         {{ sla.nomeFilial }}
         <p>Dentro: {{ sla.dentro }} | Fora: {{ sla.fora }}</p>
@@ -34,15 +33,21 @@
 
     <ion-list *ngSwitchCase="'pen'">
       <ion-item *ngFor="let p of slaFiliais; let i = index">
+        <ion-icon name='star' item-start *ngIf="p.pendencia <= 3" color="secondary"></ion-icon>
+        <ion-icon name='star-half' item-start *ngIf="p.pendencia >= 3.1 && p.pendencia <= 5" color="orange"></ion-icon>
+        <ion-icon name='star-outline' item-start *ngIf="p.pendencia > 5" color="danger"></ion-icon>
         {{ p.nomeFilial }}
         <ion-badge item-end>{{ p.pendencia }}%</ion-badge>
       </ion-item>
     </ion-list>
 
     <ion-list *ngSwitchCase="'rcd'">
-      <ion-item *ngFor="let p of slaFiliais; let i = index">
-        {{ p.nomeFilial }}
-        <ion-badge item-end>{{ p.reincidencia }}%</ion-badge>
+      <ion-item *ngFor="let r of slaFiliais; let i = index">
+        <ion-icon name='star' item-start *ngIf="r.reincidencia <= 32" color="secondary"></ion-icon>
+        <ion-icon name='star-half' item-start *ngIf="r.reincidencia > 32 && r.reincidencia <= 35" color="orange"></ion-icon>
+        <ion-icon name='star-outline' item-start *ngIf="r.reincidencia > 35" color="danger"></ion-icon>
+        {{ r.nomeFilial }}
+        <ion-badge item-end>{{ r.reincidencia }}%</ion-badge>
       </ion-item>
     </ion-list>
   </div>

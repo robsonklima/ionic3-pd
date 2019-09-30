@@ -34,10 +34,16 @@ export class IndicadoresFiliaisPage {
 
       this.slaFiliais.forEach(e => {
         if(e.nomeFilial == 'TOTAL') {
-          let p = this.slaFiliais.reduce(function(prev, cur) { return prev + (cur.pendencia) }, 0) / this.slaFiliais.length;
+          let p = this.slaFiliais.reduce(function(prev, cur) { 
+            return prev + (cur.pendencia) 
+          }, 0) / this.slaFiliais.length;
+
           e.pendencia = Number(p.toFixed(2));
       
-          let r = this.slaFiliais.reduce(function(prev, cur) { return prev + (cur.reincidencia) }, 0) / this.slaFiliais.length;
+          let r = this.slaFiliais.reduce(function(prev, cur) { 
+            return prev + (cur.reincidencia) 
+          }, 0) / this.slaFiliais.length;
+          
           e.reincidencia = Number(r.toFixed(2));
         }
       });
