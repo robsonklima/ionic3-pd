@@ -27,7 +27,7 @@
         <ion-icon name='clock' item-start *ngIf="sla.percentual < 92" color="danger"></ion-icon>
         {{ sla.nomeFilial }}
         <p>Dentro: {{ sla.dentro }} | Fora: {{ sla.fora }}</p>
-        <ion-badge item-end>{{ sla.percentual }}%</ion-badge>
+        <ion-note item-end>{{ sla.percentual }}%</ion-note>
       </ion-item>
     </ion-list>
 
@@ -37,7 +37,7 @@
         <ion-icon name='redo' item-start *ngIf="p.pendencia >= 3.1 && p.pendencia <= 5" color="orange"></ion-icon>
         <ion-icon name='redo' item-start *ngIf="p.pendencia > 5" color="danger"></ion-icon>
         {{ p.nomeFilial }}
-        <ion-badge item-end>{{ p.pendencia }}%</ion-badge>
+        <ion-note item-end>{{ p.pendencia }}%</ion-note>
       </ion-item>
     </ion-list>
 
@@ -47,7 +47,7 @@
         <ion-icon name='repeat' item-start *ngIf="r.reincidencia > 32 && r.reincidencia <= 35" color="orange"></ion-icon>
         <ion-icon name='repeat' item-start *ngIf="r.reincidencia > 35" color="danger"></ion-icon>
         {{ r.nomeFilial }}
-        <ion-badge item-end>{{ r.reincidencia }}%</ion-badge>
+        <ion-note item-end>{{ r.reincidencia }}%</ion-note>
       </ion-item>
     </ion-list>
   </div>

@@ -18,9 +18,13 @@ export class StatusFiliaisPage {
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
     private slaFilialService: SLAFilialService
-  ) {}
+  ) {
+    document.querySelector('ion-content').scrollTo(100, 0);
+  }
 
   ngOnInit() {
+    
+
     const loader = this.loadingCtrl.create({
       content: "Obtendo dados do servidor..."
     });
@@ -29,7 +33,7 @@ export class StatusFiliaisPage {
 
     this.slaFilialService.buscarSLAFiliais().subscribe((dados: SLAFilial[]) => {
         this.slaFiliais = dados;
-
+        
         loader.dismiss();
       },
       err => {
