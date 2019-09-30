@@ -1,15 +1,49 @@
 <ion-header>
-    <ion-navbar no-border-bottom>
-      <ion-title>Indicadores Filiais</ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content>
-    <ion-list>
-      <ion-list-header class="sem-borda">
-        Indicadores Filiais
-      </ion-list-header>
-  
-      
+  <ion-navbar no-border-bottom>
+    <ion-title>Indicadores Filiais</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="modo">
+      <ion-segment-button value="sla">
+        SLA
+      </ion-segment-button>
+      <ion-segment-button value="pen">
+        Pendência
+      </ion-segment-button>
+      <ion-segment-button value="rcd">
+        Reincidência
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="modo">
+    <ion-list *ngSwitchCase="'sla'">
+      <ion-item *ngFor="let sla of slaFiliais; let i = index">
+        <ion-icon name='star' item-start *ngIf="sla.percentual >= 95" color="secondary"></ion-icon>
+        <ion-icon name='star-half' item-start *ngIf="sla.percentual >= 92 && sla.percentual < 95" color="primary">
+        </ion-icon>
+        <ion-icon name='star-outline' item-start *ngIf="sla.percentual < 92" color="danger"></ion-icon>
+        {{ sla.nomeFilial }}
+        <p>Dentro: {{ sla.dentro }} | Fora: {{ sla.fora }}</p>
+        <ion-badge item-end>{{ sla.percentual }}%</ion-badge>
+      </ion-item>
     </ion-list>
-  </ion-content>
+
+    <ion-list *ngSwitchCase="'pen'">
+      <ion-item *ngFor="let p of slaFiliais; let i = index">
+        {{ p.nomeFilial }}
+        <ion-badge item-end>{{ p.pendencia }}%</ion-badge>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'rcd'">
+      <ion-item *ngFor="let p of slaFiliais; let i = index">
+        {{ p.nomeFilial }}
+        <ion-badge item-end>{{ p.reincidencia }}%</ion-badge>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

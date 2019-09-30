@@ -6,4 +6,6 @@ export class SLAFilial {
   fora: number;
   totalGeral: number;
   percentual: number;
+  reincidencia: number;
+  pendencia: number;
 }

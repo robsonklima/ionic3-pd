@@ -22,7 +22,7 @@ export class StatusFiliaisPage {
 
   ngOnInit() {
     const loader = this.loadingCtrl.create({
-      content: "Carregando Mapa..."
+      content: "Obtendo dados do servidor..."
     });
     
     loader.present();
@@ -33,7 +33,9 @@ export class StatusFiliaisPage {
         loader.dismiss();
       },
       err => {
-        loader.dismiss()
+        loader.dismiss();
+
+        this.navCtrl.pop().then(() => { this.exibirAlerta('Erro ao obter os dados.') }).catch();
       });
   }
 
@@ -57,7 +59,7 @@ export class StatusFiliaisPage {
     this.navCtrl.push(IndicadoresFilialMenuPage, { nomeFilial: nomeFilial });
   }
 
-  public alerta(msg: string) {
+  private exibirAlerta(msg: string) {
     const alerta = this.alertCtrl.create({
       title: null,
       subTitle: msg,
