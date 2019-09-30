@@ -4,7 +4,7 @@ import { NavController, MenuController } from 'ionic-angular';
 import { BarChartPage } from '../test/bar-chart';
 import { DoughnutChartPage } from '../test/doughnut-chart';
 import { LineChartPage } from '../test/line-chart';
-import { MapaSvgPage } from '../mapa-svg/mapa-svg';
+import { StatusFiliaisPage } from '../indicadores-filial/status-filiais';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class HomePage {
 
   public telaMapaSvg() {
     this.menu.close().then(() => {
-      this.nav.push(MapaSvgPage);  
+      this.nav.push(StatusFiliaisPage);  
     })
   }
 

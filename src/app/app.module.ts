@@ -10,7 +10,6 @@ import { HomePage } from '../pages/home/home';
 import { BarChartPage } from '../pages/test/bar-chart';
 import { DoughnutChartPage } from '../pages/test/doughnut-chart';
 import { LineChartPage } from '../pages/test/line-chart';
-import { MapaSvgPage } from '../pages/mapa-svg/mapa-svg';
 import { IndicadoresFilialPage } from '../pages/indicadores-filial/indicadores-filial';
 
 import { SLAFilialService } from '../services/sla-filial';
@@ -18,6 +17,8 @@ import { HttpModule } from '@angular/http';
 import { ReincidenciaFilialPage } from '../pages/indicadores-filial/reincidencia-filial';
 import { SLAFilialPage } from '../pages/indicadores-filial/sla-filial';
 import { PendenciaFilialPage } from '../pages/indicadores-filial/pendencia-filial';
+import { StatusFiliaisPage } from '../pages/indicadores-filial/status-filiais';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { PendenciaFilialPage } from '../pages/indicadores-filial/pendencia-filia
     BarChartPage,
     DoughnutChartPage,
     LineChartPage,
-    MapaSvgPage,
+    StatusFiliaisPage,
     IndicadoresFilialPage,
     SLAFilialPage,
     PendenciaFilialPage,
@@ -46,7 +47,7 @@ import { PendenciaFilialPage } from '../pages/indicadores-filial/pendencia-filia
     BarChartPage,
     DoughnutChartPage,
     LineChartPage,
-    MapaSvgPage,
+    StatusFiliaisPage,
     IndicadoresFilialPage,
     SLAFilialPage,
     PendenciaFilialPage,

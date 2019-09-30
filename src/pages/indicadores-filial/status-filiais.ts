@@ -6,10 +6,10 @@ import { IndicadoresFilialPage } from '../indicadores-filial/indicadores-filial'
 
 
 @Component({
-  selector: 'mapa-svg-page',
-  templateUrl: 'mapa-svg.html'
+  selector: 'status-filiais-page',
+  templateUrl: 'status-filiais.html'
 })
-export class MapaSvgPage {
+export class StatusFiliaisPage {
   slaFiliais: SLAFilial[] = [];
   
   constructor(
