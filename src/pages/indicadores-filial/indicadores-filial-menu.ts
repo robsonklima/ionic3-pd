@@ -7,10 +7,10 @@ import { ReincidenciaFilialPage } from './reincidencia-filial';
 
 
 @Component({
-  selector: 'indicadores-filial-page',
-  templateUrl: 'indicadores-filial.html'
+  selector: 'indicadores-filial-menu-page',
+  templateUrl: 'indicadores-filial-menu.html'
 })
-export class IndicadoresFilialPage {
+export class IndicadoresFilialMenuPage {
   nomeFilial: string;
   
   constructor(

@@ -1,10 +1,8 @@
 import { Component} from '@angular/core';
 import { NavController, MenuController } from 'ionic-angular';
 
-import { BarChartPage } from '../test/bar-chart';
-import { DoughnutChartPage } from '../test/doughnut-chart';
-import { LineChartPage } from '../test/line-chart';
 import { StatusFiliaisPage } from '../indicadores-filial/status-filiais';
+import { IndicadoresFiliaisPage } from '../indicadores-filial/indicadores-filiais';
 
 
 @Component({
@@ -18,27 +16,16 @@ export class HomePage {
     private menu: MenuController
   ) {}
 
-  public telaMapaSvg() {
+  public telaStatusFiliais() {
     this.menu.close().then(() => {
       this.nav.push(StatusFiliaisPage);  
     })
   }
 
-  public telaBarChart() {
+  public telaIndicadoresFiliais() {
     this.menu.close().then(() => {
-      this.nav.push(BarChartPage);  
+      this.nav.push(IndicadoresFiliaisPage);  
     })
   }
 
-  public telaDoughnutChart() {
-    this.menu.close().then(() => {
-      this.nav.push(DoughnutChartPage);  
-    })
-  }
-
-  public telaLineChart() {
-    this.menu.close().then(() => {
-      this.nav.push(LineChartPage);  
-    })
-  }
 }

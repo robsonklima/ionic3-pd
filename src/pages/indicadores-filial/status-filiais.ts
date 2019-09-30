@@ -2,7 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { AlertController, LoadingController, NavController } from 'ionic-angular';
 import { SLAFilialService } from '../../services/sla-filial';
 import { SLAFilial } from '../../models/sla-filial';
-import { IndicadoresFilialPage } from '../indicadores-filial/indicadores-filial';
+import { IndicadoresFilialMenuPage } from './indicadores-filial-menu';
+
 
 
 @Component({
@@ -53,7 +54,7 @@ export class StatusFiliaisPage {
   }
 
   public telaIndicadoresFilial(nomeFilial: string) {
-    this.navCtrl.push(IndicadoresFilialPage, { nomeFilial: nomeFilial });
+    this.navCtrl.push(IndicadoresFilialMenuPage, { nomeFilial: nomeFilial });
   }
 
   public alerta(msg: string) {

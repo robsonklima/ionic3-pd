@@ -3,6 +3,9 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpModule } from '@angular/http';
+
+import { SLAFilialService } from '../services/sla-filial';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -10,14 +13,12 @@ import { HomePage } from '../pages/home/home';
 import { BarChartPage } from '../pages/test/bar-chart';
 import { DoughnutChartPage } from '../pages/test/doughnut-chart';
 import { LineChartPage } from '../pages/test/line-chart';
-import { IndicadoresFilialPage } from '../pages/indicadores-filial/indicadores-filial';
-
-import { SLAFilialService } from '../services/sla-filial';
-import { HttpModule } from '@angular/http';
 import { ReincidenciaFilialPage } from '../pages/indicadores-filial/reincidencia-filial';
 import { SLAFilialPage } from '../pages/indicadores-filial/sla-filial';
 import { PendenciaFilialPage } from '../pages/indicadores-filial/pendencia-filial';
 import { StatusFiliaisPage } from '../pages/indicadores-filial/status-filiais';
+import { IndicadoresFilialMenuPage } from '../pages/indicadores-filial/indicadores-filial-menu';
+import { IndicadoresFiliaisPage } from '../pages/indicadores-filial/indicadores-filiais';
 
 
 @NgModule({
@@ -29,10 +30,11 @@ import { StatusFiliaisPage } from '../pages/indicadores-filial/status-filiais';
     DoughnutChartPage,
     LineChartPage,
     StatusFiliaisPage,
-    IndicadoresFilialPage,
+    IndicadoresFilialMenuPage,
     SLAFilialPage,
     PendenciaFilialPage,
-    ReincidenciaFilialPage
+    ReincidenciaFilialPage,
+    IndicadoresFiliaisPage
   ],
   imports: [
     BrowserModule,
@@ -48,10 +50,11 @@ import { StatusFiliaisPage } from '../pages/indicadores-filial/status-filiais';
     DoughnutChartPage,
     LineChartPage,
     StatusFiliaisPage,
-    IndicadoresFilialPage,
+    IndicadoresFilialMenuPage,
     SLAFilialPage,
     PendenciaFilialPage,
-    ReincidenciaFilialPage
+    ReincidenciaFilialPage,
+    IndicadoresFiliaisPage
   ],
   providers: [
     StatusBar,
