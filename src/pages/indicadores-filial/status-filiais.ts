@@ -60,7 +60,11 @@ export class StatusFiliaisPage {
   }
 
   public telaIndicadoresFilial(nomeFilial: string) {
-    this.navCtrl.push(IndicadoresFilialMenuPage, { nomeFilial: nomeFilial });
+    let slaFilial: SLAFilial[] = this.slaFiliais.filter((s) => { return (s.nomeFilial == nomeFilial) });    
+
+    if (slaFilial.length > 0) {
+      this.navCtrl.push(IndicadoresFilialMenuPage, { slaFilial: slaFilial[0] });
+    }
   }
 
   private exibirAlerta(msg: string) {

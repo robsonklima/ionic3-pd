@@ -1,6 +1,8 @@
 import { Component} from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { SLAFilial } from '../../models/sla-filial';
+
 import { SLAFilialPage } from './sla-filial';
 import { PendenciaFilialPage } from './pendencia-filial';
 import { ReincidenciaFilialPage } from './reincidencia-filial';
@@ -11,13 +13,13 @@ import { ReincidenciaFilialPage } from './reincidencia-filial';
   templateUrl: 'indicadores-filial-menu.html'
 })
 export class IndicadoresFilialMenuPage {
-  nomeFilial: string;
+  slaFilial: SLAFilial;
   
   constructor(
     public navCtrl: NavController,
     private navParams: NavParams,
   ) {
-    this.nomeFilial = this.navParams.get('nomeFilial');
+    this.slaFilial = this.navParams.get('slaFilial');
   }
 
   public telaSLAFilial(nomeFilial: string) {

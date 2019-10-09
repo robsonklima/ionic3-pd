@@ -8,8 +8,8 @@ status-filiais-page {
 	#svg-map a:hover path{ fill:#808080 !important }
 	#svg-map a:hover .circle { fill:#808080 !important; cursor:pointer }
 	
-	ion-scroll { white-space: nowrap; margin-top: 0px; overflow-y: scroll;
-		display: block; }
+	ion-scroll { white-space: nowrap; margin-top: 0px; overflow-y: scroll; display: block; }
 	ion-content { background-color: #607D8B !important; }
+	svg { padding-top: 10px; }
 	.small-text { font-size: 14pt !important; }
 }

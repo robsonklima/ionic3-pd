@@ -19,6 +19,7 @@ import { PendenciaFilialPage } from '../pages/indicadores-filial/pendencia-filia
 import { StatusFiliaisPage } from '../pages/indicadores-filial/status-filiais';
 import { IndicadoresFilialMenuPage } from '../pages/indicadores-filial/indicadores-filial-menu';
 import { IndicadoresFiliaisPage } from '../pages/indicadores-filial/indicadores-filiais';
+import { TabsPage } from '../pages/indicadores-filial/tabs';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { IndicadoresFiliaisPage } from '../pages/indicadores-filial/indicadores-
     SLAFilialPage,
     PendenciaFilialPage,
     ReincidenciaFilialPage,
-    IndicadoresFiliaisPage
+    IndicadoresFiliaisPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { IndicadoresFiliaisPage } from '../pages/indicadores-filial/indicadores-
     SLAFilialPage,
     PendenciaFilialPage,
     ReincidenciaFilialPage,
-    IndicadoresFiliaisPage
+    IndicadoresFiliaisPage,
+    TabsPage
   ],
   providers: [
     StatusBar,

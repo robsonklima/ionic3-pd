@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar no-border-bottom>
-    <ion-title>Indicadores da {{ nomeFilial }}</ion-title>
+    <ion-title>Indicadores da {{ slaFilial?.nomeFilial }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -13,16 +13,19 @@
     <a ion-item (click)="telaSLAFilial(nomeFilial)">
       <ion-icon name='clock' item-start></ion-icon>
       SLA
+      <ion-note item-end>{{ slaFilial?.percentual }}%</ion-note>
     </a>
 
     <a ion-item (click)="telaPendenciaFilial(nomeFilial)">
       <ion-icon name='redo' item-start></ion-icon>
       Pendência
+      <ion-note item-end>{{ slaFilial?.pendencia }}%</ion-note>
     </a>
 
     <a ion-item (click)="telaReincidenciaFilial(nomeFilial)">
       <ion-icon name='repeat' item-start></ion-icon>
       Reincidência
+      <ion-note item-end>{{ slaFilial?.reincidencia }}%</ion-note>
     </a>
 
     <a ion-item>
