@@ -27,7 +27,7 @@ import { Config } from '../../models/config';
 export class SLAFilialPage {
   nomeFilial: string;
   @ViewChild("barCanvas") barCanvas: ElementRef;
-  private barChart: Chart;
+  public barChart: Chart;
   
   constructor(
     private navParams: NavParams

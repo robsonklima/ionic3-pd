@@ -9,7 +9,7 @@ import { Config } from '../../models/config';
 })
 export class DoughnutChartPage {
   @ViewChild("doughnutCanvas") doughnutCanvas: ElementRef;
-  private doughnutChart: Chart;
+  public doughnutChart: Chart;
   
   constructor(
     public navCtrl: NavController

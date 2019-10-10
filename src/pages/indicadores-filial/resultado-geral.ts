@@ -30,7 +30,7 @@ import { SLAFilialService } from '../../services/sla-filial';
 export class ResultadoGeralPage {
   slaFiliais: SLAFilial[] = [];
   @ViewChild("barCanvas") barCanvas: ElementRef;
-  private barChart: Chart;
+  public barChart: Chart;
   
   constructor(
     private alertCtrl: AlertController,

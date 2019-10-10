@@ -8,7 +8,7 @@ import { NavController } from 'ionic-angular';
 })
 export class LineChartPage {
   @ViewChild("lineCanvas") lineCanvas: ElementRef;
-  private lineChart: Chart;
+  public lineChart: Chart;
   
   constructor(
     public navCtrl: NavController

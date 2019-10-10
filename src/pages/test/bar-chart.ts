@@ -9,7 +9,7 @@ import { Config } from '../../models/config';
 })
 export class BarChartPage {
   @ViewChild("barCanvas") barCanvas: ElementRef;
-  private barChart: Chart;
+  public barChart: Chart;
   
   constructor(
     public navCtrl: NavController

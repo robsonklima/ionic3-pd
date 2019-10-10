@@ -27,7 +27,7 @@ import { Config } from '../../models/config';
 export class ReincidenciaFilialPage {
   nomeFilial: string;
   @ViewChild("doughnutCanvas") doughnutCanvas: ElementRef;
-  private doughnutChart: Chart;
+  public doughnutChart: Chart;
   
   constructor(
     private navParams: NavParams

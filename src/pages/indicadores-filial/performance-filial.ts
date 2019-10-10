@@ -32,7 +32,7 @@ export class PerformanceFilialPage {
   slaFilial: SLAFilial;
   performances: Performance[] = [];
   @ViewChild("barCanvas") barCanvas: ElementRef;
-  private barChart: Chart;
+  public barChart: Chart;
   private labels: string[] = [];
   private datasets: any[] = [];
 
