@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, LoadingController, MenuController, 
-         ToastController, AlertController, Events } from 'ionic-angular';
+import { NavController, LoadingController, MenuController, ToastController, AlertController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
 import { HomePage } from '../home/home';
@@ -20,10 +19,7 @@ export class LoginPage implements OnInit {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private menuCtrl: MenuController,
-    
-    private toastCtrl: ToastController,
-    private events: Events,
-    
+    private toastCtrl: ToastController
   ) {}
 
   ngOnInit() {

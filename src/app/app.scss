@@ -1,17 +1,3 @@
 ion-list {
   padding-top: 4px !important;
 }
-
-.container {
-  height: 100%;
-  position: relative;
-}
-
-.vertical-center {
-  width: 100%;
-  margin: 0;
-  position: absolute !important;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
