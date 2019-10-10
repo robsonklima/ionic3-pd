@@ -3,6 +3,8 @@ import { NavController, MenuController } from 'ionic-angular';
 
 import { IndicadoresFiliaisPage } from '../indicadores-filial/indicadores-filiais';
 import { StatusFiliaisPage } from '../indicadores-filial/status-filiais';
+import { ChamadosAntigosPage } from '../indicadores-filial/chamados-antigos';
+import { ResultadoGeralPage } from '../indicadores-filial/resultado-geral';
 
 
 @Component({
@@ -32,11 +34,11 @@ import { StatusFiliaisPage } from '../indicadores-filial/status-filiais';
           Indicadores Filiais
         </a>
 
-        <a ion-item>
+        <a ion-item (click)="telaResultadoGeral()">
           Resultado Geral DSS
         </a>
         
-        <a ion-item>
+        <a ion-item (click)="telaChamadosAntigos()">
           Chamados Antigos
         </a>
       </ion-list>
@@ -58,6 +60,18 @@ export class HomePage {
   public telaIndicadoresFiliais() {
     this.menu.close().then(() => {
       this.nav.push(IndicadoresFiliaisPage);  
+    })
+  }
+
+  public telaResultadoGeral() {
+    this.menu.close().then(() => {
+      this.nav.push(ResultadoGeralPage);  
+    })
+  }
+
+  public telaChamadosAntigos() {
+    this.menu.close().then(() => {
+      this.nav.push(ChamadosAntigosPage);  
     })
   }
 }

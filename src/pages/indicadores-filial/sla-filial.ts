@@ -53,12 +53,12 @@ export class SLAFilialPage {
               Config.CONSTANTS.CORES.RGB.CINZA_ESCURO
             ],
             borderColor: [
-              Config.CONSTANTS.CORES.HEXA.VERMELHO, 
-              Config.CONSTANTS.CORES.HEXA.AZUL, 
-              Config.CONSTANTS.CORES.HEXA.AMARELO, 
-              Config.CONSTANTS.CORES.HEXA.ROSA, 
-              Config.CONSTANTS.CORES.HEXA.VERDE, 
-              Config.CONSTANTS.CORES.HEXA.CINZA_ESCURO
+              Config.CONSTANTS.CORES.RGB.VERMELHO,
+              Config.CONSTANTS.CORES.RGB.AZUL,
+              Config.CONSTANTS.CORES.RGB.AMARELO,
+              Config.CONSTANTS.CORES.RGB.ROSA,
+              Config.CONSTANTS.CORES.RGB.VERDE,
+              Config.CONSTANTS.CORES.RGB.CINZA_ESCURO
             ],
             borderWidth: 1
           }

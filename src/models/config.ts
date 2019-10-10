@@ -1,7 +1,7 @@
 export class Config {
   public static CONSTANTS = { 
-    OBTENDO_DADOS_SERVIDOR: "Obtendo Dados do Servidor",
-    ERRO_OBTER_DADOS_SERVIDOR: "Erro ao Obter Dados do Servidor",
+    OBTENDO_DADOS_SERVIDOR: "Obtendo dados do servidor",
+    ERRO_OBTER_DADOS_SERVIDOR: "Erro ao obter dados do servidor",
     CORES: {
       RGB: {
         VERMELHO: "rgba(255, 99, 132, 0.2)",
