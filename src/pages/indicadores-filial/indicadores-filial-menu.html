@@ -9,17 +9,15 @@
     <ion-list-header>
       Clique para Acessar os Detalhes
     </ion-list-header>
+    <a ion-item (click)="telaPerformanceFilial()">
+      <ion-icon name="ios-analytics" color="primary" item-start></ion-icon>
+      Performance
+    </a>
 
     <a ion-item (click)="telaSLAFilial()">
       <ion-icon name='clock' color="primary" item-start></ion-icon>
       SLA
       <ion-note item-end>{{ slaFilial?.percentual }}%</ion-note>
-    </a>
-
-    <a ion-item (click)="telaPendenciaFilial()">
-      <ion-icon name='redo' color="primary" item-start></ion-icon>
-      Pendência
-      <ion-note item-end>{{ slaFilial?.pendencia }}%</ion-note>
     </a>
 
     <a ion-item (click)="telaReincidenciaFilial()">
@@ -28,14 +26,10 @@
       <ion-note item-end>{{ slaFilial?.reincidencia }}%</ion-note>
     </a>
 
-    <a ion-item>
-      <ion-icon name='build' color="primary" item-start></ion-icon>
-      Troca de Peças
-    </a>
-
-    <a ion-item>
-      <ion-icon name='contacts' color="primary" item-start></ion-icon>
-      Técnicos
+    <a ion-item (click)="telaPendenciaFilial()">
+      <ion-icon name='redo' color="primary" item-start></ion-icon>
+      Pendência
+      <ion-note item-end>{{ slaFilial?.pendencia }}%</ion-note>
     </a>
   </ion-list>
 </ion-content>

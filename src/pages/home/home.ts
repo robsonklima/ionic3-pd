@@ -27,18 +27,22 @@ import { ResultadoGeralPage } from '../indicadores-filial/resultado-geral';
         </ion-list-header>
 
         <a ion-item (click)="telaStatusFiliais()">
+          <ion-icon name="md-pie" color="primary" item-start></ion-icon>
           Status Filiais
         </a>
 
         <a ion-item (click)="telaIndicadoresFiliais()"> 
+          <ion-icon name="podium" color="primary" item-start></ion-icon>
           Indicadores Filiais
         </a>
 
         <a ion-item (click)="telaResultadoGeral()">
+          <ion-icon name="md-clipboard" color="primary" item-start></ion-icon>
           Resultado Geral DSS
         </a>
         
         <a ion-item (click)="telaChamadosAntigos()">
+          <ion-icon name="logo-buffer" color="primary" item-start></ion-icon>
           Chamados Antigos
         </a>
       </ion-list>

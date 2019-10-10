@@ -6,6 +6,7 @@ import { SLAFilial } from '../../models/sla-filial';
 import { SLAFilialPage } from './sla-filial';
 import { PendenciaFilialPage } from './pendencia-filial';
 import { ReincidenciaFilialPage } from './reincidencia-filial';
+import { PerformanceFilialPage } from './performance-filial';
 
 
 @Component({
@@ -20,6 +21,10 @@ export class IndicadoresFilialMenuPage {
     private navParams: NavParams,
   ) {
     this.slaFilial = this.navParams.get('slaFilial');
+  }
+
+  public telaPerformanceFilial() {
+    this.navCtrl.push(PerformanceFilialPage, { slaFilial: this.slaFilial });
   }
 
   public telaSLAFilial() {

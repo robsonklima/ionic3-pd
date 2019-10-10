@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 
 import { SLAFilialService } from '../services/sla-filial';
 import { ChamadosAntigosService } from '../services/chamados-antigos';
+import { PerformanceService } from '../services/performance';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -22,6 +23,7 @@ import { IndicadoresFilialMenuPage } from '../pages/indicadores-filial/indicador
 import { IndicadoresFiliaisPage } from '../pages/indicadores-filial/indicadores-filiais';
 import { ChamadosAntigosPage } from '../pages/indicadores-filial/chamados-antigos';
 import { ResultadoGeralPage } from '../pages/indicadores-filial/resultado-geral';
+import { PerformanceFilialPage } from '../pages/indicadores-filial/performance-filial';
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { ResultadoGeralPage } from '../pages/indicadores-filial/resultado-geral'
     SLAFilialPage,
     PendenciaFilialPage,
     ReincidenciaFilialPage,
+    PerformanceFilialPage,
     IndicadoresFiliaisPage,
     ResultadoGeralPage,
     ChamadosAntigosPage
@@ -59,6 +62,7 @@ import { ResultadoGeralPage } from '../pages/indicadores-filial/resultado-geral'
     SLAFilialPage,
     PendenciaFilialPage,
     ReincidenciaFilialPage,
+    PerformanceFilialPage,
     IndicadoresFiliaisPage,
     ResultadoGeralPage,
     ChamadosAntigosPage
@@ -68,7 +72,8 @@ import { ResultadoGeralPage } from '../pages/indicadores-filial/resultado-geral'
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SLAFilialService,
-    ChamadosAntigosService
+    ChamadosAntigosService,
+    PerformanceService
   ]
 })
 export class AppModule {}

@@ -4,16 +4,18 @@ import 'rxjs/Rx';
 
 import { Observable } from "rxjs/Observable";
 import { Config } from '../models/config';
-import { ChamadoAntigo } from '../models/chamado-antigo';
+import { Performance } from '../models/performance';
 
 @Injectable()
-export class ChamadosAntigosService {
+export class PerformanceService {
+  performances: Performance[] = [];
+
   constructor(
     private http: Http
   ) { }
 
-  buscarChamadosAntigos(): Observable<ChamadoAntigo[]> {
-    return this.http.get(Config.API_URL + 'DashboardChamadosAntigos')
+  buscarPerformance(codFilial: number): Observable<Performance[]> {
+    return this.http.get(Config.API_URL + 'DashboardPerformance/' + codFilial)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
   }

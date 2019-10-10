@@ -24,7 +24,7 @@ export class ChamadosAntigosPage {
     const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
     loader.present();
 
-    this.chamadosAntigosService.buscarSLAFiliais().subscribe((chamados: ChamadoAntigo[]) => {
+    this.chamadosAntigosService.buscarChamadosAntigos().subscribe((chamados: ChamadoAntigo[]) => {
         this.chamadosAntigos = chamados;
         loader.dismiss();
       },

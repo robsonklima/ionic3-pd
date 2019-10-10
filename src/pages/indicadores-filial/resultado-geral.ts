@@ -17,7 +17,7 @@ import { SLAFilialService } from '../../services/sla-filial';
     </ion-header>
 
     <ion-content>
-      <ion-card">
+      <ion-card>
         <ion-card-header>
           Todas as Filiais
         </ion-card-header>
@@ -79,9 +79,9 @@ export class ResultadoGeralPage {
                 Config.CONSTANTS.CORES.RGB.VERDE
               ],
               borderColor: [
-                Config.CONSTANTS.CORES.HEXA.VERMELHO, 
-                Config.CONSTANTS.CORES.HEXA.AZUL, 
-                Config.CONSTANTS.CORES.HEXA.VERDE
+                Config.CONSTANTS.CORES.RGB.VERMELHO,
+                Config.CONSTANTS.CORES.RGB.AZUL,
+                Config.CONSTANTS.CORES.RGB.VERDE
               ],
               borderWidth: 1
             }
@@ -89,7 +89,12 @@ export class ResultadoGeralPage {
         },
         options: {
           legend: {
-            display: false
+            position: 'top',
+            display: false,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
           },
           scales: {
             yAxes: [
