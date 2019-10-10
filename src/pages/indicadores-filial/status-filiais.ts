@@ -6,7 +6,6 @@ import { IndicadoresFilialMenuPage } from './indicadores-filial-menu';
 import { Config } from '../../models/config';
 
 
-
 @Component({
   selector: 'status-filiais-page',
   templateUrl: 'status-filiais.html'
@@ -19,9 +18,7 @@ export class StatusFiliaisPage {
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
     private slaFilialService: SLAFilialService
-  ) {
-    document.querySelector('ion-content').scrollTo(100, 0);
-  }
+  ) {}
 
   ngOnInit() {
     const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
@@ -29,12 +26,10 @@ export class StatusFiliaisPage {
 
     this.slaFilialService.buscarSLAFiliais().subscribe((dados: SLAFilial[]) => {
         this.slaFiliais = dados;
-        
         loader.dismiss();
       },
       err => {
         loader.dismiss();
-
         this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
       });
   }

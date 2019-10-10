@@ -1,25 +1,46 @@
 import { Component} from '@angular/core';
-import { NavController, MenuController } from 'ionic-angular';
+import { LoadingController, NavController, AlertController } from 'ionic-angular';
+
+import { Config } from '../../models/config';
+import { ChamadoAntigo } from '../../models/chamado-antigo';
+import { ChamadosAntigosService } from '../../services/chamados-antigos';
 
 
 @Component({
-  selector: 'chamados-antigos',
-  template: `
-    <ion-header>
-      <ion-navbar no-border-bottom>
-        <ion-title>Chamados Antigos</ion-title>
-      </ion-navbar>
-    </ion-header>
-
-    <ion-content>
-      
-    </ion-content>`
+  selector: 'chamados-antigos-page',
+  templateUrl: 'chamados-antigos.html'
 })
 export class ChamadosAntigosPage {
+  chamadosAntigos: ChamadoAntigo[] = [];
   
   constructor(
-    public nav: NavController,
-    private menu: MenuController
+    private loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private alertCtrl: AlertController,
+    private chamadosAntigosService: ChamadosAntigosService
   ) {}
 
+  ngOnInit() {
+    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
+    loader.present();
+
+    this.chamadosAntigosService.buscarSLAFiliais().subscribe((chamados: ChamadoAntigo[]) => {
+        this.chamadosAntigos = chamados;
+        loader.dismiss();
+      },
+      err => {
+        loader.dismiss();
+        this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
+      });
+  }
+
+  private exibirAlerta(msg: string) {
+    const alerta = this.alertCtrl.create({
+      title: null,
+      subTitle: msg,
+      buttons: ['OK']
+    });
+
+    alerta.present();
+  }
 }

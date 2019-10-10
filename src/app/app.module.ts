@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 
 import { SLAFilialService } from '../services/sla-filial';
+import { ChamadosAntigosService } from '../services/chamados-antigos';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -66,7 +67,8 @@ import { ResultadoGeralPage } from '../pages/indicadores-filial/resultado-geral'
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SLAFilialService
+    SLAFilialService,
+    ChamadosAntigosService
   ]
 })
 export class AppModule {}

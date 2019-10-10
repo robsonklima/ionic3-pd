@@ -18,8 +18,6 @@ export class SLAFilialService {
 
   buscarSLAFiliais(): Observable<SLAFilial[]> {
     return this.http.get(Config.API_URL + 'DashboardSLAFiliais')
-      .timeout(15000)
-      .delay(500)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
   }

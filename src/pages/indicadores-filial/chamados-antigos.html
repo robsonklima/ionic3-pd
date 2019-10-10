@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>Chamados Antigos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let chamado of chamadosAntigos; let i = index">
+    <ion-item>
+      <h2><b>{{ chamado.nomeFilial }}</b></h2>
+      <ion-badge color="danger" item-end>{{ i+1 }}</ion-badge>
+    </ion-item>
+
+    <ion-card-content>
+      <p>{{ chamado.codOS }} &#8226; {{ chamado.intervencao }}</p>
+      <p>{{ chamado.cliente }} &#8226; {{ chamado.modeloCompleto }}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <div>
+            <ion-icon name="hammer" *ngIf="chamado.intervencao == 'CORRETIVA'"></ion-icon>
+            <ion-icon name="cash" *ngIf="chamado.intervencao == 'ORÇ APROVADO'" class="cash"></ion-icon>
+            {{ chamado.intervencao.substring(0, 3) }}
+          </div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear small class="left-margin">
+          <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+          <div>{{ chamado.dataAbertura | date: 'dd/MM' }}</div>
+        </button>
+      </ion-col>
+      <ion-col align-self-center text-center class="left-margin">
+        <ion-note>
+          {{ chamado.dataAbertura | date: 'HH:mm' }}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

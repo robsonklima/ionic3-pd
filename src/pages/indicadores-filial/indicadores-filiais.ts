@@ -34,13 +34,13 @@ export class IndicadoresFiliaisPage {
         if(e.nomeFilial == 'TOTAL') {
           let p = this.slaFiliais.reduce(function(prev, cur) { 
             return prev + (cur.pendencia) 
-          }, 0) / this.slaFiliais.length;
+          }, 0) / this.slaFiliais.length - 1;
 
           e.pendencia = Number(p.toFixed(2));
       
           let r = this.slaFiliais.reduce(function(prev, cur) { 
             return prev + (cur.reincidencia) 
-          }, 0) / this.slaFiliais.length;
+          }, 0) / this.slaFiliais.length - 1;
           
           e.reincidencia = Number(r.toFixed(2));
         }
