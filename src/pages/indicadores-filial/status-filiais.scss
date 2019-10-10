@@ -1,5 +1,5 @@
 status-filiais-page {
-	#svg-map { width: 130%; position:fixed; }
+	#svg-map { width: 130%; position: fixed; /*margin-left: -40px;*/ }
 	#svg-map path { fill: #4CAF50; }
 	
 	#svg-map text { fill:#fff; font:12px Arial-BoldMT, sans-serif; cursor:pointer }
@@ -10,6 +10,6 @@ status-filiais-page {
 	
 	ion-scroll { white-space: nowrap; margin-top: 0px; overflow-y: scroll; display: block; }
 	ion-content { background-color: #607D8B !important; }
-	svg { padding-top: 10px; }
+	svg { margin-top: -15px !important; }
 	.small-text { font-size: 14pt !important; }
 }

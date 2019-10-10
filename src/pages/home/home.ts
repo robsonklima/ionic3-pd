@@ -7,7 +7,40 @@ import { StatusFiliaisPage } from '../indicadores-filial/status-filiais';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  template: `
+    <ion-header>
+      <ion-navbar no-border-bottom>
+        <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        
+        <ion-title>Perto Dashboard</ion-title>
+      </ion-navbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <ion-list-header class="sem-borda">
+          Performances das Filiais e Resultado Geral DSS
+        </ion-list-header>
+
+        <a ion-item (click)="telaStatusFiliais()">
+          Status Filiais
+        </a>
+
+        <a ion-item (click)="telaIndicadoresFiliais()"> 
+          Indicadores Filiais
+        </a>
+
+        <a ion-item>
+          Resultado Geral DSS
+        </a>
+        
+        <a ion-item>
+          Chamados Antigos
+        </a>
+      </ion-list>
+    </ion-content>`
 })
 export class HomePage {
   
