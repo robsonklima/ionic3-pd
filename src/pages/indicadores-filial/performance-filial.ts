@@ -4,7 +4,16 @@ import { NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'performance-filial-home',
-  templateUrl: 'performance-filial.html'
+  template: `
+  <ion-header>
+    <ion-navbar no-border-bottom>
+      <ion-title>Performance da {{ nomeFilial }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+    
+  </ion-content>`
 })
 export class PerformanceFilialPage {
   nomeFilial: string;

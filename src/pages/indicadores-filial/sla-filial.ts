@@ -5,7 +5,23 @@ import { Chart } from "chart.js";
 
 @Component({
   selector: 'sla-filial-page',
-  templateUrl: 'sla-filial.html'
+  template: `
+    <ion-header>
+      <ion-navbar no-border-bottom>
+        <ion-title>SLA da {{ nomeFilial }}</ion-title>
+      </ion-navbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-card>
+        <ion-card-header>
+          SLA
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #barCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+    </ion-content>`
 })
 export class SLAFilialPage {
   nomeFilial: string;

@@ -5,7 +5,23 @@ import { Chart } from "chart.js";
 
 @Component({
   selector: 'reincidencia-filial-page',
-  templateUrl: 'reincidencia-filial.html'
+  template: `
+    <ion-header>
+      <ion-navbar no-border-bottom>
+        <ion-title>Reincidência da {{ nomeFilial }}</ion-title>
+      </ion-navbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-card>
+        <ion-card-header>
+          Reincidência
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #doughnutCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+    </ion-content>`
 })
 export class ReincidenciaFilialPage {
   nomeFilial: string;

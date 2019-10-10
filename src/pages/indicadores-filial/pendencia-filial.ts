@@ -5,7 +5,23 @@ import { Chart } from "chart.js";
 
 @Component({
   selector: 'pendencia-filial-page',
-  templateUrl: 'pendencia-filial.html'
+  template: `
+    <ion-header>
+      <ion-navbar no-border-bottom>
+        <ion-title>Pendência da {{ nomeFilial }}</ion-title>
+      </ion-navbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-card>
+        <ion-card-header>
+          Pendência
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #doughnutCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+    </ion-content>`
 })
 export class PendenciaFilialPage {
   nomeFilial: string;

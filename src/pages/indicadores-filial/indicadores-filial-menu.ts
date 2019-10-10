@@ -22,15 +22,15 @@ export class IndicadoresFilialMenuPage {
     this.slaFilial = this.navParams.get('slaFilial');
   }
 
-  public telaSLAFilial(nomeFilial: string) {
-    this.navCtrl.push(SLAFilialPage, { nomeFilial: nomeFilial });
+  public telaSLAFilial() {
+    this.navCtrl.push(SLAFilialPage, { nomeFilial: this.slaFilial.nomeFilial });
   }
 
-  public telaPendenciaFilial(nomeFilial: string) {
-    this.navCtrl.push(PendenciaFilialPage, { nomeFilial: nomeFilial });
+  public telaPendenciaFilial() {
+    this.navCtrl.push(PendenciaFilialPage, { nomeFilial: this.slaFilial.nomeFilial });
   }
 
-  public telaReincidenciaFilial(nomeFilial: string) {
-    this.navCtrl.push(ReincidenciaFilialPage, { nomeFilial: nomeFilial });
+  public telaReincidenciaFilial() {
+    this.navCtrl.push(ReincidenciaFilialPage, { nomeFilial: this.slaFilial.nomeFilial });
   }
 }

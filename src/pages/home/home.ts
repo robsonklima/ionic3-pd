@@ -2,7 +2,7 @@ import { Component} from '@angular/core';
 import { NavController, MenuController } from 'ionic-angular';
 
 import { IndicadoresFiliaisPage } from '../indicadores-filial/indicadores-filiais';
-import { TabsPage } from '../indicadores-filial/tabs';
+import { StatusFiliaisPage } from '../indicadores-filial/status-filiais';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class HomePage {
 
   public telaStatusFiliais() {
     this.menu.close().then(() => {
-      this.nav.push(TabsPage);  
+      this.nav.push(StatusFiliaisPage);  
     })
   }
 
