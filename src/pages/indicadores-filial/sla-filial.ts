@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef} from '@angular/core';
 import { NavParams } from 'ionic-angular';
 import { Chart } from "chart.js";
+import { Config } from '../../models/config';
 
 
 @Component({
@@ -38,26 +39,26 @@ export class SLAFilialPage {
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: "bar",
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["A", "B", "C", "D", "E", "F"],
         datasets: [
           {
             label: "Qtd",
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)"
+              Config.CONSTANTS.CORES.RGB.VERMELHO,
+              Config.CONSTANTS.CORES.RGB.AZUL,
+              Config.CONSTANTS.CORES.RGB.AMARELO,
+              Config.CONSTANTS.CORES.RGB.ROSA,
+              Config.CONSTANTS.CORES.RGB.VERDE,
+              Config.CONSTANTS.CORES.RGB.CINZA_ESCURO
             ],
             borderColor: [
-              "rgba(255,99,132,1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)"
+              Config.CONSTANTS.CORES.HEXA.VERMELHO, 
+              Config.CONSTANTS.CORES.HEXA.AZUL, 
+              Config.CONSTANTS.CORES.HEXA.AMARELO, 
+              Config.CONSTANTS.CORES.HEXA.ROSA, 
+              Config.CONSTANTS.CORES.HEXA.VERDE, 
+              Config.CONSTANTS.CORES.HEXA.CINZA_ESCURO
             ],
             borderWidth: 1
           }

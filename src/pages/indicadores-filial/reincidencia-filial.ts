@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef} from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 import { Chart } from "chart.js";
+import { Config } from '../../models/config';
 
 
 @Component({
@@ -44,14 +45,21 @@ export class ReincidenciaFilialPage {
             label: "# of Votes",
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)"
+              Config.CONSTANTS.CORES.RGB.VERMELHO,
+              Config.CONSTANTS.CORES.RGB.AZUL,
+              Config.CONSTANTS.CORES.RGB.AMARELO,
+              Config.CONSTANTS.CORES.RGB.ROSA,
+              Config.CONSTANTS.CORES.RGB.VERDE,
+              Config.CONSTANTS.CORES.RGB.CINZA_ESCURO
             ],
-            hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#FF6384", "#36A2EB", "#FFCE56"]
+            hoverBackgroundColor: [
+              Config.CONSTANTS.CORES.HEXA.VERMELHO, 
+              Config.CONSTANTS.CORES.HEXA.AZUL, 
+              Config.CONSTANTS.CORES.HEXA.AMARELO, 
+              Config.CONSTANTS.CORES.HEXA.ROSA, 
+              Config.CONSTANTS.CORES.HEXA.VERDE, 
+              Config.CONSTANTS.CORES.HEXA.CINZA_ESCURO
+            ]
           }
         ]
       },

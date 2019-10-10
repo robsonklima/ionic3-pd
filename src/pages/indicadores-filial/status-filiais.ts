@@ -3,6 +3,7 @@ import { AlertController, LoadingController, NavController } from 'ionic-angular
 import { SLAFilialService } from '../../services/sla-filial';
 import { SLAFilial } from '../../models/sla-filial';
 import { IndicadoresFilialMenuPage } from './indicadores-filial-menu';
+import { Config } from '../../models/config';
 
 
 
@@ -23,12 +24,7 @@ export class StatusFiliaisPage {
   }
 
   ngOnInit() {
-    
-
-    const loader = this.loadingCtrl.create({
-      content: "Obtendo dados do servidor..."
-    });
-    
+    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
     loader.present();
 
     this.slaFilialService.buscarSLAFiliais().subscribe((dados: SLAFilial[]) => {
@@ -39,7 +35,7 @@ export class StatusFiliaisPage {
       err => {
         loader.dismiss();
 
-        this.navCtrl.pop().then(() => { this.exibirAlerta('Erro ao obter os dados.') }).catch();
+        this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
       });
   }
 
