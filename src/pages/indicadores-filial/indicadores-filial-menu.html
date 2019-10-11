@@ -10,26 +10,21 @@
       Clique para Acessar os Detalhes
     </ion-list-header>
     <a ion-item (click)="telaPerformanceFilial()">
-      <ion-icon name="ios-analytics" color="primary" item-start></ion-icon>
       Performance
+      <p>Detalhes do menu</p>
     </a>
 
     <a ion-item (click)="telaSLAFilial()">
-      <ion-icon name='clock' color="primary" item-start></ion-icon>
       SLA
-      <ion-note item-end>{{ slaFilial?.percentual }}%</ion-note>
+      <p>Detalhes do menu</p>
     </a>
 
     <a ion-item (click)="telaReincidenciaFilial()">
-      <ion-icon name='repeat' color="primary" item-start></ion-icon>
       Reincidência
-      <ion-note item-end>{{ slaFilial?.reincidencia }}%</ion-note>
     </a>
 
     <a ion-item (click)="telaPendenciaFilial()">
-      <ion-icon name='redo' color="primary" item-start></ion-icon>
       Pendência
-      <ion-note item-end>{{ slaFilial?.pendencia }}%</ion-note>
     </a>
   </ion-list>
 </ion-content>
