@@ -19,18 +19,40 @@ import { SLAFilialService } from '../../services/sla-filial';
     <ion-content>
       <ion-card>
         <ion-card-header>
-          Todas as Filiais
+          SLA de Todas as Filiais
         </ion-card-header>
         <ion-card-content>
-          <canvas #barCanvas></canvas>
+          <canvas #slaCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Pendência de Todas as Filiais
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #pendenciaCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Reincidência de Todas as Filiais
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #reincidenciaCanvas></canvas>
         </ion-card-content>
       </ion-card>
     </ion-content>`
 })
 export class ResultadoGeralPage {
   slaFiliais: SLAFilial[] = [];
-  @ViewChild("barCanvas") barCanvas: ElementRef;
-  public barChart: Chart;
+  @ViewChild("slaCanvas") slaCanvas: ElementRef;
+  public slaChart: Chart;
+  @ViewChild("pendenciaCanvas") pendenciaCanvas: ElementRef;
+  public pendenciaChart: Chart;
+  @ViewChild("reincidenciaCanvas") reincidenciaCanvas: ElementRef;
+  public reincidenciaChart: Chart;
   
   constructor(
     private alertCtrl: AlertController,
@@ -40,47 +62,145 @@ export class ResultadoGeralPage {
   ) {}
 
   ngOnInit() {
-    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
-    loader.present();
-
     this.slaFilialService.buscarSLAFiliais().subscribe((dados: SLAFilial[]) => {
-        this.slaFiliais = dados;
-        this.carregarGrafico().then(() => { loader.dismiss() }).catch(() => { loader.dismiss() });
-      },
-      err => {
-        loader.dismiss();
-        this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
-      });
+      this.slaFiliais = dados;
+
+      this.carregarGraficoSLA().then(() => {}).catch(() => {});
+      this.carregarGraficoPendencia().then(() => {}).catch(() => {});
+      this.carregarGraficoReincidencia().then(() => {}).catch(() => {});
+    },
+    err => {
+      this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
+    });
   }
 
-  private carregarGrafico(): Promise<any>  {
-    let sla, pendencia, reincidencia;
-    
-    this.slaFiliais.forEach(e => {
-      if(e.nomeFilial == 'TOTAL') {
-        sla = e.percentual.toFixed(2);
-        pendencia = (this.slaFiliais.reduce(function(prev, cur) { return prev + (cur.pendencia) }, 0) / this.slaFiliais.length-1).toFixed(2);
-        reincidencia = (this.slaFiliais.reduce(function(prev, cur) { return prev + (cur.reincidencia) }, 0) / this.slaFiliais.length-1).toFixed(2);
-      }
-    });
-
+  private carregarGraficoSLA(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.barChart = new Chart(this.barCanvas.nativeElement, {
+      let sla;
+    
+      this.slaFiliais.forEach(e => {
+        if(e.nomeFilial == 'TOTAL') {
+          sla = e.percentual.toFixed(2);
+        }
+      });
+
+      this.slaChart = new Chart(this.slaCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: ["SLA", "Pendência", "Reincidência"],
+          labels: ["SLA"],
           datasets: [
             {
               label: "%",
-              data: [sla, pendencia, reincidencia],
+              data: [sla],
               backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.AZUL,
+                Config.CONSTANTS.CORES.RGB.VERMELHO
+              ],
+              borderColor: [
+                Config.CONSTANTS.CORES.RGB.VERMELHO
+              ],
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          legend: {
+            position: 'top',
+            display: false,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true
+                }
+              }
+            ]
+          }
+        }
+      }).then(() => { resolve() }).catch(e => { reject() });
+    });
+  }
+
+  private carregarGraficoPendencia(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let pendencia;
+
+      console.log('OLA');
+      
+    
+      this.slaFiliais.forEach(e => {
+        if(e.nomeFilial == 'TOTAL') {
+          pendencia = (this.slaFiliais.reduce(function(prev, cur) { return prev + (cur.pendencia) }, 0) / this.slaFiliais.length-1).toFixed(2);
+        }
+      });
+
+      this.pendenciaChart = new Chart(this.pendenciaCanvas.nativeElement, {
+        type: "bar",
+        data: {
+          labels: ["Pendência"],
+          datasets: [
+            {
+              label: "%",
+              data: [pendencia],
+              backgroundColor: [
+                Config.CONSTANTS.CORES.RGB.AZUL
+              ],
+              borderColor: [
+                Config.CONSTANTS.CORES.RGB.AZUL
+              ],
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          legend: {
+            position: 'top',
+            display: false,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true
+                }
+              }
+            ]
+          }
+        }
+      }).then(() => { resolve() }).catch(e => { reject() });
+    });
+  }
+
+  private carregarGraficoReincidencia(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let reincidencia;
+    
+      this.slaFiliais.forEach(e => {
+        if(e.nomeFilial == 'TOTAL') {
+          reincidencia = (this.slaFiliais.reduce(function(prev, cur) { return prev + (cur.reincidencia) }, 0) / this.slaFiliais.length-1).toFixed(2);
+        }
+      });
+
+      this.reincidenciaChart = new Chart(this.reincidenciaCanvas.nativeElement, {
+        type: "bar",
+        data: {
+          labels: ["Reincidência"],
+          datasets: [
+            {
+              label: "%",
+              data: [reincidencia],
+              backgroundColor: [
                 Config.CONSTANTS.CORES.RGB.VERDE
               ],
               borderColor: [
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.AZUL,
                 Config.CONSTANTS.CORES.RGB.VERDE
               ],
               borderWidth: 1

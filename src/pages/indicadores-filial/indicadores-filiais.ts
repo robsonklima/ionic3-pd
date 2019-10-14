@@ -12,7 +12,9 @@ import { SLAFilialService } from '../../services/sla-filial';
 })
 export class IndicadoresFiliaisPage {
   modo: string = "sla";
-  slaFiliais: SLAFilial[] = [];
+  sla: SLAFilial[] = [];
+  pendencia: SLAFilial[] = [];
+  reincidencia: SLAFilial[] = [];
   
   constructor(
     private navCtrl: NavController,
@@ -26,25 +28,33 @@ export class IndicadoresFiliaisPage {
     loader.present();
 
     this.slaFilialService.buscarSLAFiliais().subscribe((dados: SLAFilial[]) => {
-      this.slaFiliais = dados.sort(function(a, b) { 
-        return ((a.nomeFilial < b.nomeFilial) ? -1 : ((a.nomeFilial > b.nomeFilial) ? 1 : 0));
-      });
+      this.sla = dados.sort(function(a, b) { 
+        return ((a.percentual > b.percentual) ? -1 : ((a.percentual < b.percentual) ? 1 : 0));
+      }).filter(function(a) { return a.nomeFilial !== 'TOTAL' });
 
-      this.slaFiliais.forEach(e => {
-        if(e.nomeFilial == 'TOTAL') {
-          let p = this.slaFiliais.reduce(function(prev, cur) { 
-            return prev + (cur.pendencia) 
-          }, 0) / this.slaFiliais.length - 1;
+      this.pendencia = dados.sort(function(a, b) { 
+        return ((a.pendencia < b.pendencia) ? -1 : ((a.pendencia > b.pendencia) ? 1 : 0));
+      }).filter(function(a) { return a.nomeFilial !== 'TOTAL' });
 
-          e.pendencia = Number(p.toFixed(2));
+      this.reincidencia = dados.sort(function(a, b) { 
+        return ((a.reincidencia < b.reincidencia) ? -1 : ((a.reincidencia > b.reincidencia) ? 1 : 0));
+      }).filter(function(a) { return a.nomeFilial !== 'TOTAL' });
+
+      // this.slaFiliais.forEach(e => {
+      //   if(e.nomeFilial == 'TOTAL') {
+      //     let p = this.slaFiliais.reduce(function(prev, cur) { 
+      //       return prev + (cur.pendencia) 
+      //     }, 0) / this.slaFiliais.length - 1;
+
+      //     e.pendencia = Number(p.toFixed(2));
       
-          let r = this.slaFiliais.reduce(function(prev, cur) { 
-            return prev + (cur.reincidencia) 
-          }, 0) / this.slaFiliais.length - 1;
+      //     let r = this.slaFiliais.reduce(function(prev, cur) { 
+      //       return prev + (cur.reincidencia) 
+      //     }, 0) / this.slaFiliais.length - 1;
           
-          e.reincidencia = Number(r.toFixed(2));
-        }
-      });
+      //     e.reincidencia = Number(r.toFixed(2));
+      //   }
+      // });
 
       loader.dismiss();
     },

@@ -26,6 +26,11 @@ import { ResultadoGeralPage } from '../indicadores-filial/resultado-geral';
           Performances das Filiais e Resultado Geral DSS
         </ion-list-header>
 
+        <a ion-item (click)="telaResultadoGeral()">
+          <ion-icon name="md-clipboard" color="primary" item-start></ion-icon>
+          Resultado Geral DSS
+        </a>
+
         <a ion-item (click)="telaStatusFiliais()">
           <ion-icon name="md-pie" color="primary" item-start></ion-icon>
           Status Filiais
@@ -34,11 +39,6 @@ import { ResultadoGeralPage } from '../indicadores-filial/resultado-geral';
         <a ion-item (click)="telaIndicadoresFiliais()"> 
           <ion-icon name="podium" color="primary" item-start></ion-icon>
           Indicadores Filiais
-        </a>
-
-        <a ion-item (click)="telaResultadoGeral()">
-          <ion-icon name="md-clipboard" color="primary" item-start></ion-icon>
-          Resultado Geral DSS
         </a>
         
         <a ion-item (click)="telaChamadosAntigos()">
