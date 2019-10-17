@@ -46,7 +46,11 @@ export class IndicadoresClientesPage {
         return ((a.sla > b.sla) ? -1 : ((a.sla < b.sla) ? 1 : 0));
       })
       .forEach(p => {
-        labels.push(p.nomeCliente);
+        if (p.nomeCliente.length <= 12)
+          labels.push(p.nomeCliente);
+        else
+          labels.push(p.nomeCliente.substring(0, 12));
+        
         data.push(p.sla);
 
         if (p.sla >= 95) {
