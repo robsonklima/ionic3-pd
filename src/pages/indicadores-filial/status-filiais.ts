@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { AlertController, LoadingController, NavController } from 'ionic-angular';
+import { AlertController, LoadingController, NavController, ActionSheetController } from 'ionic-angular';
 import { SLAFilialService } from '../../services/sla-filial';
 import { SLAFilial } from '../../models/sla-filial';
 import { IndicadoresFilialMenuPage } from './indicadores-filial-menu';
@@ -17,6 +17,7 @@ export class StatusFiliaisPage {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
+    private actionSheetCtrl: ActionSheetController,
     private slaFilialService: SLAFilialService
   ) {}
 
@@ -56,6 +57,38 @@ export class StatusFiliaisPage {
     if (slaFilial.length > 0) {
       this.navCtrl.push(IndicadoresFilialMenuPage, { slaFilial: slaFilial[0] });
     }
+  }
+
+  public apresentarActionSheet() {
+    const actionSheet = this.actionSheetCtrl.create({
+      title: 'Selecione a Filial',
+      buttons: [
+        {
+          text: 'FBU',
+          handler: () => {
+            this.telaIndicadoresFilial('FBU');
+          }
+        },{
+          text: 'FCP',
+          handler: () => {
+            this.telaIndicadoresFilial('FCP');
+          }
+        },{
+          text: 'FSP',
+          handler: () => {
+            this.telaIndicadoresFilial('FSP');
+          }
+        },{
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+
+          }
+        }
+      ]
+    });
+
+    actionSheet.present();
   }
 
   private exibirAlerta(msg: string) {
