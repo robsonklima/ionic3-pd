@@ -12,14 +12,14 @@ import { Performance } from '../../models/performance';
   template: `
     <ion-header>
       <ion-navbar no-border-bottom>
-        <ion-title>Resultado Geral</ion-title>
+        <ion-title>Resultado Geral - Todas as Filiais</ion-title>
       </ion-navbar>
     </ion-header>
 
     <ion-content>
       <ion-card>
         <ion-card-header>
-          SLA de Todas as Filiais
+          SLA
         </ion-card-header>
         <ion-card-content>
           <canvas #slaCanvas></canvas>
@@ -28,7 +28,7 @@ import { Performance } from '../../models/performance';
 
       <ion-card>
         <ion-card-header>
-          Pendência de Todas as Filiais
+          Pendência
         </ion-card-header>
         <ion-card-content>
           <canvas #pendenciaCanvas></canvas>
@@ -37,7 +37,7 @@ import { Performance } from '../../models/performance';
 
       <ion-card>
         <ion-card-header>
-          Reincidência de Todas as Filiais
+          Reincidência
         </ion-card-header>
         <ion-card-content>
           <canvas #reincidenciaCanvas></canvas>
@@ -79,8 +79,8 @@ export class ResultadoGeralPage {
             this.performances[0].sla, this.performances[1].sla, this.performances[2].sla, this.performances[3].sla
           ],
           backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.AMARELO, Config.CONSTANTS.CORES.RGB.AMARELO,
-            Config.CONSTANTS.CORES.RGB.AMARELO, Config.CONSTANTS.CORES.RGB.AMARELO
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
           ],
           borderWidth: 1
         },
@@ -129,8 +129,8 @@ export class ResultadoGeralPage {
             this.performances[0].reincidencia, this.performances[1].reincidencia, 
             this.performances[2].reincidencia, this.performances[3].reincidencia
           ],
-          backgroundColor: [ Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL,
-            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL
+          backgroundColor: [ Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
           ],
           borderWidth: 1
         },
@@ -140,8 +140,8 @@ export class ResultadoGeralPage {
             32.0, 32.0, 32.0, 32.0
           ],
           backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
-            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
+            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL,
+            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL
           ],
           borderWidth: 1
         }
