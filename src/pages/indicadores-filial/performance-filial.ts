@@ -50,7 +50,7 @@ export class PerformanceFilialPage {
     const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
     loader.present();
 
-    this.performanceService.buscarPerformance(this.slaFilial.codFilial).subscribe((performances: Performance[]) => {
+    this.performanceService.buscarPerformancePorFilial(this.slaFilial.codFilial).subscribe((performances: Performance[]) => {
         this.performances = performances;
 
         this.performances.forEach(p => {

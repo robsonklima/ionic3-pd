@@ -1,10 +1,10 @@
 import { Component, ViewChild, ElementRef} from '@angular/core';
-import { NavController, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { Chart } from "chart.js";
 
 import { Config } from '../../models/config';
-import { SLAFilial } from '../../models/sla-filial';
-import { SLAFilialService } from '../../services/sla-filial';
+import { PerformanceService } from '../../services/performance';
+import { Performance } from '../../models/performance';
 
 
 @Component({
@@ -46,24 +46,106 @@ import { SLAFilialService } from '../../services/sla-filial';
     </ion-content>`
 })
 export class ResultadoGeralPage {
-  slaFiliais: SLAFilial[] = [];
+  performances: Performance[] = [];
   @ViewChild("slaCanvas") slaCanvas: ElementRef;
   public slaChart: Chart;
   @ViewChild("pendenciaCanvas") pendenciaCanvas: ElementRef;
   public pendenciaChart: Chart;
   @ViewChild("reincidenciaCanvas") reincidenciaCanvas: ElementRef;
   public reincidenciaChart: Chart;
+  private labels: string[] = [];
+  private datasetSLA: any[] = [];
+  private datasetPendencia: any[] = [];
+  private datasetReincidencia: any[] = [];
   
   constructor(
     private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController,
     private navCtrl: NavController,
-    private slaFilialService: SLAFilialService
+    private performanceService: PerformanceService
   ) {}
 
   ngOnInit() {
-    this.slaFilialService.buscarSLAFiliais().subscribe((dados: SLAFilial[]) => {
-      this.slaFiliais = dados;
+    this.performanceService.buscarPerformance().subscribe((dados: Performance[]) => {
+      this.performances = dados;
+
+      this.performances.forEach(p => {
+        this.labels.push(this.carregarNomeMes(p.anoMes));
+      });
+
+      this.datasetSLA.push(
+        {
+          label: 'SLA',
+          data: [
+            this.performances[0].sla, this.performances[1].sla, this.performances[2].sla, this.performances[3].sla
+          ],
+          backgroundColor: [ 
+            Config.CONSTANTS.CORES.RGB.AMARELO, Config.CONSTANTS.CORES.RGB.AMARELO,
+            Config.CONSTANTS.CORES.RGB.AMARELO, Config.CONSTANTS.CORES.RGB.AMARELO
+          ],
+          borderWidth: 1
+        },
+        {
+          label: 'Meta',
+          data: [
+            95.0, 95.0, 95.0, 95.0
+          ],
+          backgroundColor: [ 
+            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL,
+            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL
+          ],
+          borderWidth: 1
+        }
+      );
+
+      this.datasetPendencia.push(
+        {
+          label: 'Pendência',
+          data: [ 
+            this.performances[0].pendencia, this.performances[1].pendencia, 
+            this.performances[2].pendencia, this.performances[3].pendencia 
+          ],
+          backgroundColor: [ Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
+          ],
+          borderWidth: 1
+        },
+        {
+          label: 'Meta',
+          data: [
+            3.0, 3.0, 3.0, 3.0
+          ],
+          backgroundColor: [ 
+            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL,
+            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL
+          ],
+          borderWidth: 1
+        }
+      );
+
+      this.datasetReincidencia.push(
+        {
+          label: 'Reincidência',
+          data: [
+            this.performances[0].reincidencia, this.performances[1].reincidencia, 
+            this.performances[2].reincidencia, this.performances[3].reincidencia
+          ],
+          backgroundColor: [ Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL,
+            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL
+          ],
+          borderWidth: 1
+        },
+        {
+          label: 'Meta',
+          data: [
+            32.0, 32.0, 32.0, 32.0
+          ],
+          backgroundColor: [ 
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
+          ],
+          borderWidth: 1
+        }
+      );
 
       this.carregarGraficoSLA().then(() => {}).catch(() => {});
       this.carregarGraficoPendencia().then(() => {}).catch(() => {});
@@ -76,31 +158,11 @@ export class ResultadoGeralPage {
 
   private carregarGraficoSLA(): Promise<any> {
     return new Promise((resolve, reject) => {
-      let sla;
-    
-      this.slaFiliais.forEach(e => {
-        if(e.nomeFilial == 'TOTAL') {
-          sla = e.percentual.toFixed(2);
-        }
-      });
-
       this.slaChart = new Chart(this.slaCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: ["SLA"],
-          datasets: [
-            {
-              label: "%",
-              data: [sla],
-              backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.VERMELHO
-              ],
-              borderColor: [
-                Config.CONSTANTS.CORES.RGB.VERMELHO
-              ],
-              borderWidth: 1
-            }
-          ]
+          labels: this.labels,
+          datasets: this.datasetSLA
         },
         options: {
           legend: {
@@ -127,34 +189,11 @@ export class ResultadoGeralPage {
 
   private carregarGraficoPendencia(): Promise<any> {
     return new Promise((resolve, reject) => {
-      let pendencia;
-
-      console.log('OLA');
-      
-    
-      this.slaFiliais.forEach(e => {
-        if(e.nomeFilial == 'TOTAL') {
-          pendencia = (this.slaFiliais.reduce(function(prev, cur) { return prev + (cur.pendencia) }, 0) / this.slaFiliais.length-1).toFixed(2);
-        }
-      });
-
       this.pendenciaChart = new Chart(this.pendenciaCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: ["Pendência"],
-          datasets: [
-            {
-              label: "%",
-              data: [pendencia],
-              backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.AZUL
-              ],
-              borderColor: [
-                Config.CONSTANTS.CORES.RGB.AZUL
-              ],
-              borderWidth: 1
-            }
-          ]
+          labels: this.labels,
+          datasets: this.datasetPendencia
         },
         options: {
           legend: {
@@ -181,31 +220,11 @@ export class ResultadoGeralPage {
 
   private carregarGraficoReincidencia(): Promise<any> {
     return new Promise((resolve, reject) => {
-      let reincidencia;
-    
-      this.slaFiliais.forEach(e => {
-        if(e.nomeFilial == 'TOTAL') {
-          reincidencia = (this.slaFiliais.reduce(function(prev, cur) { return prev + (cur.reincidencia) }, 0) / this.slaFiliais.length-1).toFixed(2);
-        }
-      });
-
       this.reincidenciaChart = new Chart(this.reincidenciaCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: ["Reincidência"],
-          datasets: [
-            {
-              label: "%",
-              data: [reincidencia],
-              backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.VERDE
-              ],
-              borderColor: [
-                Config.CONSTANTS.CORES.RGB.VERDE
-              ],
-              borderWidth: 1
-            }
-          ]
+          labels: this.labels,
+          datasets: this.datasetReincidencia
         },
         options: {
           legend: {
@@ -228,6 +247,37 @@ export class ResultadoGeralPage {
         }
       }).then(() => { resolve() }).catch(e => { reject() });
     });
+  }
+
+  private carregarNomeMes(anoMes: string): string {
+    switch(anoMes) {
+      case '201901':
+        return 'Janeiro';
+      case '201902':
+        return 'Fevereiro';
+      case '201903':
+        return 'Março';
+      case '201904':
+        return 'Abril';
+      case '201905':
+        return 'Maio';
+      case '201906':
+        return 'Junho';
+      case '201907':
+        return 'Julho';
+      case '201908':
+        return 'Agosto';
+      case '201909':
+        return 'Setembro';
+      case '201910':
+        return 'Outubro';
+      case '201911':
+        return 'Novembro';
+      case '201912':
+        return 'Dezembro';
+      default:
+        return '';
+    }
   }
 
   private exibirAlerta(msg: string) {

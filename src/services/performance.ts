@@ -10,11 +10,15 @@ import { Performance } from '../models/performance';
 export class PerformanceService {
   performances: Performance[] = [];
 
-  constructor(
-    private http: Http
-  ) { }
+  constructor( private http: Http ) { }
 
-  buscarPerformance(codFilial: number): Observable<Performance[]> {
+  buscarPerformance(): Observable<Performance[]> {
+    return this.http.get(Config.API_URL + 'DashboardPerformance')
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  buscarPerformancePorFilial(codFilial: number): Observable<Performance[]> {
     return this.http.get(Config.API_URL + 'DashboardPerformance/' + codFilial)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
