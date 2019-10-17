@@ -29,12 +29,12 @@
       <ion-col>
         <button ion-button icon-start clear small class="left-margin">
           <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
-          <div>{{ chamado.dataAbertura | date: 'dd/MM' }}</div>
+          <div>{{ chamado.dataAbertura | date: 'dd/MM HH:mm' }}</div>
         </button>
       </ion-col>
       <ion-col align-self-center text-center class="left-margin">
         <ion-note>
-          {{ chamado.dataAbertura | date: 'HH:mm' }}
+          
         </ion-note>
       </ion-col>
     </ion-row>

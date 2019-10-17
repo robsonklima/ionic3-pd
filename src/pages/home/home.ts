@@ -5,6 +5,7 @@ import { IndicadoresFiliaisPage } from '../indicadores-filial/indicadores-filiai
 import { StatusFiliaisPage } from '../indicadores-filial/status-filiais';
 import { ChamadosAntigosPage } from '../indicadores-filial/chamados-antigos';
 import { ResultadoGeralPage } from '../indicadores-filial/resultado-geral';
+import { IndicadoresClientesPage } from '../indicadores-filial/indicadores-clientes';
 
 
 @Component({
@@ -29,6 +30,11 @@ import { ResultadoGeralPage } from '../indicadores-filial/resultado-geral';
         <a ion-item (click)="telaResultadoGeral()">
           <ion-icon name="md-clipboard" color="primary" item-start></ion-icon>
           Resultado Geral DSS
+        </a>
+
+        <a ion-item (click)="telaIndicadoresClientes()">
+          <ion-icon name="happy" color="primary" item-start></ion-icon>
+          Resultado Geral por Cliente
         </a>
 
         <a ion-item (click)="telaStatusFiliais()">
@@ -70,6 +76,12 @@ export class HomePage {
   public telaResultadoGeral() {
     this.menu.close().then(() => {
       this.nav.push(ResultadoGeralPage);  
+    })
+  }
+
+  public telaIndicadoresClientes() {
+    this.menu.close().then(() => {
+      this.nav.push(IndicadoresClientesPage);  
     })
   }
 

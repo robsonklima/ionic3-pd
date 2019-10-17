@@ -86,14 +86,14 @@ export class ResultadoGeralPage {
         },
         {
           label: 'Meta',
-          data: [
-            95.0, 95.0, 95.0, 95.0
-          ],
+          data: [ 95.0, 95.0, 95.0, 95.0 ],
           backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL,
-            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL
+            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
           ],
-          borderWidth: 1
+          borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+          borderWidth: 1,
+          type: 'line'
         }
       );
 
@@ -104,21 +104,22 @@ export class ResultadoGeralPage {
             this.performances[0].pendencia, this.performances[1].pendencia, 
             this.performances[2].pendencia, this.performances[3].pendencia 
           ],
-          backgroundColor: [ Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
+          backgroundColor: [ 
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
             Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
           ],
           borderWidth: 1
         },
         {
           label: 'Meta',
-          data: [
-            3.0, 3.0, 3.0, 3.0
-          ],
+          data: [ 3.0, 3.0, 3.0, 3.0 ],
           backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL,
-            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL
+            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
           ],
-          borderWidth: 1
+          borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+          borderWidth: 1,
+          type: 'line'
         }
       );
 
@@ -129,21 +130,22 @@ export class ResultadoGeralPage {
             this.performances[0].reincidencia, this.performances[1].reincidencia, 
             this.performances[2].reincidencia, this.performances[3].reincidencia
           ],
-          backgroundColor: [ Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
+          backgroundColor: [ 
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
             Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
           ],
           borderWidth: 1
         },
         {
           label: 'Meta',
-          data: [
-            32.0, 32.0, 32.0, 32.0
-          ],
+          data: [ 32.0, 32.0, 32.0, 32.0 ],
           backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL,
-            Config.CONSTANTS.CORES.RGB.AZUL, Config.CONSTANTS.CORES.RGB.AZUL
+            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
           ],
-          borderWidth: 1
+          borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+          borderWidth: 1,
+          type: 'line'
         }
       );
 
@@ -167,7 +169,7 @@ export class ResultadoGeralPage {
         options: {
           legend: {
             position: 'top',
-            display: false,
+            display: true,
             labels: {
               boxWidth: 12,
               padding: 10
@@ -181,6 +183,11 @@ export class ResultadoGeralPage {
                 }
               }
             ]
+          },
+          elements: {
+            line: {
+              fill: false
+            }
           }
         }
       }).then(() => { resolve() }).catch(e => { reject() });
@@ -198,7 +205,7 @@ export class ResultadoGeralPage {
         options: {
           legend: {
             position: 'top',
-            display: false,
+            display: true,
             labels: {
               boxWidth: 12,
               padding: 10
@@ -212,6 +219,11 @@ export class ResultadoGeralPage {
                 }
               }
             ]
+          },
+          elements: {
+            line: {
+              fill: false
+            }
           }
         }
       }).then(() => { resolve() }).catch(e => { reject() });
@@ -229,7 +241,7 @@ export class ResultadoGeralPage {
         options: {
           legend: {
             position: 'top',
-            display: false,
+            display: true,
             labels: {
               boxWidth: 12,
               padding: 10
@@ -243,6 +255,11 @@ export class ResultadoGeralPage {
                 }
               }
             ]
+          },
+          elements: {
+            line: {
+              fill: false
+            }
           }
         }
       }).then(() => { resolve() }).catch(e => { reject() });

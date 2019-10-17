@@ -24,6 +24,7 @@ import { IndicadoresFiliaisPage } from '../pages/indicadores-filial/indicadores-
 import { ChamadosAntigosPage } from '../pages/indicadores-filial/chamados-antigos';
 import { ResultadoGeralPage } from '../pages/indicadores-filial/resultado-geral';
 import { PerformanceFilialPage } from '../pages/indicadores-filial/performance-filial';
+import { IndicadoresClientesPage } from '../pages/indicadores-filial/indicadores-clientes';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { PerformanceFilialPage } from '../pages/indicadores-filial/performance-f
     PerformanceFilialPage,
     IndicadoresFiliaisPage,
     ResultadoGeralPage,
-    ChamadosAntigosPage
+    ChamadosAntigosPage,
+    IndicadoresClientesPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { PerformanceFilialPage } from '../pages/indicadores-filial/performance-f
     PerformanceFilialPage,
     IndicadoresFiliaisPage,
     ResultadoGeralPage,
-    ChamadosAntigosPage
+    ChamadosAntigosPage,
+    IndicadoresClientesPage
   ],
   providers: [
     StatusBar,
