@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let chamado of chamadosAntigos; let i = index">
+  <ion-card *ngFor="let chamado of chamadosAntigos; let i = index" (click)="telaChamadoConsulta(chamado.codOS)">
     <ion-item>
       <h2><b>{{ chamado.nomeFilial }}</b></h2>
       <ion-badge color="danger" item-end>{{ i+1 }}°</ion-badge>

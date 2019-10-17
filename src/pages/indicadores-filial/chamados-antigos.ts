@@ -4,6 +4,7 @@ import { LoadingController, NavController, AlertController } from 'ionic-angular
 import { Config } from '../../models/config';
 import { ChamadoAntigo } from '../../models/chamado-antigo';
 import { ChamadosAntigosService } from '../../services/chamados-antigos';
+import { ChamadoConsultaPage } from '../chamados/chamado-consulta';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class ChamadosAntigosPage {
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
     private alertCtrl: AlertController,
-    private chamadosAntigosService: ChamadosAntigosService
+    private chamadosAntigosService: ChamadosAntigosService,
+    private nav: NavController
   ) {}
 
   ngOnInit() {
@@ -32,6 +34,10 @@ export class ChamadosAntigosPage {
         loader.dismiss();
         this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
       });
+  }
+
+  public telaChamadoConsulta(codOS: number) {
+    this.nav.push(ChamadoConsultaPage, { codOS: codOS });  
   }
 
   private exibirAlerta(msg: string) {

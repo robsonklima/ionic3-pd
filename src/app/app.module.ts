@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { SLAFilialService } from '../services/sla-filial';
 import { ChamadosAntigosService } from '../services/chamados-antigos';
 import { PerformanceService } from '../services/performance';
+import { ChamadoService } from '../services/chamado';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -25,6 +26,7 @@ import { ChamadosAntigosPage } from '../pages/indicadores-filial/chamados-antigo
 import { ResultadoGeralPage } from '../pages/indicadores-filial/resultado-geral';
 import { PerformanceFilialPage } from '../pages/indicadores-filial/performance-filial';
 import { IndicadoresClientesPage } from '../pages/indicadores-filial/indicadores-clientes';
+import { ChamadoConsultaPage } from '../pages/chamados/chamado-consulta';
 
 
 @NgModule({
@@ -44,7 +46,8 @@ import { IndicadoresClientesPage } from '../pages/indicadores-filial/indicadores
     IndicadoresFiliaisPage,
     ResultadoGeralPage,
     ChamadosAntigosPage,
-    IndicadoresClientesPage
+    IndicadoresClientesPage,
+    ChamadoConsultaPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { IndicadoresClientesPage } from '../pages/indicadores-filial/indicadores
     IndicadoresFiliaisPage,
     ResultadoGeralPage,
     ChamadosAntigosPage,
-    IndicadoresClientesPage
+    IndicadoresClientesPage,
+    ChamadoConsultaPage
   ],
   providers: [
     StatusBar,
@@ -76,7 +80,8 @@ import { IndicadoresClientesPage } from '../pages/indicadores-filial/indicadores
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SLAFilialService,
     ChamadosAntigosService,
-    PerformanceService
+    PerformanceService,
+    ChamadoService
   ]
 })
 export class AppModule {}
