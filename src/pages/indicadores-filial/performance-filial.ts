@@ -20,10 +20,28 @@ import { SLAFilial } from '../../models/sla-filial';
     <ion-content>
       <ion-card>
         <ion-card-header>
-          Performance
+          SLA
         </ion-card-header>
         <ion-card-content>
-          <canvas #barCanvas></canvas>
+          <canvas #slaCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Pendência
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #pendenciaCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Reincidência
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #reincidenciaCanvas></canvas>
         </ion-card-content>
       </ion-card>
     </ion-content>`
@@ -31,10 +49,16 @@ import { SLAFilial } from '../../models/sla-filial';
 export class PerformanceFilialPage {
   slaFilial: SLAFilial;
   performances: Performance[] = [];
-  @ViewChild("barCanvas") barCanvas: ElementRef;
-  public barChart: Chart;
+  @ViewChild("slaCanvas") slaCanvas: ElementRef;
+  @ViewChild("pendenciaCanvas") pendenciaCanvas: ElementRef;
+  @ViewChild("reincidenciaCanvas") reincidenciaCanvas: ElementRef;
+  public slaChart: Chart;
+  public pendenciaChart: Chart;
+  public reincidenciaChart: Chart;
   private labels: string[] = [];
-  private datasets: any[] = [];
+  private datasetsSLA: any[] = [];
+  private datasetsPendencia: any[] = [];
+  private datasetsReincidencia: any[] = [];
 
   constructor(
     private navParams: NavParams,
@@ -57,63 +81,93 @@ export class PerformanceFilialPage {
           this.labels.push(this.carregarNomeMes(p.anoMes));
         });
 
-        this.datasets.push({
+        this.datasetsSLA.push({
           label: 'SLA',
-          data: [this.performances[0].sla, this.performances[1].sla, this.performances[2].sla, this.performances[3].sla],
+          data: [
+            this.performances[0].sla, this.performances[1].sla, 
+            this.performances[2].sla, this.performances[3].sla
+          ],
           backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.VERMELHO,
-            Config.CONSTANTS.CORES.RGB.VERMELHO,
-            Config.CONSTANTS.CORES.RGB.VERMELHO,
-            Config.CONSTANTS.CORES.RGB.VERMELHO
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
           ],
           borderColor: [ 
-            Config.CONSTANTS.CORES.RGB.VERMELHO,
-            Config.CONSTANTS.CORES.RGB.VERMELHO,
-            Config.CONSTANTS.CORES.RGB.VERMELHO,
-            Config.CONSTANTS.CORES.RGB.VERMELHO
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
           ],
           borderWidth: 1
         });
 
-        this.datasets.push({
+        this.datasetsSLA.push({
+          label: 'Meta',
+          data: [ 95.0, 95.0, 95.0, 95.0 ],
+          backgroundColor: [ 
+            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
+          ],
+          borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+          borderWidth: 1,
+          type: 'line'
+        });
+
+        this.datasetsPendencia.push({
           label: 'Pendência',
           data: [this.performances[0].pendencia, this.performances[1].pendencia, 
                  this.performances[2].pendencia, this.performances[3].pendencia],
           backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.VERDE,
-            Config.CONSTANTS.CORES.RGB.VERDE,
-            Config.CONSTANTS.CORES.RGB.VERDE,
-            Config.CONSTANTS.CORES.RGB.VERDE
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
           ],
           borderColor: [ 
-            Config.CONSTANTS.CORES.RGB.VERDE,
-            Config.CONSTANTS.CORES.RGB.VERDE,
-            Config.CONSTANTS.CORES.RGB.VERDE,
-            Config.CONSTANTS.CORES.RGB.VERDE
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
           ],
           borderWidth: 1
         });
 
-        this.datasets.push({
+        this.datasetsPendencia.push({
+          label: 'Meta',
+          data: [ 3.0, 3.0, 3.0, 3.0 ],
+          backgroundColor: [ 
+            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
+          ],
+          borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+          borderWidth: 1,
+          type: 'line'
+        });
+
+        this.datasetsReincidencia.push({
           label: 'Reincidência',
           data: [this.performances[0].reincidencia, this.performances[1].reincidencia, 
                  this.performances[2].reincidencia, this.performances[3].reincidencia],
           backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.AZUL,
-            Config.CONSTANTS.CORES.RGB.AZUL,
-            Config.CONSTANTS.CORES.RGB.AZUL,
-            Config.CONSTANTS.CORES.RGB.AZUL
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
           ],
           borderColor: [ 
-            Config.CONSTANTS.CORES.RGB.AZUL,
-            Config.CONSTANTS.CORES.RGB.AZUL,
-            Config.CONSTANTS.CORES.RGB.AZUL,
-            Config.CONSTANTS.CORES.RGB.AZUL
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
+            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
           ],
           borderWidth: 1
         });
 
-        this.carregarGrafico().then(() => { loader.dismiss() }).catch(e => { loader.dismiss() });
+        this.datasetsReincidencia.push({
+          label: 'Meta',
+          data: [ 32.0, 32.0, 32.0, 32.0 ],
+          backgroundColor: [ 
+            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
+          ],
+          borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+          borderWidth: 1,
+          type: 'line'
+        });
+
+        this.carregarGraficoSLA().then(() => {}).catch(e => {});
+        this.carregarGraficoPendencia().then(() => {}).catch(e => {});
+        this.carregarGraficoReincidencia().then(() => {}).catch(e => {});
+        loader.dismiss();
       },
       err => {
         loader.dismiss();
@@ -121,13 +175,13 @@ export class PerformanceFilialPage {
       });
   }
 
-  private carregarGrafico(): Promise<any>  {
+  private carregarGraficoSLA(): Promise<any>  {
     return new Promise((resolve, reject) => {
-      this.barChart = new Chart(this.barCanvas.nativeElement, {
+      this.slaChart = new Chart(this.slaCanvas.nativeElement, {
         type: "bar",
         data: {
           labels: this.labels,
-          datasets: this.datasets
+          datasets: this.datasetsSLA
         },
         options: {
           legend: {
@@ -142,10 +196,87 @@ export class PerformanceFilialPage {
             yAxes: [
               {
                 ticks: {
-                  beginAtZero: true
+                  beginAtZero: false
                 }
               }
             ]
+          },
+          elements: {
+            line: {
+              fill: false
+            }
+          }
+        }
+      }).then(() => { resolve() }).catch(e => { reject() });
+    });
+  }
+
+  private carregarGraficoPendencia(): Promise<any>  {
+    return new Promise((resolve, reject) => {
+      this.pendenciaChart = new Chart(this.pendenciaCanvas.nativeElement, {
+        type: "bar",
+        data: {
+          labels: this.labels,
+          datasets: this.datasetsPendencia
+        },
+        options: {
+          legend: {
+            position: 'top',
+            display: true,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: false
+                }
+              }
+            ]
+          },
+          elements: {
+            line: {
+              fill: false
+            }
+          }
+        }
+      }).then(() => { resolve() }).catch(e => { reject() });
+    });
+  }
+
+  private carregarGraficoReincidencia(): Promise<any>  {
+    return new Promise((resolve, reject) => {
+      this.reincidenciaChart = new Chart(this.reincidenciaCanvas.nativeElement, {
+        type: "bar",
+        data: {
+          labels: this.labels,
+          datasets: this.datasetsReincidencia
+        },
+        options: {
+          legend: {
+            position: 'top',
+            display: true,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: false
+                }
+              }
+            ]
+          },
+          elements: {
+            line: {
+              fill: false
+            }
           }
         }
       }).then(() => { resolve() }).catch(e => { reject() });
