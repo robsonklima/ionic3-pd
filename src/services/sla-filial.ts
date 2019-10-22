@@ -16,6 +16,12 @@ export class SLAFilialService {
     private http: Http
   ) { }
 
+  buscarSLAFilial(codFilial: number): Observable<SLAFilial[]> {
+    return this.http.get(Config.API_URL + 'DashboardSLAFiliais/' + codFilial)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
   buscarSLAFiliais(): Observable<SLAFilial[]> {
     return this.http.get(Config.API_URL + 'DashboardSLAFiliais')
       .map((res: Response) => res.json())

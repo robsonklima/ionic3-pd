@@ -28,14 +28,14 @@ export class IndicadoresFilialMenuPage {
   }
 
   public telaSLAFilial() {
-    this.navCtrl.push(SLAFilialPage, { nomeFilial: this.slaFilial.nomeFilial });
+    this.navCtrl.push(SLAFilialPage, { slaFilial: this.slaFilial });
   }
 
   public telaPendenciaFilial() {
-    this.navCtrl.push(PendenciaFilialPage, { nomeFilial: this.slaFilial.nomeFilial });
+    this.navCtrl.push(PendenciaFilialPage, { slaFilial: this.slaFilial });
   }
 
   public telaReincidenciaFilial() {
-    this.navCtrl.push(ReincidenciaFilialPage, { nomeFilial: this.slaFilial.nomeFilial });
+    this.navCtrl.push(ReincidenciaFilialPage, { slaFilial: this.slaFilial });
   }
 }

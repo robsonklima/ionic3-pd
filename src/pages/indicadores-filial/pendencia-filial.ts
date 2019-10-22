@@ -1,7 +1,16 @@
-import { Component, ElementRef, ViewChild} from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild, ElementRef} from '@angular/core';
+import { NavParams, LoadingController } from 'ionic-angular';
 import { Chart } from "chart.js";
 import { Config } from '../../models/config';
+import { SLAFilial } from '../../models/sla-filial';
+import { SLACliente } from '../../models/sla-cliente';
+import { SLATecnico } from '../../models/sla-tecnico';
+import { PendenciaRegiaoService } from '../../services/pendencia-regiao';
+import { PendenciaTecnicoService } from '../../services/pendencia-tecnico';
+import { PendenciaClienteService } from '../../services/pendencia-cliente';
+import { PendenciaRegiao } from '../../models/pendencia-regiao';
+import { PendenciaCliente } from '../../models/pendencia-cliente';
+import { PendenciaTecnico } from '../../models/pendencia-tecnico';
 
 
 @Component({
@@ -9,85 +18,264 @@ import { Config } from '../../models/config';
   template: `
     <ion-header>
       <ion-navbar no-border-bottom>
-        <ion-title>Pendência da {{ nomeFilial }}</ion-title>
+        <ion-title>Pendência da {{ slaFilial.nomeFilial }}</ion-title>
       </ion-navbar>
     </ion-header>
 
     <ion-content>
       <ion-card>
         <ion-card-header>
-          Pendência
+          Regiões
         </ion-card-header>
         <ion-card-content>
-          <canvas #doughnutCanvas></canvas>
+          <canvas #regioesCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Clientes
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #clientesCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Técnicos
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #tecnicosCanvas></canvas>
         </ion-card-content>
       </ion-card>
     </ion-content>`
 })
 export class PendenciaFilialPage {
-  nomeFilial: string;
-  @ViewChild("doughnutCanvas") doughnutCanvas: ElementRef;
-  public doughnutChart: Chart;
+  slaFilial: SLAFilial;
+  @ViewChild("regioesCanvas") regioesCanvas: ElementRef;
+  public regioesChart: Chart;
+  @ViewChild("clientesCanvas") clientesCanvas: ElementRef;
+  public clientesChart: Chart;
+  @ViewChild("tecnicosCanvas") tecnicosCanvas: ElementRef;
+  public tecnicosChart: Chart;
   
   constructor(
-    private nav: NavController,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private loadingCtrl: LoadingController,
+    private pendenciaRegiaoService: PendenciaRegiaoService,
+    private pendenciaTecnicoService: PendenciaTecnicoService,
+    private pendenciaClienteService: PendenciaClienteService
   ) {
-    this.nomeFilial = this.navParams.get('nomeFilial');
+    this.slaFilial = this.navParams.get('slaFilial');
   }
 
   ngOnInit() {
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: "doughnut",
-      data: {
-        labels: ["A", "B", "C", "D", "E", "F"],
-        datasets: [
-          {
-            label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              Config.CONSTANTS.CORES.RGB.VERMELHO,
-              Config.CONSTANTS.CORES.RGB.AZUL,
-              Config.CONSTANTS.CORES.RGB.AMARELO,
-              Config.CONSTANTS.CORES.RGB.ROSA,
-              Config.CONSTANTS.CORES.RGB.VERDE,
-              Config.CONSTANTS.CORES.RGB.CINZA_ESCURO
-            ],
-            hoverBackgroundColor: [
-              Config.CONSTANTS.CORES.HEXA.VERMELHO, 
-              Config.CONSTANTS.CORES.HEXA.AZUL, 
-              Config.CONSTANTS.CORES.HEXA.AMARELO, 
-              Config.CONSTANTS.CORES.HEXA.ROSA, 
-              Config.CONSTANTS.CORES.HEXA.VERDE, 
-              Config.CONSTANTS.CORES.HEXA.CINZA_ESCURO
-            ]
-          }
-        ]
-      },
-      options: {
-        legend: {
-          position: 'left',
-          display: true,
-          labels: {
-            boxWidth: 12,
-            padding: 10
-          }
-        },
-        tooltips: {
-          callbacks: {
-            label: function(tooltipItem, data) {
-              var label = data.datasets[tooltipItem.datasetIndex].label || '';
+    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
+    loader.present().then(() => { setTimeout(() => { loader.dismiss() }, 1000) });
+    
+    this.pendenciaRegiaoService.buscarPendenciaRegioes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaRegiao[]) => {
+      if (pendencias.length < 4) return;
 
-              if (label) {
-                  label += ': ';
+      this.regioesChart = new Chart(this.regioesCanvas.nativeElement, {
+        type: "bar",
+        data: {
+          labels: [
+            pendencias[0].nomeRegiao.replace(/ .*/,''), 
+            pendencias[1].nomeRegiao.replace(/ .*/,''), 
+            pendencias[2].nomeRegiao.replace(/ .*/,''), 
+            pendencias[3].nomeRegiao.replace(/ .*/,''), 
+          ],
+          datasets: [
+            {
+              label: "%",
+              data: [
+                pendencias[0].percentual, pendencias[1].percentual, 
+                pendencias[2].percentual, pendencias[3].percentual
+              ],
+              backgroundColor: [
+                Config.CONSTANTS.CORES.RGB.VERMELHO,
+                Config.CONSTANTS.CORES.RGB.VERMELHO,
+                Config.CONSTANTS.CORES.RGB.VERMELHO,
+                Config.CONSTANTS.CORES.RGB.VERMELHO
+              ],
+              borderColor: [
+                Config.CONSTANTS.CORES.RGB.VERMELHO,
+                Config.CONSTANTS.CORES.RGB.VERMELHO,
+                Config.CONSTANTS.CORES.RGB.VERMELHO,
+                Config.CONSTANTS.CORES.RGB.VERMELHO
+              ],
+              borderWidth: 1
+            },
+            {
+              label: 'Meta',
+              data: [ 95.0, 95.0, 95.0, 95.0 ],
+              backgroundColor: [ 
+                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
+              ],
+              borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+              borderWidth: 1,
+              type: 'line'
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: false
+                }
               }
-              label += Math.round(tooltipItem.yLabel * 100) / 100;
-              
-              return label;
+            ]
+          },
+          elements: {
+            line: {
+              fill: false
             }
           }
-      }
-      }
-    });
+        }
+      });
+    });  
+    
+    this.pendenciaClienteService.buscarPendenciaClientes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaCliente[]) => {
+      if (pendencias.length < 4) return;
+
+      this.clientesChart = new Chart(this.clientesCanvas.nativeElement, {
+        type: "bar",
+        data: {
+          labels: [
+            pendencias[0].nomeCliente.replace(/ .*/,''), 
+            pendencias[1].nomeCliente.replace(/ .*/,''), 
+            pendencias[2].nomeCliente.replace(/ .*/,''), 
+            pendencias[3].nomeCliente.replace(/ .*/,''), 
+          ],
+          datasets: [
+            {
+              label: "%",
+              data: [
+                pendencias[0].percentual, pendencias[1].percentual, 
+                pendencias[2].percentual, pendencias[3].percentual
+              ],
+              backgroundColor: [
+                Config.CONSTANTS.CORES.RGB.VERDE,
+                Config.CONSTANTS.CORES.RGB.VERDE,
+                Config.CONSTANTS.CORES.RGB.VERDE,
+                Config.CONSTANTS.CORES.RGB.VERDE
+              ],
+              borderColor: [
+                Config.CONSTANTS.CORES.RGB.VERDE,
+                Config.CONSTANTS.CORES.RGB.VERDE,
+                Config.CONSTANTS.CORES.RGB.VERDE,
+                Config.CONSTANTS.CORES.RGB.VERDE
+              ],
+              borderWidth: 1
+            },
+            {
+              label: 'Meta',
+              data: [ 95.0, 95.0, 95.0, 95.0 ],
+              backgroundColor: [ 
+                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
+              ],
+              borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+              borderWidth: 1,
+              type: 'line'
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: false
+                }
+              }
+            ]
+          },
+          elements: {
+            line: {
+              fill: false
+            }
+          }
+        }
+      });
+    }); 
+
+    this.pendenciaTecnicoService.buscarPendenciaTecnicos(this.slaFilial.codFilial).subscribe((pendencias: PendenciaTecnico[]) => {
+      if (pendencias.length < 4) return;
+
+      this.tecnicosChart = new Chart(this.tecnicosCanvas.nativeElement, {
+        type: "bar",
+        data: {
+          labels: [
+            pendencias[0].nomeTecnico.replace(/ .*/,''), 
+            pendencias[1].nomeTecnico.replace(/ .*/,''), 
+            pendencias[2].nomeTecnico.replace(/ .*/,''), 
+            pendencias[3].nomeTecnico.replace(/ .*/,''), 
+          ],
+          datasets: [
+            {
+              label: "%",
+              data: [
+                pendencias[0].percentual, pendencias[1].percentual, 
+                pendencias[2].percentual, pendencias[3].percentual
+              ],
+              backgroundColor: [
+                Config.CONSTANTS.CORES.RGB.AZUL,
+                Config.CONSTANTS.CORES.RGB.AZUL,
+                Config.CONSTANTS.CORES.RGB.AZUL,
+                Config.CONSTANTS.CORES.RGB.AZUL
+              ],
+              borderColor: [
+                Config.CONSTANTS.CORES.RGB.AZUL,
+                Config.CONSTANTS.CORES.RGB.AZUL,
+                Config.CONSTANTS.CORES.RGB.AZUL,
+                Config.CONSTANTS.CORES.RGB.AZUL
+              ],
+              borderWidth: 1
+            },
+            {
+              label: 'Meta',
+              data: [ 95.0, 95.0, 95.0, 95.0 ],
+              backgroundColor: [ 
+                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
+              ],
+              borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+              borderWidth: 1,
+              type: 'line'
+            }
+          ]
+        },
+        options: {
+          legend: {
+            display: false
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: false
+                }
+              }
+            ]
+          },
+          elements: {
+            line: {
+              fill: false
+            }
+          }
+        }
+      });
+    }); 
   }
 }

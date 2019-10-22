@@ -9,6 +9,8 @@ import { SLAFilialService } from '../services/sla-filial';
 import { ChamadosAntigosService } from '../services/chamados-antigos';
 import { PerformanceService } from '../services/performance';
 import { ChamadoService } from '../services/chamado';
+import { SLATecnicoService } from '../services/sla-tecnico';
+import { SLAClienteService } from '../services/sla-cliente';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -27,6 +29,13 @@ import { ResultadoGeralPage } from '../pages/indicadores-filial/resultado-geral'
 import { PerformanceFilialPage } from '../pages/indicadores-filial/performance-filial';
 import { IndicadoresClientesPage } from '../pages/indicadores-filial/indicadores-clientes';
 import { ChamadoConsultaPage } from '../pages/chamados/chamado-consulta';
+import { SLARegiaoService } from '../services/sla-regiao';
+import { PendenciaClienteService } from '../services/pendencia-cliente';
+import { PendenciaTecnicoService } from '../services/pendencia-tecnico';
+import { PendenciaRegiaoService } from '../services/pendencia-regiao';
+import { ReincidenciaRegiaoService } from '../services/reincidencia-regiao';
+import { ReincidenciaTecnicoService } from '../services/reincidencia-tecnico';
+import { ReincidenciaClienteService } from '../services/reincidencia-cliente';
 
 
 @NgModule({
@@ -81,7 +90,16 @@ import { ChamadoConsultaPage } from '../pages/chamados/chamado-consulta';
     SLAFilialService,
     ChamadosAntigosService,
     PerformanceService,
-    ChamadoService
+    ChamadoService,
+    SLATecnicoService,
+    SLAClienteService,
+    SLARegiaoService,
+    PendenciaClienteService,
+    PendenciaTecnicoService,
+    PendenciaRegiaoService,
+    ReincidenciaRegiaoService,
+    ReincidenciaTecnicoService,
+    ReincidenciaClienteService
   ]
 })
 export class AppModule {}
