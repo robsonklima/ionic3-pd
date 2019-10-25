@@ -8,7 +8,7 @@
     <ion-list>
       <ion-item>
         <ion-icon name="person" item-start></ion-icon>
-        Nome do Usuário
+        <span class="user-name">{{ dadosGlobais?.usuario?.nome }}</span>
       </ion-item>
       <ion-item (click)="sair()">
         Sair

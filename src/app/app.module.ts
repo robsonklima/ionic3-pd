@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage' 
 
 import { SLAFilialService } from '../services/sla-filial';
 import { ChamadosAntigosService } from '../services/chamados-antigos';
@@ -11,6 +12,15 @@ import { PerformanceService } from '../services/performance';
 import { ChamadoService } from '../services/chamado';
 import { SLATecnicoService } from '../services/sla-tecnico';
 import { SLAClienteService } from '../services/sla-cliente';
+import { UsuarioService } from '../services/usuario';
+import { SLARegiaoService } from '../services/sla-regiao';
+import { PendenciaClienteService } from '../services/pendencia-cliente';
+import { PendenciaTecnicoService } from '../services/pendencia-tecnico';
+import { PendenciaRegiaoService } from '../services/pendencia-regiao';
+import { ReincidenciaRegiaoService } from '../services/reincidencia-regiao';
+import { ReincidenciaTecnicoService } from '../services/reincidencia-tecnico';
+import { ReincidenciaClienteService } from '../services/reincidencia-cliente';
+import { DadosGlobaisService } from '../services/dados-globais';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -29,13 +39,6 @@ import { ResultadoGeralPage } from '../pages/indicadores-filial/resultado-geral'
 import { PerformanceFilialPage } from '../pages/indicadores-filial/performance-filial';
 import { IndicadoresClientesPage } from '../pages/indicadores-filial/indicadores-clientes';
 import { ChamadoConsultaPage } from '../pages/chamados/chamado-consulta';
-import { SLARegiaoService } from '../services/sla-regiao';
-import { PendenciaClienteService } from '../services/pendencia-cliente';
-import { PendenciaTecnicoService } from '../services/pendencia-tecnico';
-import { PendenciaRegiaoService } from '../services/pendencia-regiao';
-import { ReincidenciaRegiaoService } from '../services/reincidencia-regiao';
-import { ReincidenciaTecnicoService } from '../services/reincidencia-tecnico';
-import { ReincidenciaClienteService } from '../services/reincidencia-cliente';
 
 
 @NgModule({
@@ -62,6 +65,7 @@ import { ReincidenciaClienteService } from '../services/reincidencia-cliente';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -87,6 +91,8 @@ import { ReincidenciaClienteService } from '../services/reincidencia-cliente';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UsuarioService,
+    DadosGlobaisService,
     SLAFilialService,
     ChamadosAntigosService,
     PerformanceService,
