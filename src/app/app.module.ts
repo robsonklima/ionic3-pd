@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
-import { IonicStorageModule } from '@ionic/storage' 
+import { IonicStorageModule } from '@ionic/storage';
 
 import { SLAFilialService } from '../services/sla-filial';
 import { ChamadosAntigosService } from '../services/chamados-antigos';

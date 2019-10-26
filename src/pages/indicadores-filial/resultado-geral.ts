@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef} from '@angular/core';
+import { Component, ViewChild, ElementRef, Input} from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Chart } from "chart.js";
 
@@ -12,7 +12,7 @@ import { Performance } from '../../models/performance';
   template: `
     <ion-header>
       <ion-navbar no-border-bottom>
-        <ion-title>Resultado Geral - Todas as Filiais</ion-title>
+        <ion-title>Resultado Geral das Filiais</ion-title>
       </ion-navbar>
     </ion-header>
 
@@ -21,8 +21,11 @@ import { Performance } from '../../models/performance';
         <ion-card-header>
           SLA
         </ion-card-header>
+        
         <ion-card-content>
-          <canvas #slaCanvas></canvas>
+          <ion-spinner [ngClass]="!status ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="status ? 'visible' : 'hide'" #slaCanvas></canvas>
         </ion-card-content>
       </ion-card>
 
@@ -31,7 +34,9 @@ import { Performance } from '../../models/performance';
           Pendência
         </ion-card-header>
         <ion-card-content>
-          <canvas #pendenciaCanvas></canvas>
+        <ion-spinner [ngClass]="!status ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="status ? 'visible' : 'hide'" #pendenciaCanvas></canvas>
         </ion-card-content>
       </ion-card>
 
@@ -40,19 +45,22 @@ import { Performance } from '../../models/performance';
           Reincidência
         </ion-card-header>
         <ion-card-content>
-          <canvas #reincidenciaCanvas></canvas>
+          <ion-spinner [ngClass]="!status ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="status ? 'visible' : 'hide'" #reincidenciaCanvas></canvas>
         </ion-card-content>
       </ion-card>
     </ion-content>`
 })
 export class ResultadoGeralPage {
   performances: Performance[] = [];
+  status: boolean = false;
   @ViewChild("slaCanvas") slaCanvas: ElementRef;
-  public slaChart: Chart;
+  slaChart: Chart;
   @ViewChild("pendenciaCanvas") pendenciaCanvas: ElementRef;
-  public pendenciaChart: Chart;
+  pendenciaChart: Chart;
   @ViewChild("reincidenciaCanvas") reincidenciaCanvas: ElementRef;
-  public reincidenciaChart: Chart;
+  reincidenciaChart: Chart;
   private labels: string[] = [];
   private datasetSLA: any[] = [];
   private datasetPendencia: any[] = [];
@@ -66,11 +74,10 @@ export class ResultadoGeralPage {
 
   ngOnInit() {
     this.performanceService.buscarPerformance().subscribe((dados: Performance[]) => {
+      this.status = true;
       this.performances = dados;
 
-      this.performances.forEach(p => {
-        this.labels.push(this.carregarNomeMes(p.anoMes));
-      });
+      this.performances.forEach(p => { this.labels.push(this.carregarNomeMes(p.anoMes)) });
 
       this.datasetSLA.push(
         {
@@ -167,6 +174,11 @@ export class ResultadoGeralPage {
           datasets: this.datasetSLA
         },
         options: {
+          // animation: {
+          //   onProgress: a => {
+          //     let p = Math.round(a.animationObject.currentStep / a.animationObject.numSteps * 100);
+          //   }
+          // },
           legend: {
             position: 'top',
             display: true,

@@ -3,8 +3,20 @@ resultado-geral-page {
         background-color: #f4f4f4 !important;
     } 
 
-    .loading {
-        width: 100%;
+    ion-spinner {
         text-align: center;
+        width: 100%;
+        height: 28px;
+        stroke: #444;
+        fill: #222;
+        margin-bottom: 15px;;
+    }
+
+    .hide {
+        display: inline;
+    }
+
+    .hide {
+        display: none;
     }
 }
