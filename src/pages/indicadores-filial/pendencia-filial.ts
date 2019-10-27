@@ -112,7 +112,12 @@ export class PendenciaFilialPage {
         },
         options: {
           legend: {
-            display: false
+            position: 'top',
+            display: true,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
           },
           scales: {
             yAxes: [
@@ -166,7 +171,12 @@ export class PendenciaFilialPage {
         },
         options: {
           legend: {
-            display: false
+            position: 'top',
+            display: true,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
           },
           scales: {
             yAxes: [
@@ -220,7 +230,12 @@ export class PendenciaFilialPage {
         },
         options: {
           legend: {
-            display: false
+            position: 'top',
+            display: true,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
           },
           scales: {
             yAxes: [

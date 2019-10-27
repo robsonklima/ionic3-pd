@@ -113,7 +113,12 @@ export class ReincidenciaFilialPage {
         },
         options: {
           legend: {
-            display: false
+            position: 'top',
+            display: true,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
           },
           scales: {
             yAxes: [
@@ -168,7 +173,12 @@ export class ReincidenciaFilialPage {
         },
         options: {
           legend: {
-            display: false
+            position: 'top',
+            display: true,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
           },
           scales: {
             yAxes: [
@@ -223,7 +233,12 @@ export class ReincidenciaFilialPage {
         },
         options: {
           legend: {
-            display: false
+            position: 'top',
+            display: true,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
           },
           scales: {
             yAxes: [
