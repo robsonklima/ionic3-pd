@@ -42,11 +42,11 @@ export class StatusFiliaisPage {
       return 'black';
     }
     
-    if (slas[0].percentual < 92) {
+    if (slas[0].percentual < Config.CONSTANTS.METAS.SLA.M2) {
       return 'red';
-    } else if (slas[0].percentual >= 92 && slas[0].percentual < 95) {
+    } else if (slas[0].percentual >= Config.CONSTANTS.METAS.SLA.M2 && slas[0].percentual < Config.CONSTANTS.METAS.SLA.M1) {
       return 'orange';
-    } else if (slas[0].percentual >= 95) {
+    } else if (slas[0].percentual >= Config.CONSTANTS.METAS.SLA.M1) {
       return 'green';
     }
   }

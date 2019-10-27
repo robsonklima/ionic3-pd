@@ -53,14 +53,14 @@ export class IndicadoresClientesPage {
         
         data.push(p.sla);
 
-        if (p.sla >= 95) {
+        if (p.sla >= Config.CONSTANTS.METAS.SLA.M1) {
           colors.push(Config.CONSTANTS.CORES.RGB.VERDE);
-        } else if (p.sla >= 92 && p.sla < 95) {
+        } else if (p.sla >= Config.CONSTANTS.METAS.SLA.M2 && p.sla < Config.CONSTANTS.METAS.SLA.M1) {
           colors.push(Config.CONSTANTS.CORES.RGB.AMARELO);
         } else {
           colors.push(Config.CONSTANTS.CORES.RGB.VERMELHO);
         }
-        metas.push(95.0);
+        metas.push(Config.CONSTANTS.METAS.SLA.M1);
       });
 
       this.carregarGraficoSLA(labels, data, colors, metas);

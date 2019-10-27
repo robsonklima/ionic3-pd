@@ -18,6 +18,13 @@ export class IndicadoresFiliaisPage {
   sla: SLAFilial[] = [];
   pendencia: SLAFilial[] = [];
   reincidencia: SLAFilial[] = [];
+
+  metaSLA1: number = Config.CONSTANTS.METAS.SLA.M1;
+  metaSLA2: number = Config.CONSTANTS.METAS.SLA.M2;
+  metaReincidencia1: number = Config.CONSTANTS.METAS.REINCIDENCIA.M1;
+  metaReincidencia2: number = Config.CONSTANTS.METAS.REINCIDENCIA.M2;
+  metaPendencia1: number = Config.CONSTANTS.METAS.PENDENCIA.M1;
+  metaPendencia2: number = Config.CONSTANTS.METAS.PENDENCIA.M2;
   
   constructor(
     private navCtrl: NavController,

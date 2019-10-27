@@ -25,13 +25,16 @@ export class Config {
     },
     METAS: {
       SLA: {
-        M1: 95.0
+        M1: 95.0,
+        M2: 92.0
       },
       REINCIDENCIA: {
-        M1: 3.0
+        M1: 32.0,
+        M2: 35.0
       },
       PENDENCIA: {
-        M1: 32.0
+        M1: 3.0,
+        M2: 5.0
       }
     }
   };
