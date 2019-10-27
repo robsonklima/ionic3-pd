@@ -93,13 +93,18 @@ export class ResultadoGeralPage {
         },
         {
           label: 'Meta',
-          data: [ 95.0, 95.0, 95.0, 95.0 ],
+          data: [ 
+            Config.CONSTANTS.METAS.SLA.M1, Config.CONSTANTS.METAS.SLA.M1, 
+            Config.CONSTANTS.METAS.SLA.M1, Config.CONSTANTS.METAS.SLA.M1 
+          ],
           backgroundColor: [ 
             Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
             Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
           ],
           borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
           borderWidth: 1,
+          pointRadius: 5,
+          pointHoverRadius: 5,
           type: 'line'
         }
       );
@@ -119,13 +124,18 @@ export class ResultadoGeralPage {
         },
         {
           label: 'Meta',
-          data: [ 3.0, 3.0, 3.0, 3.0 ],
+          data: [ 
+            Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1, 
+            Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1 
+          ],
           backgroundColor: [ 
             Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
             Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
           ],
           borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
           borderWidth: 1,
+          pointRadius: 5,
+          pointHoverRadius: 5,
           type: 'line'
         }
       );
@@ -145,13 +155,18 @@ export class ResultadoGeralPage {
         },
         {
           label: 'Meta',
-          data: [ 32.0, 32.0, 32.0, 32.0 ],
+          data: [ 
+            Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1, 
+            Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1 
+          ],
           backgroundColor: [ 
             Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
             Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
           ],
           borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
           borderWidth: 1,
+          pointRadius: 5,
+          pointHoverRadius: 5,
           type: 'line'
         }
       );

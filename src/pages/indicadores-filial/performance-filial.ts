@@ -23,16 +23,9 @@ import { SLAFilial } from '../../models/sla-filial';
           SLA
         </ion-card-header>
         <ion-card-content>
-          <canvas #slaCanvas></canvas>
-        </ion-card-content>
-      </ion-card>
+          <ion-spinner [ngClass]="!status ? 'visible' : 'hide'"></ion-spinner>
 
-      <ion-card>
-        <ion-card-header>
-          Pendência
-        </ion-card-header>
-        <ion-card-content>
-          <canvas #pendenciaCanvas></canvas>
+          <canvas [ngClass]="status ? 'visible' : 'hide'" #slaCanvas></canvas>
         </ion-card-content>
       </ion-card>
 
@@ -41,12 +34,26 @@ import { SLAFilial } from '../../models/sla-filial';
           Reincidência
         </ion-card-header>
         <ion-card-content>
-          <canvas #reincidenciaCanvas></canvas>
+          <ion-spinner [ngClass]="!status ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="status ? 'visible' : 'hide'" #reincidenciaCanvas></canvas>
         </ion-card-content>
       </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Pendência
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!status ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="status ? 'visible' : 'hide'" #pendenciaCanvas></canvas>
+        </ion-card-content>
+      </ion-card>      
     </ion-content>`
 })
 export class PerformanceFilialPage {
+  status: boolean = false;
   slaFilial: SLAFilial;
   performances: Performance[] = [];
   @ViewChild("slaCanvas") slaCanvas: ElementRef;
@@ -71,10 +78,8 @@ export class PerformanceFilialPage {
   }
 
   ngOnInit() {
-    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.MENSAGENS.OBTENDO_DADOS_SERVIDOR });
-    loader.present();
-
     this.performanceService.buscarPerformancePorFilial(this.slaFilial.codFilial).subscribe((performances: Performance[]) => {
+        this.status = true;
         this.performances = performances;
 
         this.performances.forEach(p => {
@@ -182,10 +187,8 @@ export class PerformanceFilialPage {
         this.carregarGraficoSLA().then(() => {}).catch(e => {});
         this.carregarGraficoPendencia().then(() => {}).catch(e => {});
         this.carregarGraficoReincidencia().then(() => {}).catch(e => {});
-        loader.dismiss();
       },
       err => {
-        loader.dismiss();
         this.navCtrl.pop().then(() => { 
           this.exibirAlerta(Config.CONSTANTS.MENSAGENS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
       });

@@ -26,7 +26,9 @@ import { PendenciaTecnico } from '../../models/pendencia-tecnico';
           Regiões
         </ion-card-header>
         <ion-card-content>
-          <canvas #regioesCanvas></canvas>
+          <ion-spinner [ngClass]="!regioesChartStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="regioesChartStatus ? 'visible' : 'hide'" #regioesCanvas></canvas>
         </ion-card-content>
       </ion-card>
 
@@ -35,7 +37,9 @@ import { PendenciaTecnico } from '../../models/pendencia-tecnico';
           Clientes
         </ion-card-header>
         <ion-card-content>
-          <canvas #clientesCanvas></canvas>
+          <ion-spinner [ngClass]="!clientesChartStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="clientesChartStatus ? 'visible' : 'hide'" #clientesCanvas></canvas>
         </ion-card-content>
       </ion-card>
 
@@ -44,7 +48,9 @@ import { PendenciaTecnico } from '../../models/pendencia-tecnico';
           Técnicos
         </ion-card-header>
         <ion-card-content>
-          <canvas #tecnicosCanvas></canvas>
+          <ion-spinner [ngClass]="!tecnicosChartStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="tecnicosChartStatus ? 'visible' : 'hide'" #tecnicosCanvas></canvas>
         </ion-card-content>
       </ion-card>
     </ion-content>`
@@ -52,11 +58,14 @@ import { PendenciaTecnico } from '../../models/pendencia-tecnico';
 export class PendenciaFilialPage {
   slaFilial: SLAFilial;
   @ViewChild("regioesCanvas") regioesCanvas: ElementRef;
-  public regioesChart: Chart;
+  regioesChart: Chart;
+  regioesChartStatus: boolean = false;
   @ViewChild("clientesCanvas") clientesCanvas: ElementRef;
-  public clientesChart: Chart;
+  clientesChart: Chart;
+  clientesChartStatus: boolean = false;
   @ViewChild("tecnicosCanvas") tecnicosCanvas: ElementRef;
-  public tecnicosChart: Chart;
+  tecnicosChart: Chart;
+  tecnicosChartStatus: boolean = false;
   
   constructor(
     private navParams: NavParams,
@@ -69,10 +78,8 @@ export class PendenciaFilialPage {
   }
 
   ngOnInit() {
-    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.MENSAGENS.OBTENDO_DADOS_SERVIDOR });
-    loader.present().then(() => { setTimeout(() => { loader.dismiss() }, 1000) });
-    
     this.pendenciaRegiaoService.buscarPendenciaRegioes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaRegiao[]) => {
+      this.regioesChartStatus = true;
       let labels: string[] = pendencias.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
       let values: number[] = pendencias.map((i) => { return i['percentual'] });
       let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
@@ -126,6 +133,7 @@ export class PendenciaFilialPage {
     });  
     
     this.pendenciaClienteService.buscarPendenciaClientes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaCliente[]) => {
+      this.clientesChartStatus = true;
       let labels: string[] = pendencias.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
       let values: number[] = pendencias.map((i) => { return i['percentual'] });
       let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
@@ -179,6 +187,7 @@ export class PendenciaFilialPage {
     }); 
 
     this.pendenciaTecnicoService.buscarPendenciaTecnicos(this.slaFilial.codFilial).subscribe((pendencias: PendenciaTecnico[]) => {
+      this.tecnicosChartStatus = true;
       let labels: string[] = pendencias.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
       let values: number[] = pendencias.map((i) => { return i['percentual'] });
       let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });

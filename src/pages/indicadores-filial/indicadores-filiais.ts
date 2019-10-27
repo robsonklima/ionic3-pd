@@ -2,8 +2,11 @@ import { Component} from '@angular/core';
 import { LoadingController, NavController, AlertController } from 'ionic-angular';
 
 import { Config } from '../../models/config';
+import { PendenciaFilialPage } from './pendencia-filial';
+import { ReincidenciaFilialPage } from './reincidencia-filial';
 import { SLAFilial } from '../../models/sla-filial';
 import { SLAFilialService } from '../../services/sla-filial';
+import { SLAFilialPage } from './sla-filial';
 
 
 @Component({
@@ -40,22 +43,6 @@ export class IndicadoresFiliaisPage {
         return ((a.reincidencia < b.reincidencia) ? -1 : ((a.reincidencia > b.reincidencia) ? 1 : 0));
       }).filter(function(a) { return a.nomeFilial !== 'TOTAL' });
 
-      // this.slaFiliais.forEach(e => {
-      //   if(e.nomeFilial == 'TOTAL') {
-      //     let p = this.slaFiliais.reduce(function(prev, cur) { 
-      //       return prev + (cur.pendencia) 
-      //     }, 0) / this.slaFiliais.length - 1;
-
-      //     e.pendencia = Number(p.toFixed(2));
-      
-      //     let r = this.slaFiliais.reduce(function(prev, cur) { 
-      //       return prev + (cur.reincidencia) 
-      //     }, 0) / this.slaFiliais.length - 1;
-          
-      //     e.reincidencia = Number(r.toFixed(2));
-      //   }
-      // });
-
       loader.dismiss();
     },
     err => {
@@ -63,6 +50,18 @@ export class IndicadoresFiliaisPage {
 
       this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.MENSAGENS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
     });
+  }
+
+  public telaIndicadoresFilialSLA(s: SLAFilial) {
+    this.navCtrl.push(SLAFilialPage, { slaFilial: s });
+  }
+
+  public telaIndicadoresFilialReincidencia(s: SLAFilial) {
+    this.navCtrl.push(ReincidenciaFilialPage, { slaFilial: s });
+  }
+
+  public telaIndicadoresFilialPendencia(s: SLAFilial) {
+    this.navCtrl.push(PendenciaFilialPage, { slaFilial: s });
   }
 
   private exibirAlerta(msg: string) {

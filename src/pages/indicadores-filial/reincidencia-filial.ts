@@ -26,7 +26,9 @@ import { ReincidenciaTecnico } from '../../models/reincidencia-tecnico';
           Regiões
         </ion-card-header>
         <ion-card-content>
-          <canvas #regioesCanvas></canvas>
+          <ion-spinner [ngClass]="!regioesChartStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="regioesChartStatus ? 'visible' : 'hide'" #regioesCanvas></canvas>
         </ion-card-content>
       </ion-card>
 
@@ -35,7 +37,9 @@ import { ReincidenciaTecnico } from '../../models/reincidencia-tecnico';
           Clientes
         </ion-card-header>
         <ion-card-content>
-          <canvas #clientesCanvas></canvas>
+          <ion-spinner [ngClass]="!clientesChartStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="clientesChartStatus ? 'visible' : 'hide'" #clientesCanvas></canvas>
         </ion-card-content>
       </ion-card>
 
@@ -44,7 +48,9 @@ import { ReincidenciaTecnico } from '../../models/reincidencia-tecnico';
           Técnicos
         </ion-card-header>
         <ion-card-content>
-          <canvas #tecnicosCanvas></canvas>
+          <ion-spinner [ngClass]="!tecnicosChartStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="tecnicosChartStatus ? 'visible' : 'hide'" #tecnicosCanvas></canvas>
         </ion-card-content>
       </ion-card>
     </ion-content>`
@@ -53,10 +59,13 @@ export class ReincidenciaFilialPage {
   slaFilial: SLAFilial;
   @ViewChild("regioesCanvas") regioesCanvas: ElementRef;
   public regioesChart: Chart;
+  regioesChartStatus: boolean = false;
   @ViewChild("clientesCanvas") clientesCanvas: ElementRef;
   public clientesChart: Chart;
+  clientesChartStatus: boolean = false;
   @ViewChild("tecnicosCanvas") tecnicosCanvas: ElementRef;
   public tecnicosChart: Chart;
+  tecnicosChartStatus: boolean = false;
   
   constructor(
     private navParams: NavParams,
@@ -69,10 +78,9 @@ export class ReincidenciaFilialPage {
   }
 
   ngOnInit() {
-    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.MENSAGENS.OBTENDO_DADOS_SERVIDOR });
-    loader.present().then(() => { setTimeout(() => { loader.dismiss() }, 1000) });
-    
     this.reincidenciaRegiaoService.buscarReincidenciaRegioes(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaRegiao[]) => {
+      this.regioesChartStatus = true;
+
       let labels: string[] = reincidencias.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
       let values: number[] = reincidencias.map((i) => { return i['percentual'] });
       let metas: number[] = reincidencias.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });
@@ -126,6 +134,8 @@ export class ReincidenciaFilialPage {
     });  
     
     this.reincidenciaClienteService.buscarReincidenciaClientes(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaCliente[]) => {
+      this.clientesChartStatus = true;
+
       let labels: string[] = reincidencias.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
       let values: number[] = reincidencias.map((i) => { return i['percentual'] });
       let metas: number[] = reincidencias.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });
@@ -179,6 +189,8 @@ export class ReincidenciaFilialPage {
     }); 
 
     this.reincidenciaTecnicoService.buscarReincidenciaTecnicos(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaTecnico[]) => {
+      this.tecnicosChartStatus = true;
+
       let labels: string[] = reincidencias.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
       let values: number[] = reincidencias.map((i) => { return i['percentual'] });
       let metas: number[] = reincidencias.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });

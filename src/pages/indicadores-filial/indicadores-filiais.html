@@ -8,11 +8,13 @@
       <ion-segment-button value="sla">
         SLA
       </ion-segment-button>
-      <ion-segment-button value="pen">
-        Pendência
-      </ion-segment-button>
+
       <ion-segment-button value="rcd">
         Reincidência
+      </ion-segment-button>
+      
+      <ion-segment-button value="pen">
+        Pendência
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -21,33 +23,33 @@
 <ion-content>
   <div [ngSwitch]="modo">
     <ion-list *ngSwitchCase="'sla'">
-      <ion-item *ngFor="let s of sla; let i = index">
+      <ion-item *ngFor="let s of sla; let i = index" (click)="telaIndicadoresFilialSLA(s)">
         <ion-icon name='ios-radio-button-on' item-start *ngIf="s.percentual >= 95" color="secondary"></ion-icon>
         <ion-icon name='ios-radio-button-on' item-start *ngIf="s.percentual >= 92 && s.percentual < 95" color="orange"></ion-icon>
         <ion-icon name='ios-radio-button-on' item-start *ngIf="s.percentual < 92" color="danger"></ion-icon>
         {{ s.nomeFilial }}
-        <p>Dentro: {{ s.dentro }} | Fora: {{ s.fora }}</p>
+        <p>Dentro: {{ s.dentro }} &#8226; Fora: {{ s.fora > 0 ? s.fora : 'Nenhum' }}</p>
         <ion-note item-end>{{ s.percentual }}%</ion-note>
       </ion-item>
     </ion-list>
 
-    <ion-list *ngSwitchCase="'pen'">
-      <ion-item *ngFor="let p of pendencia; let i = index">
-        <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia <= 3" color="secondary"></ion-icon>
-        <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia >= 3.1 && p.pendencia <= 5" color="orange"></ion-icon>
-        <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia > 5" color="danger"></ion-icon>
-        {{ p.nomeFilial }}
-        <ion-note item-end>{{ p.pendencia }}%</ion-note>
-      </ion-item>
-    </ion-list>
-
     <ion-list *ngSwitchCase="'rcd'">
-      <ion-item *ngFor="let r of reincidencia; let i = index">
+      <ion-item *ngFor="let r of reincidencia; let i = index" (click)="telaIndicadoresFilialReincidencia(r)">
         <ion-icon name='ios-radio-button-on' item-start *ngIf="r.reincidencia <= 32" color="secondary"></ion-icon>
         <ion-icon name='ios-radio-button-on' item-start *ngIf="r.reincidencia > 32 && r.reincidencia <= 35" color="orange"></ion-icon>
         <ion-icon name='ios-radio-button-on' item-start *ngIf="r.reincidencia > 35" color="danger"></ion-icon>
         {{ r.nomeFilial }}
         <ion-note item-end>{{ r.reincidencia }}%</ion-note>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'pen'">
+      <ion-item *ngFor="let p of pendencia; let i = index" (click)="telaIndicadoresFilialPendencia(p)">
+        <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia <= 3" color="secondary"></ion-icon>
+        <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia >= 3.1 && p.pendencia <= 5" color="orange"></ion-icon>
+        <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia > 5" color="danger"></ion-icon>
+        {{ p.nomeFilial }}
+        <ion-note item-end>{{ p.pendencia }}%</ion-note>
       </ion-item>
     </ion-list>
   </div>
