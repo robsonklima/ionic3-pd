@@ -71,7 +71,7 @@ export class PerformanceFilialPage {
   }
 
   ngOnInit() {
-    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
+    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.MENSAGENS.OBTENDO_DADOS_SERVIDOR });
     loader.present();
 
     this.performanceService.buscarPerformancePorFilial(this.slaFilial.codFilial).subscribe((performances: Performance[]) => {
@@ -100,7 +100,10 @@ export class PerformanceFilialPage {
 
         this.datasetsSLA.push({
           label: 'Meta',
-          data: [ 95.0, 95.0, 95.0, 95.0 ],
+          data: [ 
+            Config.CONSTANTS.METAS.SLA.M1, Config.CONSTANTS.METAS.SLA.M1,
+            Config.CONSTANTS.METAS.SLA.M1, Config.CONSTANTS.METAS.SLA.M1
+          ],
           backgroundColor: [ 
             Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
             Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
@@ -127,7 +130,10 @@ export class PerformanceFilialPage {
 
         this.datasetsPendencia.push({
           label: 'Meta',
-          data: [ 3.0, 3.0, 3.0, 3.0 ],
+          data: [ 
+            Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1, 
+            Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1 
+          ],
           backgroundColor: [ 
             Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
             Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
@@ -154,7 +160,10 @@ export class PerformanceFilialPage {
 
         this.datasetsReincidencia.push({
           label: 'Meta',
-          data: [ 32.0, 32.0, 32.0, 32.0 ],
+          data: [ 
+            Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1, 
+            Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1 
+          ],
           backgroundColor: [ 
             Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
             Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
@@ -171,7 +180,8 @@ export class PerformanceFilialPage {
       },
       err => {
         loader.dismiss();
-        this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
+        this.navCtrl.pop().then(() => { 
+          this.exibirAlerta(Config.CONSTANTS.MENSAGENS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
       });
   }
 
@@ -207,7 +217,7 @@ export class PerformanceFilialPage {
             }
           }
         }
-      }).then(() => { resolve() }).catch(e => { reject() });
+      }).then(() => { resolve() }).catch(() => { reject() });
     });
   }
 

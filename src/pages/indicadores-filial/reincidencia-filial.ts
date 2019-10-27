@@ -69,7 +69,7 @@ export class ReincidenciaFilialPage {
   }
 
   ngOnInit() {
-    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
+    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.MENSAGENS.OBTENDO_DADOS_SERVIDOR });
     loader.present().then(() => { setTimeout(() => { loader.dismiss() }, 1000) });
     
     this.reincidenciaRegiaoService.buscarReincidenciaRegioes(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaRegiao[]) => {
@@ -107,7 +107,10 @@ export class ReincidenciaFilialPage {
             },
             {
               label: 'Meta',
-              data: [ 95.0, 95.0, 95.0, 95.0 ],
+              data: [ 
+                Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1,
+                Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1 
+              ],
               backgroundColor: [ 
                 Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
                 Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
@@ -175,7 +178,10 @@ export class ReincidenciaFilialPage {
             },
             {
               label: 'Meta',
-              data: [ 95.0, 95.0, 95.0, 95.0 ],
+              data: [ 
+                Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1,
+                Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1 
+              ],
               backgroundColor: [ 
                 Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
                 Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
@@ -243,7 +249,10 @@ export class ReincidenciaFilialPage {
             },
             {
               label: 'Meta',
-              data: [ 95.0, 95.0, 95.0, 95.0 ],
+              data: [ 
+                Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1,
+                Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1 
+              ],
               backgroundColor: [ 
                 Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
                 Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO

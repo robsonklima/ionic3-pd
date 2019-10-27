@@ -69,7 +69,7 @@ export class SLAFilialPage {
   }
 
   ngOnInit() {
-    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
+    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.MENSAGENS.OBTENDO_DADOS_SERVIDOR });
     loader.present().then(() => { setTimeout(() => { loader.dismiss() }, 1000) });
     
     this.slaRegiaoService.buscarSLARegioes(this.slaFilial.codFilial).subscribe((slas: SLARegiao[]) => {

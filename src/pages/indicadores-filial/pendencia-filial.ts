@@ -3,8 +3,6 @@ import { NavParams, LoadingController } from 'ionic-angular';
 import { Chart } from "chart.js";
 import { Config } from '../../models/config';
 import { SLAFilial } from '../../models/sla-filial';
-import { SLACliente } from '../../models/sla-cliente';
-import { SLATecnico } from '../../models/sla-tecnico';
 import { PendenciaRegiaoService } from '../../services/pendencia-regiao';
 import { PendenciaTecnicoService } from '../../services/pendencia-tecnico';
 import { PendenciaClienteService } from '../../services/pendencia-cliente';
@@ -71,7 +69,7 @@ export class PendenciaFilialPage {
   }
 
   ngOnInit() {
-    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
+    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.MENSAGENS.OBTENDO_DADOS_SERVIDOR });
     loader.present().then(() => { setTimeout(() => { loader.dismiss() }, 1000) });
     
     this.pendenciaRegiaoService.buscarPendenciaRegioes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaRegiao[]) => {
@@ -109,7 +107,10 @@ export class PendenciaFilialPage {
             },
             {
               label: 'Meta',
-              data: [ 95.0, 95.0, 95.0, 95.0 ],
+              data: [ 
+                Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1,
+                Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1 
+              ],
               backgroundColor: [ 
                 Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
                 Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
@@ -177,7 +178,10 @@ export class PendenciaFilialPage {
             },
             {
               label: 'Meta',
-              data: [ 95.0, 95.0, 95.0, 95.0 ],
+              data: [ 
+                Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1,
+                Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1 
+              ],
               backgroundColor: [ 
                 Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
                 Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
@@ -245,7 +249,10 @@ export class PendenciaFilialPage {
             },
             {
               label: 'Meta',
-              data: [ 95.0, 95.0, 95.0, 95.0 ],
+              data: [ 
+                Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1,
+                Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1 
+              ],
               backgroundColor: [ 
                 Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
                 Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO

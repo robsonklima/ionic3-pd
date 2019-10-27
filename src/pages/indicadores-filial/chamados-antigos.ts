@@ -23,7 +23,7 @@ export class ChamadosAntigosPage {
   ) {}
 
   ngOnInit() {
-    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
+    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.MENSAGENS.OBTENDO_DADOS_SERVIDOR });
     loader.present();
 
     this.chamadosAntigosService.buscarChamadosAntigos().subscribe((chamados: ChamadoAntigo[]) => {
@@ -32,7 +32,7 @@ export class ChamadosAntigosPage {
       },
       err => {
         loader.dismiss();
-        this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
+        this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.MENSAGENS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
       });
   }
 

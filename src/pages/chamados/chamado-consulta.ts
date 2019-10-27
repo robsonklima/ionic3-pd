@@ -25,7 +25,7 @@ export class ChamadoConsultaPage {
   }
 
   ngOnInit() {
-    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.OBTENDO_DADOS_SERVIDOR });
+    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.MENSAGENS.OBTENDO_DADOS_SERVIDOR });
     loader.present();
 
     this.chamadoService.buscarChamado(this.codOS).subscribe((chamado: Chamado[]) => {
@@ -37,7 +37,7 @@ export class ChamadoConsultaPage {
     err => {
       loader.dismiss()
 
-      this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
+      this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.MENSAGENS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
     });
   }
 
