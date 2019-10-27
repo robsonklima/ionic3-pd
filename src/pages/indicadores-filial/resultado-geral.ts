@@ -76,31 +76,24 @@ export class ResultadoGeralPage {
     this.performanceService.buscarPerformance().subscribe((dados: Performance[]) => {
       this.status = true;
       this.performances = dados;
+      this.labels = dados.map((i) => { return this.carregarNomeMes(i['anoMes']) });
 
-      this.performances.forEach(p => { this.labels.push(this.carregarNomeMes(p.anoMes)) });
+      let slas: number[] = dados.map((i) => { return i['sla'] });
+      let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
+      let metas: number[] = slas.map(() => { return Config.CONSTANTS.METAS.SLA.M1 });
+      let metaColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.HEXA.VERMELHO });
 
       this.datasetSLA.push(
         {
           label: 'SLA',
-          data: [
-            this.performances[0].sla, this.performances[1].sla, this.performances[2].sla, this.performances[3].sla
-          ],
-          backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
-            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
-          ],
+          data: slas,
+          backgroundColor: bgColors,
           borderWidth: 1
         },
         {
           label: 'Meta',
-          data: [ 
-            Config.CONSTANTS.METAS.SLA.M1, Config.CONSTANTS.METAS.SLA.M1, 
-            Config.CONSTANTS.METAS.SLA.M1, Config.CONSTANTS.METAS.SLA.M1 
-          ],
-          backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
-            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
-          ],
+          data: metas,
+          backgroundColor: metaColors,
           borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
           borderWidth: 1,
           pointRadius: 5,
@@ -109,29 +102,20 @@ export class ResultadoGeralPage {
         }
       );
 
+      let pendencias = dados.map((i) => { return i['pendencia'] });
+      metas = slas.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
+      
       this.datasetPendencia.push(
         {
           label: 'Pendência',
-          data: [ 
-            this.performances[0].pendencia, this.performances[1].pendencia, 
-            this.performances[2].pendencia, this.performances[3].pendencia 
-          ],
-          backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
-            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
-          ],
+          data: pendencias,
+          backgroundColor: bgColors,
           borderWidth: 1
         },
         {
           label: 'Meta',
-          data: [ 
-            Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1, 
-            Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1 
-          ],
-          backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
-            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
-          ],
+          data: metas,
+          backgroundColor: metaColors,
           borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
           borderWidth: 1,
           pointRadius: 5,
@@ -139,30 +123,21 @@ export class ResultadoGeralPage {
           type: 'line'
         }
       );
+
+      let reincidencias = dados.map((i) => { return i['reincidencia'] });
+      metas = slas.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });
 
       this.datasetReincidencia.push(
         {
           label: 'Reincidência',
-          data: [
-            this.performances[0].reincidencia, this.performances[1].reincidencia, 
-            this.performances[2].reincidencia, this.performances[3].reincidencia
-          ],
-          backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE,
-            Config.CONSTANTS.CORES.RGB.VERDE, Config.CONSTANTS.CORES.RGB.VERDE
-          ],
+          data: reincidencias,
+          backgroundColor: bgColors,
           borderWidth: 1
         },
         {
           label: 'Meta',
-          data: [ 
-            Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1, 
-            Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1 
-          ],
-          backgroundColor: [ 
-            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
-            Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
-          ],
+          data: metas,
+          backgroundColor: metaColors,
           borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
           borderWidth: 1,
           pointRadius: 5,
