@@ -73,50 +73,32 @@ export class ReincidenciaFilialPage {
     loader.present().then(() => { setTimeout(() => { loader.dismiss() }, 1000) });
     
     this.reincidenciaRegiaoService.buscarReincidenciaRegioes(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaRegiao[]) => {
-      if (reincidencias.length < 4) return;
+      let labels: string[] = reincidencias.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
+      let values: number[] = reincidencias.map((i) => { return i['percentual'] });
+      let metas: number[] = reincidencias.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });
+      let bgColors: string[] = reincidencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO });
+      let metaColors: string[] = reincidencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
 
       this.regioesChart = new Chart(this.regioesCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: [
-            reincidencias[0].nomeRegiao.replace(/ .*/,''), 
-            reincidencias[1].nomeRegiao.replace(/ .*/,''), 
-            reincidencias[2].nomeRegiao.replace(/ .*/,''), 
-            reincidencias[3].nomeRegiao.replace(/ .*/,''), 
-          ],
+          labels: labels,
           datasets: [
             {
               label: "%",
-              data: [
-                reincidencias[0].percentual, reincidencias[1].percentual, 
-                reincidencias[2].percentual, reincidencias[3].percentual
-              ],
-              backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO
-              ],
-              borderColor: [
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO
-              ],
+              data: values,
+              backgroundColor: bgColors,
+              borderColor: bgColors,
               borderWidth: 1
             },
             {
               label: 'Meta',
-              data: [ 
-                Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1,
-                Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1 
-              ],
-              backgroundColor: [ 
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
-              ],
+              data: metas,
+              backgroundColor: metaColors,
               borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
               borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
               type: 'line'
             }
           ]
@@ -144,50 +126,32 @@ export class ReincidenciaFilialPage {
     });  
     
     this.reincidenciaClienteService.buscarReincidenciaClientes(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaCliente[]) => {
-      if (reincidencias.length < 4) return;
+      let labels: string[] = reincidencias.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
+      let values: number[] = reincidencias.map((i) => { return i['percentual'] });
+      let metas: number[] = reincidencias.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });
+      let bgColors: string[] = reincidencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
+      let metaColors: string[] = reincidencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
 
       this.clientesChart = new Chart(this.clientesCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: [
-            reincidencias[0].nomeCliente.replace(/ .*/,''), 
-            reincidencias[1].nomeCliente.replace(/ .*/,''), 
-            reincidencias[2].nomeCliente.replace(/ .*/,''), 
-            reincidencias[3].nomeCliente.replace(/ .*/,''), 
-          ],
+          labels: labels,
           datasets: [
             {
               label: "%",
-              data: [
-                reincidencias[0].percentual, reincidencias[1].percentual, 
-                reincidencias[2].percentual, reincidencias[3].percentual
-              ],
-              backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE
-              ],
-              borderColor: [
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE
-              ],
+              data: values,
+              backgroundColor: bgColors,
+              borderColor: bgColors,
               borderWidth: 1
             },
             {
               label: 'Meta',
-              data: [ 
-                Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1,
-                Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1 
-              ],
-              backgroundColor: [ 
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
-              ],
+              data: metas,
+              backgroundColor: metaColors,
               borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
               borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
               type: 'line'
             }
           ]
@@ -215,50 +179,32 @@ export class ReincidenciaFilialPage {
     }); 
 
     this.reincidenciaTecnicoService.buscarReincidenciaTecnicos(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaTecnico[]) => {
-      if (reincidencias.length < 4) return;
+      let labels: string[] = reincidencias.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
+      let values: number[] = reincidencias.map((i) => { return i['percentual'] });
+      let metas: number[] = reincidencias.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });
+      let bgColors: string[] = reincidencias.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
+      let metaColors: string[] = reincidencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
 
       this.tecnicosChart = new Chart(this.tecnicosCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: [
-            reincidencias[0].nomeTecnico.replace(/ .*/,''), 
-            reincidencias[1].nomeTecnico.replace(/ .*/,''), 
-            reincidencias[2].nomeTecnico.replace(/ .*/,''), 
-            reincidencias[3].nomeTecnico.replace(/ .*/,''), 
-          ],
+          labels: labels,
           datasets: [
             {
               label: "%",
-              data: [
-                reincidencias[0].percentual, reincidencias[1].percentual, 
-                reincidencias[2].percentual, reincidencias[3].percentual
-              ],
-              backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL
-              ],
-              borderColor: [
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL
-              ],
+              data: values,
+              backgroundColor: bgColors,
+              borderColor: bgColors,
               borderWidth: 1
             },
             {
               label: 'Meta',
-              data: [ 
-                Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1,
-                Config.CONSTANTS.METAS.REINCIDENCIA.M1, Config.CONSTANTS.METAS.REINCIDENCIA.M1 
-              ],
-              backgroundColor: [ 
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
-              ],
+              data: metas,
+              backgroundColor: metaColors,
               borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
               borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
               type: 'line'
             }
           ]

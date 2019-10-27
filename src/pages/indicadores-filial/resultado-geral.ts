@@ -161,7 +161,7 @@ export class ResultadoGeralPage {
       this.carregarGraficoReincidencia().then(() => {}).catch(() => {});
     },
     err => {
-      this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
+      this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.MENSAGENS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
     });
   }
 

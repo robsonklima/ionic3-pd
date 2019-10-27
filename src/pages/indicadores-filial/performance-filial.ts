@@ -110,6 +110,8 @@ export class PerformanceFilialPage {
           ],
           borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
           borderWidth: 1,
+          pointRadius: 5,
+          pointHoverRadius: 5,
           type: 'line'
         });
 
@@ -140,6 +142,8 @@ export class PerformanceFilialPage {
           ],
           borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
           borderWidth: 1,
+          pointRadius: 5,
+          pointHoverRadius: 5,
           type: 'line'
         });
 
@@ -170,6 +174,8 @@ export class PerformanceFilialPage {
           ],
           borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
           borderWidth: 1,
+          pointRadius: 5,
+          pointHoverRadius: 5,
           type: 'line'
         });
 

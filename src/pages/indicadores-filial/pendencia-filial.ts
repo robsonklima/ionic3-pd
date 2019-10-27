@@ -73,50 +73,32 @@ export class PendenciaFilialPage {
     loader.present().then(() => { setTimeout(() => { loader.dismiss() }, 1000) });
     
     this.pendenciaRegiaoService.buscarPendenciaRegioes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaRegiao[]) => {
-      if (pendencias.length < 4) return;
+      let labels: string[] = pendencias.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
+      let values: number[] = pendencias.map((i) => { return i['percentual'] });
+      let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
+      let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO });
+      let metaColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
 
       this.regioesChart = new Chart(this.regioesCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: [
-            pendencias[0].nomeRegiao.replace(/ .*/,''), 
-            pendencias[1].nomeRegiao.replace(/ .*/,''), 
-            pendencias[2].nomeRegiao.replace(/ .*/,''), 
-            pendencias[3].nomeRegiao.replace(/ .*/,''), 
-          ],
+          labels: labels,
           datasets: [
             {
               label: "%",
-              data: [
-                pendencias[0].percentual, pendencias[1].percentual, 
-                pendencias[2].percentual, pendencias[3].percentual
-              ],
-              backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO
-              ],
-              borderColor: [
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO
-              ],
+              data: values,
+              backgroundColor: bgColors,
+              borderColor: bgColors,
               borderWidth: 1
             },
             {
               label: 'Meta',
-              data: [ 
-                Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1,
-                Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1 
-              ],
-              backgroundColor: [ 
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
-              ],
+              data: metas,
+              backgroundColor: metaColors,
               borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
               borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
               type: 'line'
             }
           ]
@@ -144,50 +126,32 @@ export class PendenciaFilialPage {
     });  
     
     this.pendenciaClienteService.buscarPendenciaClientes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaCliente[]) => {
-      if (pendencias.length < 4) return;
+      let labels: string[] = pendencias.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
+      let values: number[] = pendencias.map((i) => { return i['percentual'] });
+      let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
+      let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
+      let metaColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
 
       this.clientesChart = new Chart(this.clientesCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: [
-            pendencias[0].nomeCliente.replace(/ .*/,''), 
-            pendencias[1].nomeCliente.replace(/ .*/,''), 
-            pendencias[2].nomeCliente.replace(/ .*/,''), 
-            pendencias[3].nomeCliente.replace(/ .*/,''), 
-          ],
+          labels: labels,
           datasets: [
             {
               label: "%",
-              data: [
-                pendencias[0].percentual, pendencias[1].percentual, 
-                pendencias[2].percentual, pendencias[3].percentual
-              ],
-              backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE
-              ],
-              borderColor: [
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE
-              ],
+              data: values,
+              backgroundColor: bgColors,
+              borderColor: bgColors,
               borderWidth: 1
             },
             {
               label: 'Meta',
-              data: [ 
-                Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1,
-                Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1 
-              ],
-              backgroundColor: [ 
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
-              ],
+              data: metas,
+              backgroundColor: metaColors,
               borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
               borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
               type: 'line'
             }
           ]
@@ -215,50 +179,32 @@ export class PendenciaFilialPage {
     }); 
 
     this.pendenciaTecnicoService.buscarPendenciaTecnicos(this.slaFilial.codFilial).subscribe((pendencias: PendenciaTecnico[]) => {
-      if (pendencias.length < 4) return;
+      let labels: string[] = pendencias.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
+      let values: number[] = pendencias.map((i) => { return i['percentual'] });
+      let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
+      let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
+      let metaColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
 
       this.tecnicosChart = new Chart(this.tecnicosCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: [
-            pendencias[0].nomeTecnico.replace(/ .*/,''), 
-            pendencias[1].nomeTecnico.replace(/ .*/,''), 
-            pendencias[2].nomeTecnico.replace(/ .*/,''), 
-            pendencias[3].nomeTecnico.replace(/ .*/,''), 
-          ],
+          labels: labels,
           datasets: [
             {
               label: "%",
-              data: [
-                pendencias[0].percentual, pendencias[1].percentual, 
-                pendencias[2].percentual, pendencias[3].percentual
-              ],
-              backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL
-              ],
-              borderColor: [
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL
-              ],
+              data: values,
+              backgroundColor: bgColors,
+              borderColor: bgColors,
               borderWidth: 1
             },
             {
               label: 'Meta',
-              data: [ 
-                Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1,
-                Config.CONSTANTS.METAS.PENDENCIA.M1, Config.CONSTANTS.METAS.PENDENCIA.M1 
-              ],
-              backgroundColor: [ 
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
-              ],
+              data: metas,
+              backgroundColor: metaColors,
               borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
               borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
               type: 'line'
             }
           ]

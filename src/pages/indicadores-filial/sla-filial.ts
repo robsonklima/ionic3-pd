@@ -73,44 +73,32 @@ export class SLAFilialPage {
     loader.present().then(() => { setTimeout(() => { loader.dismiss() }, 1000) });
     
     this.slaRegiaoService.buscarSLARegioes(this.slaFilial.codFilial).subscribe((slas: SLARegiao[]) => {
-      if (slas.length < 4) return;
-
+      let labels: string[] = slas.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
+      let values: number[] = slas.map((i) => { return i['percentual'] });
+      let metas: number[] = slas.map(() => { return Config.CONSTANTS.METAS.SLA.M1 });
+      let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO });
+      let metaColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
+        
       this.regioesChart = new Chart(this.regioesCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: [
-            slas[0].nomeRegiao.replace(/ .*/,''), 
-            slas[1].nomeRegiao.replace(/ .*/,''), 
-            slas[2].nomeRegiao.replace(/ .*/,''), 
-            slas[3].nomeRegiao.replace(/ .*/,''), 
-          ],
+          labels: labels,
           datasets: [
             {
               label: "%",
-              data: [slas[0].percentual, slas[1].percentual, slas[2].percentual, slas[3].percentual],
-              backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO
-              ],
-              borderColor: [
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO
-              ],
+              data: values,
+              backgroundColor: bgColors,
+              borderColor: bgColors,
               borderWidth: 1
             },
             {
               label: 'Meta',
-              data: [ 95.0, 95.0, 95.0, 95.0 ],
-              backgroundColor: [ 
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
-              ],
+              data: metas,
+              backgroundColor: metaColors,
               borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
               borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
               type: 'line'
             }
           ]
@@ -138,44 +126,32 @@ export class SLAFilialPage {
     });  
     
     this.slaClienteService.buscarSLAClientes(this.slaFilial.codFilial).subscribe((slas: SLACliente[]) => {
-      if (slas.length < 4) return;
+      let labels: string[] = slas.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
+      let values: number[] = slas.map((i) => { return i['percentual'] });
+      let metas: number[] = slas.map(() => { return Config.CONSTANTS.METAS.SLA.M1 });
+      let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
+      let metaColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
 
       this.clientesChart = new Chart(this.clientesCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: [
-            slas[0].nomeCliente.replace(/ .*/,''), 
-            slas[1].nomeCliente.replace(/ .*/,''), 
-            slas[2].nomeCliente.replace(/ .*/,''), 
-            slas[3].nomeCliente.replace(/ .*/,''), 
-          ],
+          labels: labels,
           datasets: [
             {
               label: "%",
-              data: [slas[0].percentual, slas[1].percentual, slas[2].percentual, slas[3].percentual],
-              backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE
-              ],
-              borderColor: [
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE,
-                Config.CONSTANTS.CORES.RGB.VERDE
-              ],
+              data: values,
+              backgroundColor: bgColors,
+              borderColor: bgColors,
               borderWidth: 1
             },
             {
               label: 'Meta',
-              data: [ 95.0, 95.0, 95.0, 95.0 ],
-              backgroundColor: [ 
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
-              ],
+              data: metas,
+              backgroundColor: metaColors,
               borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
               borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
               type: 'line'
             }
           ]
@@ -203,44 +179,32 @@ export class SLAFilialPage {
     }); 
 
     this.slaTecnicoService.buscarSLATecnicos(this.slaFilial.codFilial).subscribe((slas: SLATecnico[]) => {
-      if (slas.length < 4) return;
+      let labels: string[] = slas.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
+      let values: number[] = slas.map((i) => { return i['percentual'] });
+      let metas: number[] = slas.map(() => { return Config.CONSTANTS.METAS.SLA.M1 });
+      let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
+      let metaColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
 
       this.tecnicosChart = new Chart(this.tecnicosCanvas.nativeElement, {
         type: "bar",
         data: {
-          labels: [
-            slas[0].nomeTecnico.replace(/ .*/,''), 
-            slas[1].nomeTecnico.replace(/ .*/,''), 
-            slas[2].nomeTecnico.replace(/ .*/,''), 
-            slas[3].nomeTecnico.replace(/ .*/,''), 
-          ],
+          labels: labels,
           datasets: [
             {
               label: "%",
-              data: [slas[0].percentual, slas[1].percentual, slas[2].percentual, slas[3].percentual],
-              backgroundColor: [
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL
-              ],
-              borderColor: [
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL,
-                Config.CONSTANTS.CORES.RGB.AZUL
-              ],
+              data: values,
+              backgroundColor: bgColors,
+              borderColor: bgColors,
               borderWidth: 1
             },
             {
               label: 'Meta',
-              data: [ 95.0, 95.0, 95.0, 95.0 ],
-              backgroundColor: [ 
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
-                Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO, Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO
-              ],
+              data: metas,
+              backgroundColor: metaColors,
               borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
               borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
               type: 'line'
             }
           ]
