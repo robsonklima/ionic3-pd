@@ -10,4 +10,13 @@ resultado-geral-page {
     .hide {
         display: none;
     }
+
+    ion-spinner {
+        text-align: center;
+        width: 100%;
+        height: 28px;
+        stroke: #444;
+        fill: #222;
+        margin-bottom: 15px;
+    }
 }

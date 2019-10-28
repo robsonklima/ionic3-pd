@@ -35,20 +35,20 @@ import { IndicadoresClientesPage } from '../indicadores-filial/indicadores-clien
         </a>
 
         <a ion-item (click)="telaIndicadoresClientes()">
-          <ion-icon name="happy" color="primary" item-start></ion-icon>
+          <ion-icon name="contacts" color="primary" item-start></ion-icon>
           Resultado Geral por Cliente
           <p>SLA de {{ nomeMesAtual }}</p>
         </a>
 
         <a ion-item (click)="telaStatusFiliais()">
           <ion-icon name="md-pie" color="primary" item-start></ion-icon>
-          Status Filiais
+          Status das Filiais
           <p>Mapa de SLA de nível Brasil</p>
         </a>
 
         <a ion-item (click)="telaIndicadoresFiliais()"> 
           <ion-icon name="podium" color="primary" item-start></ion-icon>
-          Indicadores Filiais
+          Indicadores das Filiais
           <p>SLA, Reincidência e Pendência por Filial</p>
         </a>
         
@@ -56,6 +56,18 @@ import { IndicadoresClientesPage } from '../indicadores-filial/indicadores-clien
           <ion-icon name="logo-buffer" color="primary" item-start></ion-icon>
           Chamados Antigos
           <p>5 chamados mais antigos com detalhes</p>
+        </a>
+
+        <a ion-item>
+          <ion-icon name="build" color="primary" item-start></ion-icon>
+          Disponibilidade dos Técnicos
+          <p>Disponibilidade e média de atendimentos</p>
+        </a>
+
+        <a ion-item>
+          <ion-icon name="md-globe" color="primary" item-start></ion-icon>
+          Média Global de Atendimento
+          <p>Médias de atendimento técnico por dia</p>
         </a>
       </ion-list>
     </ion-content>`
