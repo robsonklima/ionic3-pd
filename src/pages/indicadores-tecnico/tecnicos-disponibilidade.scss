@@ -2,15 +2,12 @@ tecnicos-disponibilidade-page {
     ion-list {
         padding-top: 0px !important;
     }
-    ion-content {
-        background-color: #f4f4f4 !important;
-    } 
     .accordion {
         //font-family:Arial, Helvetica, sans-serif; 
-        margin:0 auto;
+        margin: 14px 10px 10px;
         font-size: 14px;
         padding: 0px 0px 10px;
-        background:#fff;
+        background: #fff;
     }
     .accordion ul {
         list-style:none;
@@ -28,10 +25,11 @@ tecnicos-disponibilidade-page {
         display:block;
         font-size:16px;
         line-height:16px;
-        background:#BDBDBD;
-        color:white;
-        font-weight:700;
+        background:#F5F5F5;
+        color:black;
+        font-weight:600;
         cursor:pointer;
+        border-radius: 10px;
         text-transform:uppercase;
         -webkit-transition: all .2s ease-out;
         -moz-transition: all .2s ease-out;
@@ -71,7 +69,7 @@ tecnicos-disponibilidade-page {
         border-top: 0;
     }
     .vertical [type=radio]:checked ~ label ~ .content, .vertical [type=checkbox]:checked ~ label ~ .content {
-        height:180px;
+        height:185px;
     }
     .first-item {
         margin-top: 2px;
