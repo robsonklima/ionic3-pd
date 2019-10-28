@@ -7,6 +7,7 @@ import { StatusFiliaisPage } from '../indicadores-filial/status-filiais';
 import { ChamadosAntigosPage } from '../indicadores-filial/chamados-antigos';
 import { ResultadoGeralPage } from '../indicadores-filial/resultado-geral';
 import { IndicadoresClientesPage } from '../indicadores-filial/indicadores-clientes';
+import { TecnicosDisponibilidadePage } from '../indicadores-tecnico/tecnicos-disponibilidade';
 
 
 @Component({
@@ -58,7 +59,7 @@ import { IndicadoresClientesPage } from '../indicadores-filial/indicadores-clien
           <p>5 chamados mais antigos com detalhes</p>
         </a>
 
-        <a ion-item>
+        <a ion-item (click)="telaTecnicosDisponibilidade()">
           <ion-icon name="build" color="primary" item-start></ion-icon>
           Disponibilidade dos Técnicos
           <p>Disponibilidade e média de atendimentos</p>
@@ -107,6 +108,12 @@ export class HomePage {
   public telaChamadosAntigos() {
     this.menu.close().then(() => {
       this.nav.push(ChamadosAntigosPage);  
+    })
+  }
+
+  public telaTecnicosDisponibilidade() {
+    this.menu.close().then(() => {
+      this.nav.push(TecnicosDisponibilidadePage);  
     })
   }
 }

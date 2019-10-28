@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>Disponibilidade dos Técnicos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="accordion vertical">
+    <ul>
+      <li *ngFor="let d of disponibilidades; let i = index">
+        <input type="radio" [id]="d.nomeFilial" name="radio-accordion" />
+        <label [for]="d.nomeFilial">{{ d.nomeFilial }}</label>
+        <div class="content">
+          <ion-item class="first-item">
+            Técnicos Ativos com Chamados
+            <ion-note item-end>{{ d.qtdTecnicosComChamadosTransferidos }}</ion-note>
+          </ion-item>
+
+          <ion-item>
+            Técnicos sem Chamados
+            <ion-note item-end>{{ d.qtdTecnicosSemChamadosTransferidos }}</ion-note>
+          </ion-item>
+
+          <ion-item>
+            Técnicos Inativos
+            <ion-note item-end>{{ d.qtdTecnicosInativos }}</ion-note>
+          </ion-item>
+
+          <ion-item>
+            Qtd Técnicos
+            <ion-note item-end>{{ d.qtdTecnicos }}</ion-note>
+          </ion-item>
+        </div>
+      </li>
+    </ul>
+  </div>
+</ion-content>

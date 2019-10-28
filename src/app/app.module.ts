@@ -21,6 +21,7 @@ import { ReincidenciaRegiaoService } from '../services/reincidencia-regiao';
 import { ReincidenciaTecnicoService } from '../services/reincidencia-tecnico';
 import { ReincidenciaClienteService } from '../services/reincidencia-cliente';
 import { DadosGlobaisService } from '../services/dados-globais';
+import { TecnicoDisponibilidadeService } from '../services/tecnico-disponibilidade';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -39,6 +40,7 @@ import { ResultadoGeralPage } from '../pages/indicadores-filial/resultado-geral'
 import { PerformanceFilialPage } from '../pages/indicadores-filial/performance-filial';
 import { IndicadoresClientesPage } from '../pages/indicadores-filial/indicadores-clientes';
 import { ChamadoConsultaPage } from '../pages/chamados/chamado-consulta';
+import { TecnicosDisponibilidadePage } from '../pages/indicadores-tecnico/tecnicos-disponibilidade';
 
 
 @NgModule({
@@ -59,7 +61,8 @@ import { ChamadoConsultaPage } from '../pages/chamados/chamado-consulta';
     ResultadoGeralPage,
     ChamadosAntigosPage,
     IndicadoresClientesPage,
-    ChamadoConsultaPage
+    ChamadoConsultaPage,
+    TecnicosDisponibilidadePage
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,8 @@ import { ChamadoConsultaPage } from '../pages/chamados/chamado-consulta';
     ResultadoGeralPage,
     ChamadosAntigosPage,
     IndicadoresClientesPage,
-    ChamadoConsultaPage
+    ChamadoConsultaPage,
+    TecnicosDisponibilidadePage
   ],
   providers: [
     StatusBar,
@@ -105,7 +109,8 @@ import { ChamadoConsultaPage } from '../pages/chamados/chamado-consulta';
     PendenciaRegiaoService,
     ReincidenciaRegiaoService,
     ReincidenciaTecnicoService,
-    ReincidenciaClienteService
+    ReincidenciaClienteService,
+    TecnicoDisponibilidadeService
   ]
 })
 export class AppModule {}
