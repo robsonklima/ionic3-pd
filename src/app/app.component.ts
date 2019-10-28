@@ -29,7 +29,8 @@ export class MyApp {
     private usuarioService: UsuarioService
   ) {
     platform.ready().then(() => {
-      statusBar.styleDefault();
+      statusBar.overlaysWebView(false);
+      statusBar.backgroundColorByHexString('#488aff');
       splashScreen.hide();
       this.events.subscribe('login:efetuado', (dg: DadosGlobais) => { this.dadosGlobais = dg });
 
