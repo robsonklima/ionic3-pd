@@ -15,23 +15,27 @@
         <input type="radio" [id]="d.nomeFilial" name="radio-accordion" />
         <label [for]="d.nomeFilial">{{ d.nomeFilial }}</label>
         <div class="content">
-          <ion-item class="first-item">
+          <ion-item class="first-item" >
+            <ion-icon name="people" item-start></ion-icon>
             Técnicos Ativos com Chamados
             <ion-note item-end>{{ d.qtdTecnicosComChamadosTransferidos }}</ion-note>
           </ion-item>
 
           <ion-item>
             Técnicos sem Chamados
+            <ion-icon name="alert" item-start></ion-icon>
             <ion-note item-end>{{ d.qtdTecnicosSemChamadosTransferidos }}</ion-note>
           </ion-item>
 
           <ion-item>
             Técnicos Inativos
+            <ion-icon name="person" item-start></ion-icon>
             <ion-note item-end>{{ d.qtdTecnicosInativos }}</ion-note>
           </ion-item>
 
           <ion-item>
-            Qtd Técnicos
+            Técnicos
+            <ion-icon name="briefcase" item-start></ion-icon>
             <ion-note item-end>{{ d.qtdTecnicos }}</ion-note>
           </ion-item>
         </div>

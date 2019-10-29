@@ -42,9 +42,7 @@ export class IndicadoresClientesPage {
       let metas: number[] = []
 
       performances
-      .sort(function(a, b) { 
-        return ((a.sla > b.sla) ? -1 : ((a.sla < b.sla) ? 1 : 0));
-      })
+      .sort(function(a, b) { return b.sla - a.sla })
       .forEach(p => {
         if (p.nomeCliente.length <= 12)
           labels.push(p.nomeCliente);
@@ -60,6 +58,7 @@ export class IndicadoresClientesPage {
         } else {
           colors.push(Config.CONSTANTS.CORES.RGB.VERMELHO);
         }
+
         metas.push(Config.CONSTANTS.METAS.SLA.M1);
       });
 
