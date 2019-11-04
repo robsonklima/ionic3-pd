@@ -11,8 +11,14 @@ export class SLATecnicoService {
     private http: Http
   ) { }
 
-  buscarSLATecnicos(codFilial: number): Observable<SLATecnico[]> {
-    return this.http.get(Config.API_URL + 'DashboardSLATecnicos/' + codFilial)
+  buscarSLAPioresTecnicos(codFilial: number): Observable<SLATecnico[]> {
+    return this.http.get(Config.API_URL + 'DashboardSLAPioresTecnicos/' + codFilial)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  buscarSLAMelhoresTecnicos(codFilial: number): Observable<SLATecnico[]> {
+    return this.http.get(Config.API_URL + 'DashboardSLAMelhoresTecnicos/' + codFilial)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
   }

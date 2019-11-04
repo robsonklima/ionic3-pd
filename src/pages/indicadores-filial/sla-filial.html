@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>SLA da {{ slaFilial.nomeFilial }}</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="modo">
+      <ion-segment-button value="maiores" (click)="carregarDadosMelhores()">
+        Maiores
+      </ion-segment-button>
+
+      <ion-segment-button value="menores" (click)="carregarDadosPiores()">
+        Menores
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="modo">
+    <div *ngSwitchCase="'maiores'">
+      <ion-card>
+        <ion-card-header>
+          Regiões
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!slaMelhoresRegioesStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="slaMelhoresRegioesStatus ? 'visible' : 'hide'" #slaMelhoresRegioesCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Clientes
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!slaMelhoresClientesStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="slaMelhoresClientesStatus ? 'visible' : 'hide'" #slaMelhoresClientesCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Técnicos
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!slaMelhoresTecnicosStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="slaMelhoresTecnicosStatus ? 'visible' : 'hide'" #slaMelhoresTecnicosCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'menores'">
+      <ion-card>
+        <ion-card-header>
+          Regiões
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!slaPioresRegioesStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="slaPioresRegioesStatus ? 'visible' : 'hide'" #slaPioresRegioesCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Clientes
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!slaPioresClientesStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="slaPioresClientesStatus ? 'visible' : 'hide'" #slaPioresClientesCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Técnicos
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!slaPioresTecnicosStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="slaPioresTecnicosStatus ? 'visible' : 'hide'" #slaPioresTecnicosCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

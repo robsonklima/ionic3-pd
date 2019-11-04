@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef} from '@angular/core';
-import { NavParams, LoadingController } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 import { Chart } from "chart.js";
 import { Config } from '../../models/config';
 import { SLAFilial } from '../../models/sla-filial';
@@ -13,63 +13,34 @@ import { PendenciaTecnico } from '../../models/pendencia-tecnico';
 
 @Component({
   selector: 'pendencia-filial-page',
-  template: `
-    <ion-header>
-      <ion-navbar no-border-bottom>
-        <ion-title>Pendência da {{ slaFilial.nomeFilial }}</ion-title>
-      </ion-navbar>
-    </ion-header>
-
-    <ion-content>
-      <ion-card>
-        <ion-card-header>
-          Regiões
-        </ion-card-header>
-        <ion-card-content>
-          <ion-spinner [ngClass]="!regioesChartStatus ? 'visible' : 'hide'"></ion-spinner>
-
-          <canvas [ngClass]="regioesChartStatus ? 'visible' : 'hide'" #regioesCanvas></canvas>
-        </ion-card-content>
-      </ion-card>
-
-      <ion-card>
-        <ion-card-header>
-          Clientes
-        </ion-card-header>
-        <ion-card-content>
-          <ion-spinner [ngClass]="!clientesChartStatus ? 'visible' : 'hide'"></ion-spinner>
-
-          <canvas [ngClass]="clientesChartStatus ? 'visible' : 'hide'" #clientesCanvas></canvas>
-        </ion-card-content>
-      </ion-card>
-
-      <ion-card>
-        <ion-card-header>
-          Técnicos
-        </ion-card-header>
-        <ion-card-content>
-          <ion-spinner [ngClass]="!tecnicosChartStatus ? 'visible' : 'hide'"></ion-spinner>
-
-          <canvas [ngClass]="tecnicosChartStatus ? 'visible' : 'hide'" #tecnicosCanvas></canvas>
-        </ion-card-content>
-      </ion-card>
-    </ion-content>`
+  templateUrl: 'pendencia-filial.html'
 })
 export class PendenciaFilialPage {
   slaFilial: SLAFilial;
-  @ViewChild("regioesCanvas") regioesCanvas: ElementRef;
-  regioesChart: Chart;
-  regioesChartStatus: boolean = false;
-  @ViewChild("clientesCanvas") clientesCanvas: ElementRef;
-  clientesChart: Chart;
-  clientesChartStatus: boolean = false;
-  @ViewChild("tecnicosCanvas") tecnicosCanvas: ElementRef;
-  tecnicosChart: Chart;
-  tecnicosChartStatus: boolean = false;
+  modo: string = "maiores";
+
+  @ViewChild("pendenciaMelhoresRegioesCanvas") pendenciaMelhoresRegioesCanvas: ElementRef;
+  pendenciaMelhoresRegioesChart: Chart;
+  pendenciaMelhoresRegioesChartStatus: boolean = false;
+  @ViewChild("pendenciaMelhoresClientesCanvas") pendenciaMelhoresClientesCanvas: ElementRef;
+  pendenciaMelhoresClientesChart: Chart;
+  pendenciaMelhoresClientesChartStatus: boolean = false;
+  @ViewChild("pendenciaMelhoresTecnicosCanvas") pendenciaMelhoresTecnicosCanvas: ElementRef;
+  pendenciaMelhoresTecnicosChart: Chart;
+  pendenciaMelhoresTecnicosChartStatus: boolean = false;
+
+  @ViewChild("pendenciaPioresRegioesCanvas") pendenciaPioresRegioesCanvas: ElementRef;
+  pendenciaPioresRegioesChart: Chart;
+  pendenciaPioresRegioesChartStatus: boolean = false;
+  @ViewChild("pendenciaPioresClientesCanvas") pendenciaPioresClientesCanvas: ElementRef;
+  pendenciaPioresClientesChart: Chart;
+  pendenciaPioresClientesChartStatus: boolean = false;
+  @ViewChild("pendenciaPioresTecnicosCanvas") pendenciaPioresTecnicosCanvas: ElementRef;
+  pendenciaPioresTecnicosChart: Chart;
+  pendenciaPioresTecnicosChartStatus: boolean = false;
   
   constructor(
     private navParams: NavParams,
-    private loadingCtrl: LoadingController,
     private pendenciaRegiaoService: PendenciaRegiaoService,
     private pendenciaTecnicoService: PendenciaTecnicoService,
     private pendenciaClienteService: PendenciaClienteService
@@ -78,15 +49,19 @@ export class PendenciaFilialPage {
   }
 
   ngOnInit() {
-    this.pendenciaRegiaoService.buscarPendenciaRegioes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaRegiao[]) => {
-      this.regioesChartStatus = true;
+    this.carregarDadosMelhores();
+  }
+
+  public carregarDadosMelhores() {
+    this.pendenciaRegiaoService.buscarPendenciaMelhoresRegioes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaRegiao[]) => {
+      this.pendenciaMelhoresRegioesChartStatus = true;
       let labels: string[] = pendencias.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
       let values: number[] = pendencias.map((i) => { return i['percentual'] });
       let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
       let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO });
       let metaColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
 
-      this.regioesChart = new Chart(this.regioesCanvas.nativeElement, {
+      this.pendenciaMelhoresRegioesChart = new Chart(this.pendenciaMelhoresRegioesCanvas.nativeElement, {
         type: "bar",
         data: {
           labels: labels,
@@ -137,15 +112,15 @@ export class PendenciaFilialPage {
       });
     });  
     
-    this.pendenciaClienteService.buscarPendenciaClientes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaCliente[]) => {
-      this.clientesChartStatus = true;
+    this.pendenciaClienteService.buscarPendenciaMelhoresClientes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaCliente[]) => {
+      this.pendenciaMelhoresClientesChartStatus = true;
       let labels: string[] = pendencias.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
       let values: number[] = pendencias.map((i) => { return i['percentual'] });
       let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
       let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
       let metaColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
 
-      this.clientesChart = new Chart(this.clientesCanvas.nativeElement, {
+      this.pendenciaMelhoresClientesChart = new Chart(this.pendenciaMelhoresClientesCanvas.nativeElement, {
         type: "bar",
         data: {
           labels: labels,
@@ -196,15 +171,194 @@ export class PendenciaFilialPage {
       });
     }); 
 
-    this.pendenciaTecnicoService.buscarPendenciaTecnicos(this.slaFilial.codFilial).subscribe((pendencias: PendenciaTecnico[]) => {
-      this.tecnicosChartStatus = true;
+    this.pendenciaTecnicoService.buscarPendenciaPioresTecnicos(this.slaFilial.codFilial).subscribe((pendencias: PendenciaTecnico[]) => {
+      this.pendenciaMelhoresTecnicosChartStatus = true;
       let labels: string[] = pendencias.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
       let values: number[] = pendencias.map((i) => { return i['percentual'] });
       let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
       let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
       let metaColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
 
-      this.tecnicosChart = new Chart(this.tecnicosCanvas.nativeElement, {
+      this.pendenciaMelhoresTecnicosChart = new Chart(this.pendenciaMelhoresTecnicosCanvas.nativeElement, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "%",
+              data: values,
+              backgroundColor: bgColors,
+              borderColor: bgColors,
+              borderWidth: 1
+            },
+            {
+              label: 'Meta',
+              data: metas,
+              backgroundColor: metaColors,
+              borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+              borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
+              type: 'line'
+            }
+          ]
+        },
+        options: {
+          legend: {
+            position: 'top',
+            display: true,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: false
+                }
+              }
+            ]
+          },
+          elements: {
+            line: {
+              fill: false
+            }
+          }
+        }
+      });
+    }); 
+  }
+
+  public carregarDadosPiores() {
+    this.pendenciaRegiaoService.buscarPendenciaPioresRegioes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaRegiao[]) => {
+      this.pendenciaPioresRegioesChartStatus = true;
+      let labels: string[] = pendencias.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
+      let values: number[] = pendencias.map((i) => { return i['percentual'] });
+      let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
+      let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO });
+      let metaColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
+
+      this.pendenciaPioresRegioesChart = new Chart(this.pendenciaPioresRegioesCanvas.nativeElement, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "%",
+              data: values,
+              backgroundColor: bgColors,
+              borderColor: bgColors,
+              borderWidth: 1
+            },
+            {
+              label: 'Meta',
+              data: metas,
+              backgroundColor: metaColors,
+              borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+              borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
+              type: 'line'
+            }
+          ]
+        },
+        options: {
+          legend: {
+            position: 'top',
+            display: true,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: false
+                }
+              }
+            ]
+          },
+          elements: {
+            line: {
+              fill: false
+            }
+          }
+        }
+      });
+    }, e => { console.log(e) });  
+    
+    this.pendenciaClienteService.buscarPendenciaPioresClientes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaCliente[]) => {
+      this.pendenciaPioresClientesChartStatus = true;
+      let labels: string[] = pendencias.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
+      let values: number[] = pendencias.map((i) => { return i['percentual'] });
+      let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
+      let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
+      let metaColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
+
+      this.pendenciaPioresClientesChart = new Chart(this.pendenciaPioresClientesCanvas.nativeElement, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "%",
+              data: values,
+              backgroundColor: bgColors,
+              borderColor: bgColors,
+              borderWidth: 1
+            },
+            {
+              label: 'Meta',
+              data: metas,
+              backgroundColor: metaColors,
+              borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+              borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
+              type: 'line'
+            }
+          ]
+        },
+        options: {
+          legend: {
+            position: 'top',
+            display: true,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: false
+                }
+              }
+            ]
+          },
+          elements: {
+            line: {
+              fill: false
+            }
+          }
+        }
+      });
+    }); 
+
+    this.pendenciaTecnicoService.buscarPendenciaPioresTecnicos(this.slaFilial.codFilial).subscribe((pendencias: PendenciaTecnico[]) => {
+      this.pendenciaPioresTecnicosChartStatus = true;
+      let labels: string[] = pendencias.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
+      let values: number[] = pendencias.map((i) => { return i['percentual'] });
+      let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
+      let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
+      let metaColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO });
+
+      this.pendenciaPioresTecnicosChart = new Chart(this.pendenciaPioresTecnicosCanvas.nativeElement, {
         type: "bar",
         data: {
           labels: labels,

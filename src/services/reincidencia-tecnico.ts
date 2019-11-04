@@ -12,8 +12,14 @@ export class ReincidenciaTecnicoService {
     private http: Http
   ) { }
 
-  buscarReincidenciaTecnicos(codFilial: number): Observable<ReincidenciaTecnico[]> {
-    return this.http.get(Config.API_URL + 'DashboardReincidenciaTecnicos/' + codFilial)
+  buscarReincidenciaPioresTecnicos(codFilial: number): Observable<ReincidenciaTecnico[]> {
+    return this.http.get(Config.API_URL + 'DashboardReincidenciaPioresTecnicos/' + codFilial)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  buscarReincidenciaMelhoresTecnicos(codFilial: number): Observable<ReincidenciaTecnico[]> {
+    return this.http.get(Config.API_URL + 'DashboardReincidenciaMelhoresTecnicos/' + codFilial)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
   }

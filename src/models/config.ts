@@ -24,12 +24,12 @@ export class Config {
       }
     },
     METAS: {
-      SLA: { M1: 95.0, M2: 92.0 },
-      REINCIDENCIA: { M1: 32.0, M2: 35.0 },
-      PENDENCIA: { M1: 3.0, M2: 5.0 }
+      SLA: { M1: 95.0, M2: 95.0 },
+      REINCIDENCIA: { M1: 35.0, M2: 35.0 },
+      PENDENCIA: { M1: 5.0, M2: 5.0 }
     }
   };
 
-  //public static API_URL = 'http://localhost:60687/api/';
-  public static API_URL = 'http://sat.perto.com.br/prjSATWebAPI/api/';
+  public static API_URL = 'http://localhost:60687/api/';
+  //public static API_URL = 'http://sat.perto.com.br/prjSATWebAPI/api/';
 }

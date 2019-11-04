@@ -12,8 +12,14 @@ export class PendenciaTecnicoService {
     private http: Http
   ) { }
 
-  buscarPendenciaTecnicos(codFilial: number): Observable<PendenciaTecnico[]> {
-    return this.http.get(Config.API_URL + 'DashboardPendenciaTecnicos/' + codFilial)
+  buscarPendenciaPioresTecnicos(codFilial: number): Observable<PendenciaTecnico[]> {
+    return this.http.get(Config.API_URL + 'DashboardPendenciaPioresTecnicos/' + codFilial)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  buscarPendenciaMelhoresTecnicos(codFilial: number): Observable<PendenciaTecnico[]> {
+    return this.http.get(Config.API_URL + 'DashboardPendenciaMelhoresTecnicos/' + codFilial)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
   }

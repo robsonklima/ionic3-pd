@@ -12,8 +12,14 @@ export class PendenciaClienteService {
     private http: Http
   ) { }
 
-  buscarPendenciaClientes(codFilial: number): Observable<PendenciaCliente[]> {
-    return this.http.get(Config.API_URL + 'DashboardPendenciaClientes/' + codFilial)
+  buscarPendenciaPioresClientes(codFilial: number): Observable<PendenciaCliente[]> {
+    return this.http.get(Config.API_URL + 'DashboardPendenciaPioresClientes/' + codFilial)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  buscarPendenciaMelhoresClientes(codFilial: number): Observable<PendenciaCliente[]> {
+    return this.http.get(Config.API_URL + 'DashboardPendenciaMelhoresClientes/' + codFilial)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
   }

@@ -11,8 +11,14 @@ export class ReincidenciaRegiaoService {
     private http: Http
   ) { }
 
-  buscarReincidenciaRegioes(codFilial: number): Observable<ReincidenciaRegiao[]> {
-    return this.http.get(Config.API_URL + 'DashboardReincidenciaRegioes/' + codFilial)
+  buscarReincidenciaPioresRegioes(codFilial: number): Observable<ReincidenciaRegiao[]> {
+    return this.http.get(Config.API_URL + 'DashboardReincidenciaPioresRegioes/' + codFilial)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  buscarReincidenciaMelhoresRegioes(codFilial: number): Observable<ReincidenciaRegiao[]> {
+    return this.http.get(Config.API_URL + 'DashboardReincidenciaMelhoresRegioes/' + codFilial)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
   }

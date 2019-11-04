@@ -12,8 +12,14 @@ export class SLARegiaoService {
     private http: Http
   ) { }
 
-  buscarSLARegioes(codFilial: number): Observable<SLARegiao[]> {
-    return this.http.get(Config.API_URL + 'DashboardSLARegioes/' + codFilial)
+  buscarSLAPioresRegioes(codFilial: number): Observable<SLARegiao[]> {
+    return this.http.get(Config.API_URL + 'DashboardSLAPioresRegioes/' + codFilial)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  buscarSLAMelhoresRegioes(codFilial: number): Observable<SLARegiao[]> {
+    return this.http.get(Config.API_URL + 'DashboardSLAMelhoresRegioes/' + codFilial)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
   }

@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>Pendência da {{ slaFilial.nomeFilial }}</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="modo">
+      <ion-segment-button value="maiores" (click)="carregarDadosMelhores()">
+        Maiores
+      </ion-segment-button>
+
+      <ion-segment-button value="menores" (click)="carregarDadosPiores()">
+        Menores
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="modo">
+    <div *ngSwitchCase="'maiores'">
+      <ion-card>
+        <ion-card-header>
+          Regiões
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!reincidenciaMelhoresRegioesChartStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="reincidenciaMelhoresRegioesChartStatus ? 'visible' : 'hide'"
+            #reincidenciaMelhoresRegioesCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Clientes
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!reincidenciaMelhoresClientesChartStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="reincidenciaMelhoresClientesChartStatus ? 'visible' : 'hide'"
+            #reincidenciaMelhoresClientesCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Técnicos
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!reincidenciaMelhoresTecnicosChartStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="reincidenciaMelhoresTecnicosChartStatus ? 'visible' : 'hide'"
+            #reincidenciaMelhoresTecnicosCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'menores'">
+      <ion-card>
+        <ion-card-header>
+          Regiões
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!reincidenciaPioresRegioesChartStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="reincidenciaPioresRegioesChartStatus ? 'visible' : 'hide'"
+            #reincidenciaPioresRegioesCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Clientes
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!reincidenciaPioresClientesChartStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="reincidenciaPioresClientesChartStatus ? 'visible' : 'hide'"
+            #reincidenciaPioresClientesCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Técnicos
+        </ion-card-header>
+        <ion-card-content>
+          <ion-spinner [ngClass]="!reincidenciaPioresTecnicosChartStatus ? 'visible' : 'hide'"></ion-spinner>
+
+          <canvas [ngClass]="reincidenciaPioresTecnicosChartStatus ? 'visible' : 'hide'"
+            #reincidenciaPioresTecnicosCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

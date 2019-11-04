@@ -11,8 +11,14 @@ export class SLAClienteService {
     private http: Http
   ) { }
 
-  buscarSLAClientes(codFilial: number): Observable<SLACliente[]> {
-    return this.http.get(Config.API_URL + 'DashboardSLAClientes/' + codFilial)
+  buscarSLAPioresClientes(codFilial: number): Observable<SLACliente[]> {
+    return this.http.get(Config.API_URL + 'DashboardSLAPioresClientes/' + codFilial)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  buscarSLAMelhoresClientes(codFilial: number): Observable<SLACliente[]> {
+    return this.http.get(Config.API_URL + 'DashboardSLAMelhoresClientes/' + codFilial)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
   }

@@ -12,8 +12,14 @@ export class ReincidenciaClienteService {
     private http: Http
   ) { }
 
-  buscarReincidenciaClientes(codFilial: number): Observable<ReincidenciaCliente[]> {
-    return this.http.get(Config.API_URL + 'DashboardReincidenciaClientes/' + codFilial)
+  buscarReincidenciaPioresClientes(codFilial: number): Observable<ReincidenciaCliente[]> {
+    return this.http.get(Config.API_URL + 'DashboardReincidenciaPioresClientes/' + codFilial)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  buscarReincidenciaMelhoresClientes(codFilial: number): Observable<ReincidenciaCliente[]> {
+    return this.http.get(Config.API_URL + 'DashboardReincidenciaMelhoresClientes/' + codFilial)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
   }
