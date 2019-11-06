@@ -95,8 +95,18 @@ export class SLAFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -109,7 +119,7 @@ export class SLAFilialPage {
 
     this.slaClienteService.buscarSLAPioresClientes(this.slaFilial.codFilial).subscribe((slas: SLACliente[]) => {
       this.slaPioresClientesStatus = true;
-      let labels: string[] = slas.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
+      let labels: string[] = slas.map((i) => { return i['nomeCliente'] });
       let values: number[] = slas.map((i) => { return i['percentual'] });
       let metas: number[] = slas.map(() => { return Config.CONSTANTS.METAS.SLA.M1 });
       let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
@@ -149,8 +159,18 @@ export class SLAFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -163,7 +183,7 @@ export class SLAFilialPage {
 
     this.slaTecnicoService.buscarSLAPioresTecnicos(this.slaFilial.codFilial).subscribe((slas: SLATecnico[]) => {
       this.slaPioresTecnicosStatus = true;
-      let labels: string[] = slas.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
+      let labels: string[] = slas.map((i) => { return i['nomeTecnico'] });
       let values: number[] = slas.map((i) => { return i['percentual'] });
       let metas: number[] = slas.map(() => { return Config.CONSTANTS.METAS.SLA.M1 });
       let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
@@ -203,8 +223,18 @@ export class SLAFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -259,8 +289,18 @@ export class SLAFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -273,7 +313,7 @@ export class SLAFilialPage {
 
     this.slaClienteService.buscarSLAMelhoresClientes(this.slaFilial.codFilial).subscribe((slas: SLACliente[]) => {
       this.slaMelhoresClientesStatus = true;
-      let labels: string[] = slas.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
+      let labels: string[] = slas.map((i) => { return i['nomeCliente'] });
       let values: number[] = slas.map((i) => { return i['percentual'] });
       let metas: number[] = slas.map(() => { return Config.CONSTANTS.METAS.SLA.M1 });
       let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
@@ -313,8 +353,18 @@ export class SLAFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -327,7 +377,7 @@ export class SLAFilialPage {
 
     this.slaTecnicoService.buscarSLAMelhoresTecnicos(this.slaFilial.codFilial).subscribe((slas: SLATecnico[]) => {
       this.slaMelhoresTecnicosStatus = true;
-      let labels: string[] = slas.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
+      let labels: string[] = slas.map((i) => { return i['nomeTecnico'] });
       let values: number[] = slas.map((i) => { return i['percentual'] });
       let metas: number[] = slas.map(() => { return Config.CONSTANTS.METAS.SLA.M1 });
       let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
@@ -367,8 +417,18 @@ export class SLAFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {

@@ -55,7 +55,7 @@ export class PendenciaFilialPage {
   public carregarDadosMelhores() {
     this.pendenciaRegiaoService.buscarPendenciaMelhoresRegioes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaRegiao[]) => {
       this.pendenciaMelhoresRegioesChartStatus = true;
-      let labels: string[] = pendencias.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
+      let labels: string[] = pendencias.map((i) => { return i['nomeRegiao'] });
       let values: number[] = pendencias.map((i) => { return i['percentual'] });
       let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
       let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO });
@@ -95,8 +95,18 @@ export class PendenciaFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -109,7 +119,7 @@ export class PendenciaFilialPage {
     
     this.pendenciaClienteService.buscarPendenciaMelhoresClientes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaCliente[]) => {
       this.pendenciaMelhoresClientesChartStatus = true;
-      let labels: string[] = pendencias.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
+      let labels: string[] = pendencias.map((i) => { return i['nomeCliente'] });
       let values: number[] = pendencias.map((i) => { return i['percentual'] });
       let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
       let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
@@ -149,8 +159,18 @@ export class PendenciaFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -163,7 +183,7 @@ export class PendenciaFilialPage {
 
     this.pendenciaTecnicoService.buscarPendenciaPioresTecnicos(this.slaFilial.codFilial).subscribe((pendencias: PendenciaTecnico[]) => {
       this.pendenciaMelhoresTecnicosChartStatus = true;
-      let labels: string[] = pendencias.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
+      let labels: string[] = pendencias.map((i) => { return i['nomeTecnico'] });
       let values: number[] = pendencias.map((i) => { return i['percentual'] });
       let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
       let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
@@ -203,8 +223,18 @@ export class PendenciaFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -219,7 +249,7 @@ export class PendenciaFilialPage {
   public carregarDadosPiores() {
     this.pendenciaRegiaoService.buscarPendenciaPioresRegioes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaRegiao[]) => {
       this.pendenciaPioresRegioesChartStatus = true;
-      let labels: string[] = pendencias.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
+      let labels: string[] = pendencias.map((i) => { return i['nomeRegiao'] });
       let values: number[] = pendencias.map((i) => { return i['percentual'] });
       let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
       let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO });
@@ -259,8 +289,18 @@ export class PendenciaFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -273,7 +313,7 @@ export class PendenciaFilialPage {
     
     this.pendenciaClienteService.buscarPendenciaPioresClientes(this.slaFilial.codFilial).subscribe((pendencias: PendenciaCliente[]) => {
       this.pendenciaPioresClientesChartStatus = true;
-      let labels: string[] = pendencias.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
+      let labels: string[] = pendencias.map((i) => { return i['nomeCliente'] });
       let values: number[] = pendencias.map((i) => { return i['percentual'] });
       let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
       let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
@@ -313,8 +353,18 @@ export class PendenciaFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -327,7 +377,7 @@ export class PendenciaFilialPage {
 
     this.pendenciaTecnicoService.buscarPendenciaPioresTecnicos(this.slaFilial.codFilial).subscribe((pendencias: PendenciaTecnico[]) => {
       this.pendenciaPioresTecnicosChartStatus = true;
-      let labels: string[] = pendencias.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
+      let labels: string[] = pendencias.map((i) => { return i['nomeTecnico'] });
       let values: number[] = pendencias.map((i) => { return i['percentual'] });
       let metas: number[] = pendencias.map(() => { return Config.CONSTANTS.METAS.PENDENCIA.M1 });
       let bgColors: string[] = pendencias.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
@@ -367,8 +417,18 @@ export class PendenciaFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {

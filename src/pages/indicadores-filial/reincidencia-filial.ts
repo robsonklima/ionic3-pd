@@ -56,7 +56,7 @@ export class ReincidenciaFilialPage {
     this.reincidenciaRegiaoService.buscarReincidenciaMelhoresRegioes(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaRegiao[]) => {
       this.reincidenciaMelhoresRegioesChartStatus = true;
 
-      let labels: string[] = reincidencias.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
+      let labels: string[] = reincidencias.map((i) => { return i['nomeRegiao'] });
       let values: number[] = reincidencias.map((i) => { return i['percentual'] });
       let metas: number[] = reincidencias.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });
       let bgColors: string[] = reincidencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO });
@@ -96,8 +96,18 @@ export class ReincidenciaFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -111,7 +121,7 @@ export class ReincidenciaFilialPage {
     this.reincidenciaClienteService.buscarReincidenciaMelhoresClientes(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaCliente[]) => {
       this.reincidenciaMelhoresClientesChartStatus = true;
 
-      let labels: string[] = reincidencias.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
+      let labels: string[] = reincidencias.map((i) => { return i['nomeCliente'] });
       let values: number[] = reincidencias.map((i) => { return i['percentual'] });
       let metas: number[] = reincidencias.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });
       let bgColors: string[] = reincidencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
@@ -151,8 +161,18 @@ export class ReincidenciaFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -166,7 +186,7 @@ export class ReincidenciaFilialPage {
     this.reincidenciaTecnicoService.buscarReincidenciaMelhoresTecnicos(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaTecnico[]) => {
       this.reincidenciaMelhoresTecnicosChartStatus = true;
 
-      let labels: string[] = reincidencias.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
+      let labels: string[] = reincidencias.map((i) => { return i['nomeTecnico'] });
       let values: number[] = reincidencias.map((i) => { return i['percentual'] });
       let metas: number[] = reincidencias.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });
       let bgColors: string[] = reincidencias.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
@@ -206,8 +226,18 @@ export class ReincidenciaFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -223,7 +253,7 @@ export class ReincidenciaFilialPage {
     this.reincidenciaRegiaoService.buscarReincidenciaPioresRegioes(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaRegiao[]) => {
       this.reincidenciaPioresRegioesChartStatus = true;
 
-      let labels: string[] = reincidencias.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
+      let labels: string[] = reincidencias.map((i) => { return i['nomeRegiao'] });
       let values: number[] = reincidencias.map((i) => { return i['percentual'] });
       let metas: number[] = reincidencias.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });
       let bgColors: string[] = reincidencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO });
@@ -263,8 +293,18 @@ export class ReincidenciaFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -278,7 +318,7 @@ export class ReincidenciaFilialPage {
     this.reincidenciaClienteService.buscarReincidenciaPioresClientes(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaCliente[]) => {
       this.reincidenciaPioresClientesChartStatus = true;
 
-      let labels: string[] = reincidencias.map((i) => { return i['nomeCliente'].replace(/ .*/,'') });
+      let labels: string[] = reincidencias.map((i) => { return i['nomeCliente'] });
       let values: number[] = reincidencias.map((i) => { return i['percentual'] });
       let metas: number[] = reincidencias.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });
       let bgColors: string[] = reincidencias.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
@@ -318,8 +358,18 @@ export class ReincidenciaFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
@@ -333,7 +383,7 @@ export class ReincidenciaFilialPage {
     this.reincidenciaTecnicoService.buscarReincidenciaPioresTecnicos(this.slaFilial.codFilial).subscribe((reincidencias: ReincidenciaTecnico[]) => {
       this.reincidenciaPioresTecnicosChartStatus = true;
 
-      let labels: string[] = reincidencias.map((i) => { return i['nomeTecnico'].replace(/ .*/,'') });
+      let labels: string[] = reincidencias.map((i) => { return i['nomeTecnico'] });
       let values: number[] = reincidencias.map((i) => { return i['percentual'] });
       let metas: number[] = reincidencias.map(() => { return Config.CONSTANTS.METAS.REINCIDENCIA.M1 });
       let bgColors: string[] = reincidencias.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
@@ -373,8 +423,18 @@ export class ReincidenciaFilialPage {
             }
           },
           scales: {
-            xAxes: [{ ticks: { fontSize: 8 } }],
+            xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
             yAxes: [{ ticks: { beginAtZero: false } }]
+          },
+          tooltips: {
+            enabled: true,
+            mode: 'label',
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    var idx = tooltipItems[0].index;
+                    return data.labels[idx];
+                }
+            }
           },
           elements: {
             line: {
