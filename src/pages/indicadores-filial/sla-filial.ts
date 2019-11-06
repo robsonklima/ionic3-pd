@@ -55,7 +55,7 @@ export class SLAFilialPage {
   public carregarDadosPiores() {
     this.slaRegiaoService.buscarSLAPioresRegioes(this.slaFilial.codFilial).subscribe((slas: SLARegiao[]) => {
       this.slaPioresRegioesStatus = true;
-      let labels: string[] = slas.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
+      let labels: string[] = slas.map((i) => { return i['nomeRegiao'] });
       let values: number[] = slas.map((i) => { return i['percentual'] });
       let metas: number[] = slas.map(() => { return Config.CONSTANTS.METAS.SLA.M1 });
       let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO });
@@ -95,13 +95,8 @@ export class SLAFilialPage {
             }
           },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
-                }
-              }
-            ]
+            xAxes: [{ ticks: { fontSize: 8 } }],
+            yAxes: [{ ticks: { beginAtZero: false } }]
           },
           elements: {
             line: {
@@ -154,13 +149,8 @@ export class SLAFilialPage {
             }
           },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
-                }
-              }
-            ]
+            xAxes: [{ ticks: { fontSize: 8 } }],
+            yAxes: [{ ticks: { beginAtZero: false } }]
           },
           elements: {
             line: {
@@ -213,13 +203,8 @@ export class SLAFilialPage {
             }
           },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
-                }
-              }
-            ]
+            xAxes: [{ ticks: { fontSize: 8 } }],
+            yAxes: [{ ticks: { beginAtZero: false } }]
           },
           elements: {
             line: {
@@ -234,7 +219,7 @@ export class SLAFilialPage {
   public carregarDadosMelhores() {
     this.slaRegiaoService.buscarSLAMelhoresRegioes(this.slaFilial.codFilial).subscribe((slas: SLARegiao[]) => {
       this.slaMelhoresRegioesStatus = true;
-      let labels: string[] = slas.map((i) => { return i['nomeRegiao'].replace(/ .*/,'') });
+      let labels: string[] = slas.map((i) => { return i['nomeRegiao'] });
       let values: number[] = slas.map((i) => { return i['percentual'] });
       let metas: number[] = slas.map(() => { return Config.CONSTANTS.METAS.SLA.M1 });
       let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.VERMELHO });
@@ -274,13 +259,8 @@ export class SLAFilialPage {
             }
           },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
-                }
-              }
-            ]
+            xAxes: [{ ticks: { fontSize: 8 } }],
+            yAxes: [{ ticks: { beginAtZero: false } }]
           },
           elements: {
             line: {
@@ -333,13 +313,8 @@ export class SLAFilialPage {
             }
           },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
-                }
-              }
-            ]
+            xAxes: [{ ticks: { fontSize: 8 } }],
+            yAxes: [{ ticks: { beginAtZero: false } }]
           },
           elements: {
             line: {
@@ -392,13 +367,8 @@ export class SLAFilialPage {
             }
           },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
-                }
-              }
-            ]
+            xAxes: [{ ticks: { fontSize: 8 } }],
+            yAxes: [{ ticks: { beginAtZero: false } }]
           },
           elements: {
             line: {

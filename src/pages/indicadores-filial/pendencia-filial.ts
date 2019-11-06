@@ -95,13 +95,8 @@ export class PendenciaFilialPage {
             }
           },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
-                }
-              }
-            ]
+            xAxes: [{ ticks: { fontSize: 8 } }],
+            yAxes: [{ ticks: { beginAtZero: false } }]
           },
           elements: {
             line: {
@@ -154,13 +149,8 @@ export class PendenciaFilialPage {
             }
           },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
-                }
-              }
-            ]
+            xAxes: [{ ticks: { fontSize: 8 } }],
+            yAxes: [{ ticks: { beginAtZero: false } }]
           },
           elements: {
             line: {
@@ -213,13 +203,8 @@ export class PendenciaFilialPage {
             }
           },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
-                }
-              }
-            ]
+            xAxes: [{ ticks: { fontSize: 8 } }],
+            yAxes: [{ ticks: { beginAtZero: false } }]
           },
           elements: {
             line: {
@@ -274,13 +259,8 @@ export class PendenciaFilialPage {
             }
           },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
-                }
-              }
-            ]
+            xAxes: [{ ticks: { fontSize: 8 } }],
+            yAxes: [{ ticks: { beginAtZero: false } }]
           },
           elements: {
             line: {
@@ -333,13 +313,8 @@ export class PendenciaFilialPage {
             }
           },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
-                }
-              }
-            ]
+            xAxes: [{ ticks: { fontSize: 8 } }],
+            yAxes: [{ ticks: { beginAtZero: false } }]
           },
           elements: {
             line: {
@@ -392,13 +367,8 @@ export class PendenciaFilialPage {
             }
           },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: false
-                }
-              }
-            ]
+            xAxes: [{ ticks: { fontSize: 8 } }],
+            yAxes: [{ ticks: { beginAtZero: false } }]
           },
           elements: {
             line: {

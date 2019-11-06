@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { LoadingController } from 'ionic-angular';
+
+import { Config } from '../../models/config';
 import { MediaGlobalService } from '../../services/media-global';
 import { MediaGlobal } from '../../models/media-global';
 import { MediaGlobalTecnico } from '../../models/media-global-tecnico';
@@ -81,13 +84,19 @@ export class MediaGlobalPage {
   mediaGlobalPioresTecnicos: MediaGlobalTecnico[] = [];
 
   constructor(
+    private loadingCtrl: LoadingController,
     private mediaGlobalService: MediaGlobalService
   ) { }
 
   ngOnInit() {
+    const loader = this.loadingCtrl.create({ content: Config.CONSTANTS.MENSAGENS.OBTENDO_DADOS_SERVIDOR });
+    loader.present();
+
     this.mediaGlobalService.buscarMediaGlobal().subscribe((media: MediaGlobal) => {
       this.mediaGlobal = media;
-    }, e => {});
+
+      loader.dismiss();
+    }, () => { loader.dismiss() });
 
     this.mediaGlobalService.buscarMediaGlobalMelhoresTecnicos().subscribe((media: MediaGlobalTecnico[]) => {
       this.mediaGlobalMelhoresTecnicos = media;
