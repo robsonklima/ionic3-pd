@@ -22,6 +22,7 @@ import { ReincidenciaTecnicoService } from '../services/reincidencia-tecnico';
 import { ReincidenciaClienteService } from '../services/reincidencia-cliente';
 import { DadosGlobaisService } from '../services/dados-globais';
 import { TecnicoDisponibilidadeService } from '../services/tecnico-disponibilidade';
+import { MediaGlobalService } from '../services/media-global';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -41,6 +42,7 @@ import { PerformanceFilialPage } from '../pages/indicadores-filial/performance-f
 import { IndicadoresClientesPage } from '../pages/indicadores-filial/indicadores-clientes';
 import { ChamadoConsultaPage } from '../pages/chamados/chamado-consulta';
 import { TecnicosDisponibilidadePage } from '../pages/indicadores-tecnico/tecnicos-disponibilidade';
+import { MediaGlobalPage } from '../pages/media-global/media-global';
 
 
 @NgModule({
@@ -62,7 +64,8 @@ import { TecnicosDisponibilidadePage } from '../pages/indicadores-tecnico/tecnic
     ChamadosAntigosPage,
     IndicadoresClientesPage,
     ChamadoConsultaPage,
-    TecnicosDisponibilidadePage
+    TecnicosDisponibilidadePage,
+    MediaGlobalPage
   ],
   imports: [
     BrowserModule,
@@ -89,7 +92,8 @@ import { TecnicosDisponibilidadePage } from '../pages/indicadores-tecnico/tecnic
     ChamadosAntigosPage,
     IndicadoresClientesPage,
     ChamadoConsultaPage,
-    TecnicosDisponibilidadePage
+    TecnicosDisponibilidadePage,
+    MediaGlobalPage
   ],
   providers: [
     StatusBar,
@@ -110,7 +114,8 @@ import { TecnicosDisponibilidadePage } from '../pages/indicadores-tecnico/tecnic
     ReincidenciaRegiaoService,
     ReincidenciaTecnicoService,
     ReincidenciaClienteService,
-    TecnicoDisponibilidadeService
+    TecnicoDisponibilidadeService,
+    MediaGlobalService
   ]
 })
 export class AppModule {}

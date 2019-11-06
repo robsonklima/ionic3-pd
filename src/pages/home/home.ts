@@ -8,6 +8,7 @@ import { ChamadosAntigosPage } from '../indicadores-filial/chamados-antigos';
 import { ResultadoGeralPage } from '../indicadores-filial/resultado-geral';
 import { IndicadoresClientesPage } from '../indicadores-filial/indicadores-clientes';
 import { TecnicosDisponibilidadePage } from '../indicadores-tecnico/tecnicos-disponibilidade';
+import { MediaGlobalPage } from '../media-global/media-global';
 
 
 @Component({
@@ -65,7 +66,7 @@ import { TecnicosDisponibilidadePage } from '../indicadores-tecnico/tecnicos-dis
           <p>Disponibilidade e média de atendimentos</p>
         </a>
 
-        <a ion-item>
+        <a ion-item (click)="telaMediaGlobal()">
           <ion-icon name="md-globe" color="primary" item-start></ion-icon>
           Média Global de Atendimento
           <p>Médias de atendimento técnico por dia</p>
@@ -114,6 +115,12 @@ export class HomePage {
   public telaTecnicosDisponibilidade() {
     this.menu.close().then(() => {
       this.nav.push(TecnicosDisponibilidadePage);  
+    })
+  }
+
+  public telaMediaGlobal() {
+    this.menu.close().then(() => {
+      this.nav.push(MediaGlobalPage);  
     })
   }
 }
