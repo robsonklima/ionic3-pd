@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController, AlertController, NavController } from 'ionic-angular';
 
 import { Config } from '../../models/config';
+import { TecnicoDisponibilidade } from '../../models/tecnico-disponibilidade';
+import { Disponibilidade } from '../../models/disponibilidade';
 import { MediaGlobalService } from '../../services/media-global';
+import { TecnicoDisponibilidadeService } from '../../services/tecnico-disponibilidade';
 import { MediaGlobal } from '../../models/media-global';
 import { MediaGlobalTecnico } from '../../models/media-global-tecnico';
 
 
 @Component({
-  selector: 'page-home',
+  selector: 'media-global-page',
   template: `
     <ion-header>
       <ion-navbar no-border-bottom>
@@ -33,44 +36,77 @@ import { MediaGlobalTecnico } from '../../models/media-global-tecnico';
     <ion-content>
       <div [ngSwitch]="modo">
         <ion-list *ngSwitchCase="'media'">
+          <ion-list-header class="sem-borda">
+            Média Global de Atendimentos de Todas as Filiais
+          </ion-list-header>
+
           <ion-item>
             Todas as Intervenções
+            <p>Média de Atendimentos por Dias Úteis</p>
             <ion-badge item-end>{{ mediaGlobal?.todasIntervencoes }}</ion-badge>
           </ion-item>
 
           <ion-item>
-            Somente Corretivos
-            <ion-badge item-end>{{ mediaGlobal?.corretivos }}</ion-badge>
+            Técnicos com Chamados
+            <ion-badge item-end>{{ qtdTecnicosComChamadosTransferidos }}</ion-badge>
           </ion-item>
 
           <ion-item>
-            Somente Preventivos
-            <ion-badge item-end>{{ mediaGlobal?.preventivos }}</ion-badge>
+            Técnicos sem Chamados
+            <ion-badge item-end>{{ qtdTecnicosSemChamadosTransferidos }}</ion-badge>
           </ion-item>
 
           <ion-item>
-            Somente Instalação
-            <ion-badge item-end>{{ mediaGlobal?.instalacao }}</ion-badge>
+            Técnicos Inativos ou de Férias
+            <ion-badge item-end>{{ tecnicosInativos }}</ion-badge>
           </ion-item>
 
           <ion-item>
-            Somente Alteração de Engenharia
-            <ion-badge item-end>{{ mediaGlobal?.alteracaoEngenharia }}</ion-badge>
+            Técnicos
+            <ion-badge item-end>{{ qtdTecnicos }}</ion-badge>
           </ion-item>
         </ion-list>
 
         <ion-list *ngSwitchCase="'maiores'">
+          <ion-list-header class="sem-borda">
+            Técnicos Ativos Sem Chamados por Filial
+          </ion-list-header>
+
+          <ion-item *ngFor="let melhorDisp of melhoresDisponibilidades; let i = index">
+            <h3>{{ melhorDisp.nomeFilial }}</h3>
+            <ion-badge item-end>
+              {{ melhorDisp.qtdTecnicosSemChamadosTransferidos }}/{{ melhorDisp.qtdTecnicos }}
+            </ion-badge>
+          </ion-item>
+
+          <ion-list-header class="sem-borda">
+            Média de Atendimentos por Dia
+          </ion-list-header>
+
           <ion-item *ngFor="let mediaMelhoresTecnicos of mediaGlobalMelhoresTecnicos; let i = index">
-            <h2>{{ mediaMelhoresTecnicos.nomeUsuario }}</h2>
-            <p>{{ mediaMelhoresTecnicos.nomeFilial }}</p>
+            <h3>{{ mediaMelhoresTecnicos.nomeFilial }} - {{ mediaMelhoresTecnicos.nomeUsuario }}</h3>
             <ion-badge item-end>{{ mediaMelhoresTecnicos.todasIntervencoes }}</ion-badge>
           </ion-item>
         </ion-list>
 
         <ion-list *ngSwitchCase="'menores'">
+          <ion-list-header class="sem-borda">
+            Técnicos Ativos Sem Chamados por Filial
+          </ion-list-header>
+
+          <ion-item *ngFor="let piorDisp of pioresDisponibilidades; let i = index">
+            <h3>{{ piorDisp.nomeFilial }}</h3>
+            <ion-badge item-end>
+              {{ piorDisp.qtdTecnicosSemChamadosTransferidos }}/{{ piorDisp.qtdTecnicos }}
+            </ion-badge>
+          </ion-item>
+
+          <ion-list-header class="sem-borda">
+            Média de Atendimentos por Dia
+          </ion-list-header>
+
           <ion-item *ngFor="let mediaPioresTecnicos of mediaGlobalPioresTecnicos; let i = index">
-            <h2>{{ mediaPioresTecnicos.nomeUsuario }}</h2>
-            <p>{{ mediaPioresTecnicos.nomeFilial }}</p>
+            <h3>{{ mediaPioresTecnicos.nomeFilial }} - {{ mediaPioresTecnicos.nomeUsuario }}</h3>
             <ion-badge item-end>{{ mediaPioresTecnicos.todasIntervencoes }}</ion-badge>
           </ion-item>
         </ion-list>
@@ -82,10 +118,21 @@ export class MediaGlobalPage {
   mediaGlobal: MediaGlobal;
   mediaGlobalMelhoresTecnicos: MediaGlobalTecnico[] = [];
   mediaGlobalPioresTecnicos: MediaGlobalTecnico[] = [];
+  disponibilidades: Disponibilidade[] = [];
+  pioresDisponibilidades: Disponibilidade[] = [];
+  melhoresDisponibilidades: Disponibilidade[] = [];
+  tecnicosDisponibilidades: TecnicoDisponibilidade[] = [];
+  tecnicosInativos:number = 0;
+  qtdTecnicosComChamadosTransferidos:number = 0;
+  qtdTecnicosSemChamadosTransferidos:number = 0;
+  qtdTecnicos:number = 0;
 
   constructor(
     private loadingCtrl: LoadingController,
-    private mediaGlobalService: MediaGlobalService
+    private alertCtrl: AlertController,
+    private navCtrl: NavController,
+    private mediaGlobalService: MediaGlobalService,
+    private tecnicoDisponibilidadeService: TecnicoDisponibilidadeService
   ) { }
 
   ngOnInit() {
@@ -95,7 +142,46 @@ export class MediaGlobalPage {
     this.mediaGlobalService.buscarMediaGlobal().subscribe((media: MediaGlobal) => {
       this.mediaGlobal = media;
 
-      loader.dismiss();
+      this.tecnicoDisponibilidadeService.buscarTecnicoDisponibilidade().subscribe((dados: TecnicoDisponibilidade[]) => {
+        this.tecnicosDisponibilidades = dados;
+  
+        let dFiliais: TecnicoDisponibilidade[] = this.tecnicosDisponibilidades.filter((filial, index, self) =>
+          index === self.findIndex((aux) => (aux.nomeFilial === filial.nomeFilial && aux.nomeFilial === filial.nomeFilial))
+        );
+  
+        let filiais = dFiliais.map((i) => { return i['nomeFilial'] }).sort();
+
+        filiais.forEach((d) => {
+          let disp = new Disponibilidade();
+          disp.nomeFilial = d;
+          disp.qtdTecnicosComChamadosTransferidos = this.buscarQtdTecnicosAtivosComChamadosTransferidos(d);
+          disp.qtdTecnicosSemChamadosTransferidos = this.buscarQtdTecnicosSemChamadosTransferidos(d);
+          disp.qtdTecnicosInativos = this.buscarQtdTecnicosInativos(d);
+          disp.qtdTecnicos = this.buscarQtdTecnicos(d);
+          this.disponibilidades.push(disp);
+
+          this.tecnicosInativos += disp.qtdTecnicosInativos;
+          this.qtdTecnicosComChamadosTransferidos += disp.qtdTecnicosComChamadosTransferidos;
+          this.qtdTecnicosSemChamadosTransferidos += disp.qtdTecnicosSemChamadosTransferidos;
+          this.qtdTecnicos += disp.qtdTecnicos;  
+        });
+
+        this.melhoresDisponibilidades = this.disponibilidades.sort((a, b) => 
+          (a.qtdTecnicosSemChamadosTransferidos > b.qtdTecnicosSemChamadosTransferidos) ? 1 : 
+          ((b.qtdTecnicosSemChamadosTransferidos > a.qtdTecnicosSemChamadosTransferidos) ? -1 : 0)
+        ).slice(0, 5);
+
+        this.pioresDisponibilidades = this.disponibilidades.sort((a, b) => 
+          (a.qtdTecnicosSemChamadosTransferidos < b.qtdTecnicosSemChamadosTransferidos) ? 1 : 
+          ((b.qtdTecnicosSemChamadosTransferidos < a.qtdTecnicosSemChamadosTransferidos) ? -1 : 0)
+        ).slice(0, 5);
+
+        loader.dismiss();
+      },
+      err => {
+        loader.dismiss();
+        this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.MENSAGENS.ERRO_OBTER_DADOS_SERVIDOR) });
+      });
     }, () => { loader.dismiss() });
 
     this.mediaGlobalService.buscarMediaGlobalMelhoresTecnicos().subscribe((media: MediaGlobalTecnico[]) => {
@@ -105,5 +191,63 @@ export class MediaGlobalPage {
     this.mediaGlobalService.buscarMediaGlobalPioresTecnicos().subscribe((media: MediaGlobalTecnico[]) => {
       this.mediaGlobalPioresTecnicos = media;
     }, e => {});
+  }
+
+  private buscarQtdTecnicosAtivosComChamadosTransferidos(nomeFilial: string): number {
+    let s = 0;
+
+    this.tecnicosDisponibilidades.forEach((d) => {
+      if (d.nomeFilial == nomeFilial && d.qtdChamadosTransferidos > 0 && (!d.indFerias && d.indTecnicoAtivo)) {
+        s++;
+      }
+    });
+
+    return s;
+  }
+
+  private buscarQtdTecnicosSemChamadosTransferidos(nomeFilial: string): number {
+    let s = 0;
+
+    this.tecnicosDisponibilidades.forEach((d) => {
+      if (d.nomeFilial == nomeFilial && !d.qtdChamadosTransferidos && (!d.indFerias && d.indTecnicoAtivo)) {
+        s++;
+      }
+    });
+
+    return s;
+  }
+
+  private buscarQtdTecnicosInativos(nomeFilial: string): number {
+    let s = 0;
+
+    this.tecnicosDisponibilidades.forEach((d) => {
+      if (d.nomeFilial == nomeFilial && (d.indFerias || !d.indTecnicoAtivo)) {
+        s++;
+      }
+    });
+
+    return s;
+  }
+
+  private buscarQtdTecnicos(nomeFilial: string): number {
+    let s = 0;
+
+    this.tecnicosDisponibilidades.forEach((d) => {
+      if (d.nomeFilial == nomeFilial) {
+        s++;
+      }
+    });
+
+    return s;
+  }
+
+  private exibirAlerta(msg: string) {
+    const alerta = this.alertCtrl.create({
+      title: null,
+      subTitle: msg,
+      buttons: ['OK']
+    });
+
+    alerta.present();
   }
 }

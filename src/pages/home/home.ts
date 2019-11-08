@@ -45,26 +45,26 @@ import { MediaGlobalPage } from '../media-global/media-global';
         <a ion-item (click)="telaStatusFiliais()">
           <ion-icon name="md-pie" color="primary" item-start></ion-icon>
           Status das Filiais
-          <p>Mapa de SLA de nível Brasil</p>
+          <p>SLA de {{ nomeMesAtual }}</p>
         </a>
 
         <a ion-item (click)="telaIndicadoresFiliais()"> 
           <ion-icon name="podium" color="primary" item-start></ion-icon>
           Indicadores das Filiais
-          <p>SLA, Reincidência e Pendência por Filial</p>
+          <p>SLA, REI e PEN de {{ nomeMesAtual }}</p>
         </a>
         
-        <a ion-item (click)="telaChamadosAntigos()">
+        <!-- <a ion-item (click)="telaChamadosAntigos()">
           <ion-icon name="logo-buffer" color="primary" item-start></ion-icon>
           Chamados Antigos
           <p>5 chamados mais antigos com detalhes</p>
-        </a>
+        </a> -->
 
-        <a ion-item (click)="telaTecnicosDisponibilidade()">
+        <!-- <a ion-item (click)="telaTecnicosDisponibilidade()">
           <ion-icon name="build" color="primary" item-start></ion-icon>
           Disponibilidade dos Técnicos
           <p>Disponibilidade e média de atendimentos</p>
-        </a>
+        </a> -->
 
         <a ion-item (click)="telaMediaGlobal()">
           <ion-icon name="md-globe" color="primary" item-start></ion-icon>
