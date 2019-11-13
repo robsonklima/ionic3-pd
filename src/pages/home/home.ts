@@ -9,6 +9,9 @@ import { ResultadoGeralPage } from '../indicadores-filial/resultado-geral';
 import { IndicadoresClientesPage } from '../indicadores-filial/indicadores-clientes';
 import { TecnicosDisponibilidadePage } from '../indicadores-tecnico/tecnicos-disponibilidade';
 import { MediaGlobalPage } from '../media-global/media-global';
+import { RegistroUsoService } from '../../services/registro-uso';
+import { DadosGlobaisService } from '../../services/dados-globais';
+import { DadosGlobais } from '../../models/dados-globais';
 
 
 @Component({
@@ -79,8 +82,18 @@ export class HomePage {
 
   constructor(
     public nav: NavController,
-    private menu: MenuController
+    private menu: MenuController,
+    private dadosGlobaisService: DadosGlobaisService,
+    private registroUsoService: RegistroUsoService
   ) {}
+
+  ionViewWillEnter() {
+    this.dadosGlobaisService.buscarDadosGlobaisStorage().then((dados) => {
+      if (dados) {
+        this.registroUsoService.registrarUso(dados.usuario).subscribe(() => {}, err => {});
+      }
+    }).catch();
+  }
 
   public telaStatusFiliais() {
     this.menu.close().then(() => {

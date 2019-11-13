@@ -43,6 +43,7 @@ import { IndicadoresClientesPage } from '../pages/indicadores-filial/indicadores
 import { ChamadoConsultaPage } from '../pages/chamados/chamado-consulta';
 import { TecnicosDisponibilidadePage } from '../pages/indicadores-tecnico/tecnicos-disponibilidade';
 import { MediaGlobalPage } from '../pages/media-global/media-global';
+import { RegistroUsoService } from '../services/registro-uso';
 
 
 @NgModule({
@@ -115,7 +116,8 @@ import { MediaGlobalPage } from '../pages/media-global/media-global';
     ReincidenciaTecnicoService,
     ReincidenciaClienteService,
     TecnicoDisponibilidadeService,
-    MediaGlobalService
+    MediaGlobalService,
+    RegistroUsoService
   ]
 })
 export class AppModule {}
