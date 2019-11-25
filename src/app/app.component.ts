@@ -7,6 +7,7 @@ import { DadosGlobaisService } from '../services/dados-globais';
 import { UsuarioService } from '../services/usuario';
 import { DadosGlobais } from '../models/dados-globais';
 import { LoginPage } from '../pages/login/login';
+import { TutorialPage } from '../pages/tutorial/tutorial';
 import { HomePage } from '../pages/home/home';
 
 
@@ -17,7 +18,8 @@ export class MyApp {
   @ViewChild('nav') nav: NavController;
   dadosGlobais: DadosGlobais;
   homePage = HomePage;
-  loginPage = LoginPage
+  loginPage = LoginPage;
+  tutorialPage = TutorialPage;
 
   constructor(
     platform: Platform, 
@@ -44,10 +46,10 @@ export class MyApp {
               this.menuCtrl.enable(true);
               this.nav.setRoot(this.homePage);
             } else {
-              this.nav.setRoot(this.loginPage);
+              this.nav.setRoot(this.tutorialPage);
             }
           } else {
-            this.nav.setRoot(this.loginPage);
+            this.nav.setRoot(this.tutorialPage);
           }
       }).catch();
     });

@@ -1,5 +1,6 @@
 export class Config {
   public static CONSTANTS = { 
+    VERSAO_APP: '0.0.1',
     MENSAGENS: {
       OBTENDO_DADOS_SERVIDOR: "Obtendo dados do servidor",
       ERRO_OBTER_DADOS_SERVIDOR: "Erro ao obter dados do servidor"
@@ -30,6 +31,6 @@ export class Config {
     }
   };
 
-  public static API_URL = 'http://localhost:60687/api/';
-  //public static API_URL = 'http://sat.perto.com.br/prjSATWebAPI/api/';
+  //public static API_URL = 'http://localhost:60687/api/';
+  public static API_URL = 'http://sat.perto.com.br/prjSATWebAPI/api/';
 }

@@ -44,6 +44,7 @@ import { ChamadoConsultaPage } from '../pages/chamados/chamado-consulta';
 import { TecnicosDisponibilidadePage } from '../pages/indicadores-tecnico/tecnicos-disponibilidade';
 import { MediaGlobalPage } from '../pages/media-global/media-global';
 import { RegistroUsoService } from '../services/registro-uso';
+import { TutorialPage } from '../pages/tutorial/tutorial';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { RegistroUsoService } from '../services/registro-uso';
     IndicadoresClientesPage,
     ChamadoConsultaPage,
     TecnicosDisponibilidadePage,
-    MediaGlobalPage
+    MediaGlobalPage,
+    TutorialPage
   ],
   imports: [
     BrowserModule,
@@ -94,7 +96,8 @@ import { RegistroUsoService } from '../services/registro-uso';
     IndicadoresClientesPage,
     ChamadoConsultaPage,
     TecnicosDisponibilidadePage,
-    MediaGlobalPage
+    MediaGlobalPage,
+    TutorialPage
   ],
   providers: [
     StatusBar,
