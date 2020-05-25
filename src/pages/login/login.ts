@@ -48,6 +48,7 @@ export class LoginPage implements OnInit {
     let login = new Login();
     login.usuario = usuario;
     login.versaoAplicativo = this.versaoApp;
+    login.nomeAplicativo = 'PERTO_DASHBOARD';
 
     this.usuarioService.login(login).subscribe((login) => {
       if(login && !login.erro) {
