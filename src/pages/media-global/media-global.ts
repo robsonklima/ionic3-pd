@@ -41,44 +41,23 @@ import { MediaGlobalTecnico } from '../../models/media-global-tecnico';
           </ion-list-header>
 
           <ion-item>
-            Todas as Intervenções
-            <p>Média de Atendimentos por Dias Úteis</p>
+            Todos os Atendimentos
+            <p>Média de Atend. por Técnico e Dia Útil</p>
             <ion-badge item-end>{{ mediaGlobal?.todasIntervencoes }}</ion-badge>
           </ion-item>
 
           <ion-item>
-            Técnicos com Chamados
+            Técnicos c/ Chamados Corretivos
             <ion-badge item-end>{{ qtdTecnicosComChamadosTransferidos }}</ion-badge>
           </ion-item>
 
           <ion-item>
-            Técnicos sem Chamados
+            Técnicos c/ Chamados Não Corretivos
             <ion-badge item-end>{{ qtdTecnicosSemChamadosTransferidos }}</ion-badge>
-          </ion-item>
-
-          <ion-item>
-            Técnicos Inativos ou de Férias
-            <ion-badge item-end>{{ tecnicosInativos }}</ion-badge>
-          </ion-item>
-
-          <ion-item>
-            Técnicos
-            <ion-badge item-end>{{ qtdTecnicos }}</ion-badge>
           </ion-item>
         </ion-list>
 
         <ion-list *ngSwitchCase="'maiores'">
-          <ion-list-header class="sem-borda">
-            Técnicos Ativos Sem Chamados por Filial
-          </ion-list-header>
-
-          <ion-item *ngFor="let melhorDisp of melhoresDisponibilidades; let i = index">
-            <h3>{{ melhorDisp.nomeFilial }}</h3>
-            <ion-badge item-end>
-              {{ melhorDisp.qtdTecnicosSemChamadosTransferidos }}/{{ melhorDisp.qtdTecnicos }}
-            </ion-badge>
-          </ion-item>
-
           <ion-list-header class="sem-borda">
             Média de Atendimentos por Dia
           </ion-list-header>
@@ -90,17 +69,6 @@ import { MediaGlobalTecnico } from '../../models/media-global-tecnico';
         </ion-list>
 
         <ion-list *ngSwitchCase="'menores'">
-          <ion-list-header class="sem-borda">
-            Técnicos Ativos Sem Chamados por Filial
-          </ion-list-header>
-
-          <ion-item *ngFor="let piorDisp of pioresDisponibilidades; let i = index">
-            <h3>{{ piorDisp.nomeFilial }}</h3>
-            <ion-badge item-end>
-              {{ piorDisp.qtdTecnicosSemChamadosTransferidos }}/{{ piorDisp.qtdTecnicos }}
-            </ion-badge>
-          </ion-item>
-
           <ion-list-header class="sem-borda">
             Média de Atendimentos por Dia
           </ion-list-header>
@@ -154,8 +122,8 @@ export class MediaGlobalPage {
         filiais.forEach((d) => {
           let disp = new Disponibilidade();
           disp.nomeFilial = d;
-          disp.qtdTecnicosComChamadosTransferidos = this.buscarQtdTecnicosAtivosComChamadosTransferidos(d);
-          disp.qtdTecnicosSemChamadosTransferidos = this.buscarQtdTecnicosSemChamadosTransferidos(d);
+          disp.qtdTecnicosComChamadosTransferidos = this.buscarQtdTecnicosAtivosComChamadosTransferidosCorretivos(d);
+          disp.qtdTecnicosSemChamadosTransferidos = this.buscarQtdTecnicosSemChamadosTransferidosNaoCorretivos(d);
           disp.qtdTecnicosInativos = this.buscarQtdTecnicosInativos(d);
           disp.qtdTecnicos = this.buscarQtdTecnicos(d);
           this.disponibilidades.push(disp);
@@ -193,11 +161,11 @@ export class MediaGlobalPage {
     }, e => {});
   }
 
-  private buscarQtdTecnicosAtivosComChamadosTransferidos(nomeFilial: string): number {
+  private buscarQtdTecnicosAtivosComChamadosTransferidosCorretivos(nomeFilial: string): number {
     let s = 0;
 
     this.tecnicosDisponibilidades.forEach((d) => {
-      if (d.nomeFilial == nomeFilial && d.qtdChamadosTransferidos > 0 && (!d.indFerias && d.indTecnicoAtivo)) {
+      if (d.nomeFilial == nomeFilial && d.qtdChamadosTransferidos > 0 && (!d.indFerias && d.indTecnicoAtivo) && d.qtdChamadosAtendidosSomenteCorretivos > 0) {
         s++;
       }
     });
@@ -205,11 +173,12 @@ export class MediaGlobalPage {
     return s;
   }
 
-  private buscarQtdTecnicosSemChamadosTransferidos(nomeFilial: string): number {
+  private buscarQtdTecnicosSemChamadosTransferidosNaoCorretivos(nomeFilial: string): number {
     let s = 0;
 
     this.tecnicosDisponibilidades.forEach((d) => {
-      if (d.nomeFilial == nomeFilial && !d.qtdChamadosTransferidos && (!d.indFerias && d.indTecnicoAtivo)) {
+      if (d.nomeFilial == nomeFilial && !d.qtdChamadosTransferidos && (!d.indFerias && d.indTecnicoAtivo) 
+          && (d.qtdChamadosAtendidosTodasIntervencoes > 0 || d.qtdChamadosAtendidosSomenteCorretivos > 0)) {
         s++;
       }
     });
