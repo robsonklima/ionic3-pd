@@ -5,4 +5,5 @@ export class Login {
     mensagem: string;
     erro: string;
     versaoAplicativo: string;
+    nomeAplicativo: string;
 }
