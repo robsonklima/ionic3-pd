@@ -181,7 +181,7 @@ export class ResultadoGeralPage {
             yAxes: [
               {
                 ticks: {
-                  beginAtZero: false
+                  beginAtZero: true
                 }
               }
             ]
@@ -217,7 +217,7 @@ export class ResultadoGeralPage {
             yAxes: [
               {
                 ticks: {
-                  beginAtZero: false
+                  beginAtZero: true
                 }
               }
             ]
@@ -253,7 +253,7 @@ export class ResultadoGeralPage {
             yAxes: [
               {
                 ticks: {
-                  beginAtZero: false
+                  beginAtZero: true
                 }
               }
             ]

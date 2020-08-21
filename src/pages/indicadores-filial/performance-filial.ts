@@ -215,7 +215,7 @@ export class PerformanceFilialPage {
             yAxes: [
               {
                 ticks: {
-                  beginAtZero: false
+                  beginAtZero: true
                 }
               }
             ]
@@ -251,7 +251,7 @@ export class PerformanceFilialPage {
             yAxes: [
               {
                 ticks: {
-                  beginAtZero: false
+                  beginAtZero: true
                 }
               }
             ]
@@ -287,7 +287,7 @@ export class PerformanceFilialPage {
             yAxes: [
               {
                 ticks: {
-                  beginAtZero: false
+                  beginAtZero: true
                 }
               }
             ]

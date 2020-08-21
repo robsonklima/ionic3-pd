@@ -96,7 +96,7 @@ export class SLAFilialPage {
           },
           scales: {
             xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
-            yAxes: [{ ticks: { beginAtZero: false } }]
+            yAxes: [{ ticks: { beginAtZero: true } }]
           },
           tooltips: {
             enabled: true,
@@ -160,7 +160,7 @@ export class SLAFilialPage {
           },
           scales: {
             xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
-            yAxes: [{ ticks: { beginAtZero: false } }]
+            yAxes: [{ ticks: { beginAtZero: true } }]
           },
           tooltips: {
             enabled: true,
@@ -224,7 +224,7 @@ export class SLAFilialPage {
           },
           scales: {
             xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
-            yAxes: [{ ticks: { beginAtZero: false } }]
+            yAxes: [{ ticks: { beginAtZero: true } }]
           },
           tooltips: {
             enabled: true,
@@ -290,7 +290,7 @@ export class SLAFilialPage {
           },
           scales: {
             xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
-            yAxes: [{ ticks: { beginAtZero: false } }]
+            yAxes: [{ ticks: { beginAtZero: true } }]
           },
           tooltips: {
             enabled: true,
@@ -354,7 +354,7 @@ export class SLAFilialPage {
           },
           scales: {
             xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
-            yAxes: [{ ticks: { beginAtZero: false } }]
+            yAxes: [{ ticks: { beginAtZero: true } }]
           },
           tooltips: {
             enabled: true,
@@ -418,7 +418,7 @@ export class SLAFilialPage {
           },
           scales: {
             xAxes: [{ ticks: { fontSize: 9, callback: function(n) { return n.substr(0, 5) }}}],
-            yAxes: [{ ticks: { beginAtZero: false } }]
+            yAxes: [{ ticks: { beginAtZero: true } }]
           },
           tooltips: {
             enabled: true,
