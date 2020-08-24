@@ -55,6 +55,11 @@ import { MediaGlobalTecnico } from '../../models/media-global-tecnico';
             Técnicos c/ Chamados Não Corretivos
             <ion-badge item-end>{{ qtdTecnicosSemChamadosTransferidos }}</ion-badge>
           </ion-item>
+
+          <ion-item>
+            <b>Total</b>
+            <ion-badge item-end>{{ qtdTecnicosSemChamadosTransferidos + qtdTecnicosComChamadosTransferidos }}</ion-badge>
+          </ion-item>
         </ion-list>
 
         <ion-list *ngSwitchCase="'maiores'">

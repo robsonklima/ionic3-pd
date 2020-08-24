@@ -38,6 +38,9 @@ export class IndicadoresFiliaisPage {
     loader.present();
 
     this.slaFilialService.buscarSLAFiliais().subscribe((dados: SLAFilial[]) => {
+      console.log(dados);
+      
+
       this.sla = dados.sort(function(a, b) { 
         return ((a.percentual > b.percentual) ? -1 : ((a.percentual < b.percentual) ? 1 : 0));
       }).filter(function(a) { return a.nomeFilial !== 'TOTAL' });
@@ -60,15 +63,15 @@ export class IndicadoresFiliaisPage {
   }
 
   public telaIndicadoresFilialSLA(s: SLAFilial) {
-    this.navCtrl.push(SLAFilialPage, { slaFilial: s });
+    //this.navCtrl.push(SLAFilialPage, { slaFilial: s });
   }
 
   public telaIndicadoresFilialReincidencia(s: SLAFilial) {
-    this.navCtrl.push(ReincidenciaFilialPage, { slaFilial: s });
+    //this.navCtrl.push(ReincidenciaFilialPage, { slaFilial: s });
   }
 
   public telaIndicadoresFilialPendencia(s: SLAFilial) {
-    this.navCtrl.push(PendenciaFilialPage, { slaFilial: s });
+    //this.navCtrl.push(PendenciaFilialPage, { slaFilial: s });
   }
 
   private exibirAlerta(msg: string) {

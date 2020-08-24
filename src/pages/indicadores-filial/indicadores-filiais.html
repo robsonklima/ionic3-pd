@@ -35,9 +35,9 @@
 
     <ion-list *ngSwitchCase="'rcd'">
       <ion-item *ngFor="let r of reincidencia; let i = index" (click)="telaIndicadoresFilialReincidencia(r)">
-        <ion-icon name='ios-radio-button-on' item-start *ngIf="r.reincidencia <= metaReincidencia1" color="secondary"></ion-icon>
-        <ion-icon name='ios-radio-button-on' item-start *ngIf="r.reincidencia >= metaReincidencia1 && r.reincidencia < metaReincidencia2" color="orange"></ion-icon>
-        <ion-icon name='ios-radio-button-on' item-start *ngIf="r.reincidencia > metaReincidencia2" color="danger"></ion-icon>
+        <ion-icon name='ios-radio-button-on' item-start *ngIf="r.reincidencia <= metaReincidencia2" color="secondary"></ion-icon>
+        <ion-icon name='ios-radio-button-on' item-start *ngIf="r.reincidencia >= metaReincidencia2 && r.reincidencia < metaReincidencia1" color="orange"></ion-icon>
+        <ion-icon name='ios-radio-button-on' item-start *ngIf="r.reincidencia > metaReincidencia1" color="danger"></ion-icon>
         {{ r.nomeFilial }}
         <ion-note item-end>{{ r.reincidencia }}%</ion-note>
       </ion-item>
@@ -45,9 +45,9 @@
 
     <ion-list *ngSwitchCase="'pen'">
       <ion-item *ngFor="let p of pendencia; let i = index" (click)="telaIndicadoresFilialPendencia(p)">
-        <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia <= metaPendencia1" color="secondary"></ion-icon>
-        <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia > metaPendencia1 && p.pendencia <= metaPendencia2" color="orange"></ion-icon>
-        <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia > metaPendencia2" color="danger"></ion-icon>
+        <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia <= metaPendencia2" color="secondary"></ion-icon>
+        <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia >= metaPendencia2 && p.pendencia < metaPendencia1" color="orange"></ion-icon>
+        <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia > metaPendencia1" color="danger"></ion-icon>
         {{ p.nomeFilial }}
         <ion-note item-end>{{ p.pendencia }}%</ion-note>
       </ion-item>

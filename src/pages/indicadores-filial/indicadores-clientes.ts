@@ -42,24 +42,24 @@ export class IndicadoresClientesPage {
       let metas: number[] = []
 
       performances
-      .sort(function(a, b) { return b.sla - a.sla })
-      .forEach(p => {
-        if (p.nomeCliente.length <= 12)
-          labels.push(p.nomeCliente);
-        else
-          labels.push(p.nomeCliente.substring(0, 12));
-        
-        data.push(p.sla);
+        .sort(function(a, b) { return b.sla - a.sla })
+        .forEach(p => {
+          if (p.nomeCliente.length <= 12)
+            labels.push(p.nomeCliente);
+          else
+            labels.push(p.nomeCliente.substring(0, 12));
+          
+          data.push(p.sla);
 
-        if (p.sla >= Config.CONSTANTS.METAS.SLA.M1) {
-          colors.push(Config.CONSTANTS.CORES.RGB.VERDE);
-        } else if (p.sla >= Config.CONSTANTS.METAS.SLA.M2 && p.sla < Config.CONSTANTS.METAS.SLA.M1) {
-          colors.push(Config.CONSTANTS.CORES.RGB.AMARELO);
-        } else {
-          colors.push(Config.CONSTANTS.CORES.RGB.VERMELHO);
-        }
+          if (p.sla >= Config.CONSTANTS.METAS.SLA.M1) {
+            colors.push(Config.CONSTANTS.CORES.RGB.VERDE);
+          } else if (p.sla >= Config.CONSTANTS.METAS.SLA.M2 && p.sla < Config.CONSTANTS.METAS.SLA.M1) {
+            colors.push(Config.CONSTANTS.CORES.RGB.AMARELO);
+          } else {
+            colors.push(Config.CONSTANTS.CORES.RGB.VERMELHO);
+          }
 
-        metas.push(Config.CONSTANTS.METAS.SLA.M1);
+          metas.push(Config.CONSTANTS.METAS.SLA.M1);
       });
 
       this.carregarGraficoSLA(labels, data, colors, metas);

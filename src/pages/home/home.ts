@@ -45,11 +45,11 @@ import { DadosGlobais } from '../../models/dados-globais';
           <p>SLA de {{ nomeMesAtual }}</p>
         </a>
 
-        <a ion-item (click)="telaStatusFiliais()">
+        <!--<a ion-item (click)="telaStatusFiliais()">
           <ion-icon name="md-pie" color="primary" item-start></ion-icon>
           Status das Filiais
           <p>SLA de {{ nomeMesAtual }}</p>
-        </a>
+        </a>-->
 
         <a ion-item (click)="telaIndicadoresFiliais()"> 
           <ion-icon name="podium" color="primary" item-start></ion-icon>

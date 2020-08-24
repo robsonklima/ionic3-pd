@@ -79,7 +79,7 @@ export class ResultadoGeralPage {
       this.labels = dados.map((i) => { return this.carregarNomeMes(i['anoMes']) });
 
       let slas: number[] = dados.map((i) => { return i['sla'] });
-      let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.VERDE });
+      let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
       let metas: number[] = slas.map(() => { return Config.CONSTANTS.METAS.SLA.M1 });
       let metaColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.HEXA.VERMELHO });
 
@@ -164,11 +164,6 @@ export class ResultadoGeralPage {
           datasets: this.datasetSLA
         },
         options: {
-          // animation: {
-          //   onProgress: a => {
-          //     let p = Math.round(a.animationObject.currentStep / a.animationObject.numSteps * 100);
-          //   }
-          // },
           legend: {
             position: 'top',
             display: true,

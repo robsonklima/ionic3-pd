@@ -1,6 +1,6 @@
 export class Config {
   public static CONSTANTS = { 
-    VERSAO_APP: '0.0.2',
+    VERSAO_APP: '0.0.3',
     MENSAGENS: {
       OBTENDO_DADOS_SERVIDOR: "Obtendo dados do servidor",
       ERRO_OBTER_DADOS_SERVIDOR: "Erro ao obter dados do servidor"
@@ -25,9 +25,9 @@ export class Config {
       }
     },
     METAS: {
-      SLA: { M1: 95.0, M2: 95.0 },
-      REINCIDENCIA: { M1: 35.0, M2: 35.0 },
-      PENDENCIA: { M1: 5.0, M2: 5.0 }
+      SLA: { M1: 95.0, M2: 92.0 },
+      REINCIDENCIA: { M1: 35.0, M2: 32.0 },
+      PENDENCIA: { M1: 5.0, M2: 3.0 }
     }
   };
 
