@@ -6,13 +6,12 @@ import { IndicadoresFiliaisPage } from '../indicadores-filial/indicadores-filiai
 import { StatusFiliaisPage } from '../indicadores-filial/status-filiais';
 import { ChamadosAntigosPage } from '../indicadores-filial/chamados-antigos';
 import { ResultadoGeralPage } from '../indicadores-filial/resultado-geral';
+import { SPAFilialPage } from '../indicadores-filial/spa-filial';
 import { IndicadoresClientesPage } from '../indicadores-filial/indicadores-clientes';
 import { TecnicosDisponibilidadePage } from '../indicadores-tecnico/tecnicos-disponibilidade';
 import { MediaGlobalPage } from '../media-global/media-global';
 import { RegistroUsoService } from '../../services/registro-uso';
 import { DadosGlobaisService } from '../../services/dados-globais';
-import { DadosGlobais } from '../../models/dados-globais';
-
 
 @Component({
   selector: 'page-home',
@@ -55,6 +54,12 @@ import { DadosGlobais } from '../../models/dados-globais';
           <ion-icon name="podium" color="primary" item-start></ion-icon>
           Indicadores das Filiais
           <p>SLA, REI e PEN de {{ nomeMesAtual }}</p>
+        </a>
+
+        <a ion-item (click)="telaSPAFilial()"> 
+          <ion-icon name="podium" color="primary" item-start></ion-icon>
+          SPA das Filiais
+          <p>SPA</p>
         </a>
         
         <!-- <a ion-item (click)="telaChamadosAntigos()">
@@ -128,6 +133,12 @@ export class HomePage {
   public telaTecnicosDisponibilidade() {
     this.menu.close().then(() => {
       this.nav.push(TecnicosDisponibilidadePage);  
+    })
+  }
+
+  public telaSPAFilial() {
+    this.menu.close().then(() => {
+      this.nav.push(SPAFilialPage);  
     })
   }
 

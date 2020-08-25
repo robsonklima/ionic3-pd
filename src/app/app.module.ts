@@ -23,6 +23,8 @@ import { ReincidenciaClienteService } from '../services/reincidencia-cliente';
 import { DadosGlobaisService } from '../services/dados-globais';
 import { TecnicoDisponibilidadeService } from '../services/tecnico-disponibilidade';
 import { MediaGlobalService } from '../services/media-global';
+import { RegistroUsoService } from '../services/registro-uso';
+import { SPAFilialService } from '../services/spa-filial';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -41,10 +43,10 @@ import { ResultadoGeralPage } from '../pages/indicadores-filial/resultado-geral'
 import { PerformanceFilialPage } from '../pages/indicadores-filial/performance-filial';
 import { IndicadoresClientesPage } from '../pages/indicadores-filial/indicadores-clientes';
 import { ChamadoConsultaPage } from '../pages/chamados/chamado-consulta';
+import { TutorialPage } from '../pages/tutorial/tutorial';
+import { SPAFilialPage } from '../pages/indicadores-filial/spa-filial';
 import { TecnicosDisponibilidadePage } from '../pages/indicadores-tecnico/tecnicos-disponibilidade';
 import { MediaGlobalPage } from '../pages/media-global/media-global';
-import { RegistroUsoService } from '../services/registro-uso';
-import { TutorialPage } from '../pages/tutorial/tutorial';
 
 
 @NgModule({
@@ -68,6 +70,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
     ChamadoConsultaPage,
     TecnicosDisponibilidadePage,
     MediaGlobalPage,
+    SPAFilialPage,
     TutorialPage
   ],
   imports: [
@@ -97,6 +100,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
     ChamadoConsultaPage,
     TecnicosDisponibilidadePage,
     MediaGlobalPage,
+    SPAFilialPage,
     TutorialPage
   ],
   providers: [
@@ -120,7 +124,8 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
     ReincidenciaClienteService,
     TecnicoDisponibilidadeService,
     MediaGlobalService,
-    RegistroUsoService
+    RegistroUsoService,
+    SPAFilialService
   ]
 })
 export class AppModule {}
