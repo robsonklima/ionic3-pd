@@ -27,11 +27,6 @@ export class TutorialPage {
         image: "assets/imgs/ica-slidebox-img-1.png",
       },
       {
-        title: "Mapa de SLA",
-        description: `Você poderá ficar sempre atualizado quanto ao SLA das filiais acessando nosso <b>mapa interativo</b>.`,
-        image: "assets/imgs/south-america.png",
-      },
-      {
         title: "Indicadores",
         description: `Acesse os indicadores do <b>DSS</b> e verifique como estão os atendimentos dos nossos clientes!`,
         image: "assets/imgs/bar-graph.png",
