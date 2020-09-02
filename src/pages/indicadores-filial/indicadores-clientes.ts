@@ -90,7 +90,7 @@ export class IndicadoresClientesPage {
         maintainAspectRatio: false,
         legend: { display: false },
         scales: {
-          yAxes: [
+          xAxes: [
             {
               ticks: {
                 beginAtZero: true

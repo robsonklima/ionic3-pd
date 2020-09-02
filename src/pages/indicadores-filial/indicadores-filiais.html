@@ -4,9 +4,13 @@
   </ion-navbar>
 
   <ion-toolbar no-border-top>
-    <ion-segment [(ngModel)]="modo">
+    <ion-segment [(ngModel)]="modo" (ionChange)="onSegmentChanged($event)">
       <ion-segment-button value="sla">
         SLA
+      </ion-segment-button>
+
+      <ion-segment-button value="spa">
+        SPA
       </ion-segment-button>
 
       <ion-segment-button value="rcd">
@@ -31,6 +35,10 @@
         <p>Dentro: {{ s.dentro }} &#8226; Fora: {{ s.fora > 0 ? s.fora : 'Nenhum' }}</p>
         <ion-note item-end>{{ s.percentual }}%</ion-note>
       </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'spa'">
+      <canvas #barCanvas></canvas>
     </ion-list>
 
     <ion-list *ngSwitchCase="'rcd'">

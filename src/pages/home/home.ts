@@ -53,31 +53,19 @@ import { DadosGlobaisService } from '../../services/dados-globais';
         <a ion-item (click)="telaIndicadoresFiliais()"> 
           <ion-icon name="podium" color="primary" item-start></ion-icon>
           Indicadores das Filiais
-          <p>SLA, REI e PEN de {{ nomeMesAtual }}</p>
+          <p>SLA, SPA, REI e PEN de {{ nomeMesAtual }}</p>
         </a>
-
-        <a ion-item (click)="telaSPAFilial()"> 
-          <ion-icon name="podium" color="primary" item-start></ion-icon>
-          SPA das Filiais
-          <p>SPA</p>
-        </a>
-        
-        <!-- <a ion-item (click)="telaChamadosAntigos()">
-          <ion-icon name="logo-buffer" color="primary" item-start></ion-icon>
-          Chamados Antigos
-          <p>5 chamados mais antigos com detalhes</p>
-        </a> -->
-
-        <!-- <a ion-item (click)="telaTecnicosDisponibilidade()">
-          <ion-icon name="build" color="primary" item-start></ion-icon>
-          Disponibilidade dos Técnicos
-          <p>Disponibilidade e média de atendimentos</p>
-        </a> -->
 
         <a ion-item (click)="telaMediaGlobal()">
           <ion-icon name="md-globe" color="primary" item-start></ion-icon>
           Média Global de Atendimento
           <p>Médias de atendimento técnico por dia</p>
+        </a>
+
+        <a ion-item disabled="true"> 
+          <ion-icon name="podium" color="primary" item-start></ion-icon>
+          Disponibilidade BB TS
+          <p>Em Desenvolvimento</p>
         </a>
       </ion-list>
     </ion-content>`

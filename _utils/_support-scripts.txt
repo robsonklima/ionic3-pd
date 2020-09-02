@@ -4,4 +4,4 @@ KEYTOOL
 JARSINGER (Pass: Android@2017)
 ionic cordova build --release android
 "C:\Program Files\Java\jdk1.8.0_121\bin\jarsigner" -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore "D:\ionic-projects\ionic3-pd\_utils\perto-dashboard-key.keystore" "D:\ionic-projects\ionic3-pd\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk" perto-dashboard
-"D:\ionic-projects\ionic3-pd\_utils\zipalign" -v 4 "D:\ionic-projects\ionic3-pd\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk" "D:\ionic-projects\ionic3-pd\_utils\perto-dashboard-release-0.0.4.apk"
+"D:\ionic-projects\ionic3-pd\_utils\zipalign" -v 4 "D:\ionic-projects\ionic3-pd\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk" "D:\ionic-projects\ionic3-pd\_utils\perto-dashboard-release-0.0.5.apk"

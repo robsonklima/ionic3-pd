@@ -3,8 +3,6 @@ import { Chart } from "chart.js";
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
 
 import { Config } from '../../models/config';
-import { Performance } from '../../models/performance';
-import { PerformanceService } from '../../services/performance';
 import { SPAFilialService } from '../../services/spa-filial';
 import { SPAFilial } from '../../models/spa-filial';
 
@@ -90,7 +88,7 @@ export class SPAFilialPage {
         maintainAspectRatio: false,
         legend: { display: false },
         scales: {
-          yAxes: [
+          xAxes: [
             {
               ticks: {
                 beginAtZero: true
