@@ -86,6 +86,9 @@ export class IndicadoresClientesPage {
         ]
       },
       options: {
+        legendCallback: (chart) => {
+          console.log(chart.data);
+        },
         responsive: true, 
         maintainAspectRatio: false,
         legend: { display: false },

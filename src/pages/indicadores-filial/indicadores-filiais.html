@@ -32,7 +32,11 @@
         <ion-icon name='ios-radio-button-on' item-start *ngIf="s.percentual >= metaSLA2 && s.percentual < metaSLA1" color="orange"></ion-icon>
         <ion-icon name='ios-radio-button-on' item-start *ngIf="s.percentual < metaSLA2" color="danger"></ion-icon>
         {{ s.nomeFilial }}
-        <p>Dentro: {{ s.dentro }} &#8226; Fora: {{ s.fora > 0 ? s.fora : 'Nenhum' }}</p>
+        <p>
+          Dentro: {{ s.dentro }} &#8226; 
+          Fora: {{ s.fora }} &#8226; 
+          <span>Meta: {{ metaSLA1 }}%</span>
+        </p>
         <ion-note item-end>{{ s.percentual }}%</ion-note>
       </ion-item>
     </ion-list>
@@ -47,6 +51,9 @@
         <ion-icon name='ios-radio-button-on' item-start *ngIf="r.reincidencia >= metaReincidencia2 && r.reincidencia < metaReincidencia1" color="orange"></ion-icon>
         <ion-icon name='ios-radio-button-on' item-start *ngIf="r.reincidencia > metaReincidencia1" color="danger"></ion-icon>
         {{ r.nomeFilial }}
+        <p>
+          <span>Meta: {{ metaReincidencia1 }}%</span>
+        </p>
         <ion-note item-end>{{ r.reincidencia }}%</ion-note>
       </ion-item>
     </ion-list>
@@ -57,6 +64,9 @@
         <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia >= metaPendencia2 && p.pendencia < metaPendencia1" color="orange"></ion-icon>
         <ion-icon name='ios-radio-button-on' item-start *ngIf="p.pendencia > metaPendencia1" color="danger"></ion-icon>
         {{ p.nomeFilial }}
+        <p>
+            <span>Meta: {{ metaPendencia1 }}%</span>
+        </p>
         <ion-note item-end>{{ p.pendencia }}%</ion-note>
       </ion-item>
     </ion-list>

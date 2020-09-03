@@ -77,7 +77,6 @@ export class ResultadoGeralPage {
       this.status = true;
       this.performances = dados;
       this.labels = dados.map((i) => { return this.carregarNomeMes(i['anoMes']) });
-
       let slas: number[] = dados.map((i) => { return i['sla'] });
       let bgColors: string[] = slas.map(() => { return Config.CONSTANTS.CORES.RGB.AZUL });
       let metas: number[] = slas.map(() => { return Config.CONSTANTS.METAS.SLA.M1 });
@@ -265,29 +264,29 @@ export class ResultadoGeralPage {
 
   private carregarNomeMes(anoMes: string): string {
     switch(anoMes) {
-      case '201901':
+      case '202001':
         return 'Janeiro';
-      case '201902':
+      case '202002':
         return 'Fevereiro';
-      case '201903':
+      case '202003':
         return 'Março';
-      case '201904':
+      case '202004':
         return 'Abril';
-      case '201905':
+      case '202005':
         return 'Maio';
-      case '201906':
+      case '202006':
         return 'Junho';
-      case '201907':
+      case '202007':
         return 'Julho';
-      case '201908':
+      case '202008':
         return 'Agosto';
-      case '201909':
+      case '202009':
         return 'Setembro';
-      case '201910':
+      case '202010':
         return 'Outubro';
-      case '201911':
+      case '202011':
         return 'Novembro';
-      case '201912':
+      case '202012':
         return 'Dezembro';
       default:
         return '';
