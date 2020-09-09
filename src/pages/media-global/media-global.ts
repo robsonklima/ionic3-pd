@@ -144,55 +144,6 @@ export class MediaGlobalPage {
     }, e => {});
   }
 
-  private buscarQtdTecnicosAtivosComChamadosTransferidosCorretivos(nomeFilial: string): number {
-    let s = 0;
-
-    this.tecnicosDisponibilidades.forEach((d) => {
-      if (d.nomeFilial == nomeFilial && d.qtdChamadosTransferidos > 0 && (!d.indFerias && d.indTecnicoAtivo) && d.qtdChamadosAtendidosSomenteCorretivos > 0) {
-        s++;
-      }
-    });
-
-    return s;
-  }
-
-  private buscarQtdTecnicosSemChamadosTransferidosNaoCorretivos(nomeFilial: string): number {
-    let s = 0;
-
-    this.tecnicosDisponibilidades.forEach((d) => {
-      if (d.nomeFilial == nomeFilial && !d.qtdChamadosTransferidos && (!d.indFerias && d.indTecnicoAtivo) 
-          && (d.qtdChamadosAtendidosTodasIntervencoes > 0 || d.qtdChamadosAtendidosSomenteCorretivos > 0)) {
-        s++;
-      }
-    });
-
-    return s;
-  }
-
-  private buscarQtdTecnicosInativos(nomeFilial: string): number {
-    let s = 0;
-
-    this.tecnicosDisponibilidades.forEach((d) => {
-      if (d.nomeFilial == nomeFilial && (d.indFerias || !d.indTecnicoAtivo)) {
-        s++;
-      }
-    });
-
-    return s;
-  }
-
-  private buscarQtdTecnicos(nomeFilial: string): number {
-    let s = 0;
-
-    this.tecnicosDisponibilidades.forEach((d) => {
-      if (d.nomeFilial == nomeFilial) {
-        s++;
-      }
-    });
-
-    return s;
-  }
-
   private exibirAlerta(msg: string) {
     const alerta = this.alertCtrl.create({
       title: null,
