@@ -21,7 +21,7 @@ import { MediaGlobalTecnico } from '../../models/media-global-tecnico';
       <ion-toolbar no-border-top>
         <ion-segment [(ngModel)]="modo">
           <ion-segment-button value="media">
-            Média
+            Resumo
           </ion-segment-button>
           <ion-segment-button value="maiores">
             Maiores
@@ -47,18 +47,28 @@ import { MediaGlobalTecnico } from '../../models/media-global-tecnico';
           </ion-item>
 
           <ion-item>
+            Técnicos em Férias
+            <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTecnicosEmFerias }}</ion-badge>
+          </ion-item>
+
+          <ion-item>
+            Técnicos Sem Chamados
+            <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTecnicosSemChamados }}</ion-badge>
+          </ion-item>
+
+          <ion-item>
             Técnicos c/ Chamados Corretivos
-            <ion-badge item-end>{{ qtdTecnicosComChamadosTransferidos }}</ion-badge>
+            <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTecnicosCChamadosCorretivos }}</ion-badge>
           </ion-item>
 
           <ion-item>
             Técnicos c/ Chamados Não Corretivos
-            <ion-badge item-end>{{ qtdTecnicosSemChamadosTransferidos }}</ion-badge>
+            <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTecnicosCChamadosNaoCorretivos }}</ion-badge>
           </ion-item>
 
           <ion-item>
-            <b>Total</b>
-            <ion-badge item-end>{{ qtdTecnicosSemChamadosTransferidos + qtdTecnicosComChamadosTransferidos }}</ion-badge>
+            Total de Técnicos
+            <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTotaldeTecnicos }}</ion-badge>
           </ion-item>
         </ion-list>
 
@@ -94,11 +104,8 @@ export class MediaGlobalPage {
   disponibilidades: Disponibilidade[] = [];
   pioresDisponibilidades: Disponibilidade[] = [];
   melhoresDisponibilidades: Disponibilidade[] = [];
-  tecnicosDisponibilidades: TecnicoDisponibilidade[] = [];
-  tecnicosInativos:number = 0;
-  qtdTecnicosComChamadosTransferidos:number = 0;
-  qtdTecnicosSemChamadosTransferidos:number = 0;
-  qtdTecnicos:number = 0;
+  tecnicoDisponibilidade: TecnicoDisponibilidade;
+
 
   constructor(
     private loadingCtrl: LoadingController,
@@ -114,41 +121,12 @@ export class MediaGlobalPage {
 
     this.mediaGlobalService.buscarMediaGlobal().subscribe((media: MediaGlobal) => {
       this.mediaGlobal = media;
+      
+      this.tecnicoDisponibilidadeService.buscarTecnicoDisponibilidade().subscribe((td: TecnicoDisponibilidade) => {
+        this.tecnicoDisponibilidade = td;
 
-      this.tecnicoDisponibilidadeService.buscarTecnicoDisponibilidade().subscribe((dados: TecnicoDisponibilidade[]) => {
-        this.tecnicosDisponibilidades = dados;
+        console.log(this.tecnicoDisponibilidade)
   
-        let dFiliais: TecnicoDisponibilidade[] = this.tecnicosDisponibilidades.filter((filial, index, self) =>
-          index === self.findIndex((aux) => (aux.nomeFilial === filial.nomeFilial && aux.nomeFilial === filial.nomeFilial))
-        );
-  
-        let filiais = dFiliais.map((i) => { return i['nomeFilial'] }).sort();
-
-        filiais.forEach((d) => {
-          let disp = new Disponibilidade();
-          disp.nomeFilial = d;
-          disp.qtdTecnicosComChamadosTransferidos = this.buscarQtdTecnicosAtivosComChamadosTransferidosCorretivos(d);
-          disp.qtdTecnicosSemChamadosTransferidos = this.buscarQtdTecnicosSemChamadosTransferidosNaoCorretivos(d);
-          disp.qtdTecnicosInativos = this.buscarQtdTecnicosInativos(d);
-          disp.qtdTecnicos = this.buscarQtdTecnicos(d);
-          this.disponibilidades.push(disp);
-
-          this.tecnicosInativos += disp.qtdTecnicosInativos;
-          this.qtdTecnicosComChamadosTransferidos += disp.qtdTecnicosComChamadosTransferidos;
-          this.qtdTecnicosSemChamadosTransferidos += disp.qtdTecnicosSemChamadosTransferidos;
-          this.qtdTecnicos += disp.qtdTecnicos;  
-        });
-
-        this.melhoresDisponibilidades = this.disponibilidades.sort((a, b) => 
-          (a.qtdTecnicosSemChamadosTransferidos > b.qtdTecnicosSemChamadosTransferidos) ? 1 : 
-          ((b.qtdTecnicosSemChamadosTransferidos > a.qtdTecnicosSemChamadosTransferidos) ? -1 : 0)
-        ).slice(0, 5);
-
-        this.pioresDisponibilidades = this.disponibilidades.sort((a, b) => 
-          (a.qtdTecnicosSemChamadosTransferidos < b.qtdTecnicosSemChamadosTransferidos) ? 1 : 
-          ((b.qtdTecnicosSemChamadosTransferidos < a.qtdTecnicosSemChamadosTransferidos) ? -1 : 0)
-        ).slice(0, 5);
-
         loader.dismiss();
       },
       err => {

@@ -12,7 +12,7 @@ export class TecnicoDisponibilidadeService {
     private http: Http
   ) { }
 
-  buscarTecnicoDisponibilidade(): Observable<TecnicoDisponibilidade[]> {
+  buscarTecnicoDisponibilidade(): Observable<TecnicoDisponibilidade> {
     return this.http.get(Config.API_URL + 'DashboardTecnicoDisponibilidade/')
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
