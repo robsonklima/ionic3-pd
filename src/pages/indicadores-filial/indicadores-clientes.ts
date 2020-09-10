@@ -92,6 +92,10 @@ export class IndicadoresClientesPage {
         responsive: true, 
         maintainAspectRatio: false,
         legend: { display: false },
+        title: {
+          display: true,
+          text: 'SLA - Meta 95%'
+        },
         scales: {
           xAxes: [
             {

@@ -41,9 +41,13 @@ import { MediaGlobalTecnico } from '../../models/media-global-tecnico';
           </ion-list-header>
 
           <ion-item>
-            Todos os Atendimentos
-            <p>Média de Atend. por Técnico e Dia Útil</p>
-            <ion-badge item-end>{{ mediaGlobal?.todasIntervencoes }}</ion-badge>
+            Técnicos c/ Chamados Corretivos
+            <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTecnicosCChamadosCorretivos }}</ion-badge>
+          </ion-item>
+
+          <ion-item>
+            Técnicos c/ Chamados Não Corretivos
+            <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTecnicosCChamadosNaoCorretivos }}</ion-badge>
           </ion-item>
 
           <ion-item>
@@ -55,17 +59,7 @@ import { MediaGlobalTecnico } from '../../models/media-global-tecnico';
             Técnicos Sem Chamados
             <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTecnicosSemChamados }}</ion-badge>
           </ion-item>
-
-          <ion-item>
-            Técnicos c/ Chamados Corretivos
-            <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTecnicosCChamadosCorretivos }}</ion-badge>
-          </ion-item>
-
-          <ion-item>
-            Técnicos c/ Chamados Não Corretivos
-            <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTecnicosCChamadosNaoCorretivos }}</ion-badge>
-          </ion-item>
-
+          
           <ion-item>
             Total de Técnicos
             <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTotaldeTecnicos }}</ion-badge>
