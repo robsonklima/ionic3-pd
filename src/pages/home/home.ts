@@ -5,6 +5,7 @@ import moment from 'moment';
 import { IndicadoresFiliaisPage } from '../indicadores-filial/indicadores-filiais';
 import { StatusFiliaisPage } from '../indicadores-filial/status-filiais';
 import { ChamadosAntigosPage } from '../indicadores-filial/chamados-antigos';
+import { DisponibilidadeRegioesPage } from '../disponibilidade-regioes/disponibilidade-regioes';
 import { ResultadoGeralPage } from '../indicadores-filial/resultado-geral';
 import { SPAFilialPage } from '../indicadores-filial/spa-filial';
 import { IndicadoresClientesPage } from '../indicadores-filial/indicadores-clientes';
@@ -62,10 +63,10 @@ import { DadosGlobaisService } from '../../services/dados-globais';
           <p>Médias de atendimento técnico por dia</p>
         </a>
 
-        <a ion-item disabled="true"> 
+        <a ion-item (click)="telaDisponibilidadeRegioes()"> 
           <ion-icon name="podium" color="primary" item-start></ion-icon>
           Disponibilidade BB TS
-          <p>Em Desenvolvimento</p>
+          <p>Por Regiões</p>
         </a>
       </ion-list>
     </ion-content>`
@@ -133,6 +134,12 @@ export class HomePage {
   public telaMediaGlobal() {
     this.menu.close().then(() => {
       this.nav.push(MediaGlobalPage);  
+    })
+  }
+
+  public telaDisponibilidadeRegioes() {
+    this.menu.close().then(() => {
+      this.nav.push(DisponibilidadeRegioesPage);  
     })
   }
 }

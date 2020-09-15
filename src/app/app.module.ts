@@ -25,6 +25,7 @@ import { TecnicoDisponibilidadeService } from '../services/tecnico-disponibilida
 import { MediaGlobalService } from '../services/media-global';
 import { RegistroUsoService } from '../services/registro-uso';
 import { SPAFilialService } from '../services/spa-filial';
+import { DisponibilidadeRegiaoService } from '../services/disponibilidade-regiao';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -47,6 +48,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SPAFilialPage } from '../pages/indicadores-filial/spa-filial';
 import { TecnicosDisponibilidadePage } from '../pages/indicadores-tecnico/tecnicos-disponibilidade';
 import { MediaGlobalPage } from '../pages/media-global/media-global';
+import { DisponibilidadeRegioesPage } from '../pages/disponibilidade-regioes/disponibilidade-regioes';
 
 
 @NgModule({
@@ -71,7 +73,8 @@ import { MediaGlobalPage } from '../pages/media-global/media-global';
     TecnicosDisponibilidadePage,
     MediaGlobalPage,
     SPAFilialPage,
-    TutorialPage
+    TutorialPage,
+    DisponibilidadeRegioesPage
   ],
   imports: [
     BrowserModule,
@@ -101,7 +104,8 @@ import { MediaGlobalPage } from '../pages/media-global/media-global';
     TecnicosDisponibilidadePage,
     MediaGlobalPage,
     SPAFilialPage,
-    TutorialPage
+    TutorialPage,
+    DisponibilidadeRegioesPage
   ],
   providers: [
     StatusBar,
@@ -125,7 +129,8 @@ import { MediaGlobalPage } from '../pages/media-global/media-global';
     TecnicoDisponibilidadeService,
     MediaGlobalService,
     RegistroUsoService,
-    SPAFilialService
+    SPAFilialService,
+    DisponibilidadeRegiaoService
   ]
 })
 export class AppModule {}
