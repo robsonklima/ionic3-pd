@@ -1,6 +1,6 @@
 export class Config {
   public static CONSTANTS = { 
-    VERSAO_APP: '0.0.8',
+    VERSAO_APP: '0.0.9',
     MENSAGENS: {
       OBTENDO_DADOS_SERVIDOR: "Obtendo dados do servidor",
       ERRO_OBTER_DADOS_SERVIDOR: "Erro ao obter dados do servidor"

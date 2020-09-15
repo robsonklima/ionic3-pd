@@ -119,8 +119,6 @@ export class MediaGlobalPage {
       this.tecnicoDisponibilidadeService.buscarTecnicoDisponibilidade().subscribe((td: TecnicoDisponibilidade) => {
         this.tecnicoDisponibilidade = td;
 
-        console.log(this.tecnicoDisponibilidade)
-  
         loader.dismiss();
       },
       err => {

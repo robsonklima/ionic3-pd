@@ -19,35 +19,38 @@ import { Performance } from '../../models/performance';
     <ion-content>
       <ion-card>
         <ion-card-header>
-          SLA
+          SLA <span ion-text color="primary">Meta >= 95%</span>
         </ion-card-header>
         
         <ion-card-content>
-          <ion-spinner [ngClass]="!status ? 'visible' : 'hide'"></ion-spinner>
-
-          <canvas [ngClass]="status ? 'visible' : 'hide'" #slaCanvas></canvas>
+          <canvas #slaCanvas></canvas>
         </ion-card-content>
       </ion-card>
 
       <ion-card>
         <ion-card-header>
-          Pendência
+          Pendência <span ion-text color="primary">Meta <= 5%</span>
         </ion-card-header>
         <ion-card-content>
-        <ion-spinner [ngClass]="!status ? 'visible' : 'hide'"></ion-spinner>
-
-          <canvas [ngClass]="status ? 'visible' : 'hide'" #pendenciaCanvas></canvas>
+          <canvas #pendenciaCanvas></canvas>
         </ion-card-content>
       </ion-card>
 
       <ion-card>
         <ion-card-header>
-          Reincidência
+          Reincidência <span ion-text color="primary">Meta <= 35%</span>
         </ion-card-header>
         <ion-card-content>
-          <ion-spinner [ngClass]="!status ? 'visible' : 'hide'"></ion-spinner>
+          <canvas #reincidenciaCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
 
-          <canvas [ngClass]="status ? 'visible' : 'hide'" #reincidenciaCanvas></canvas>
+      <ion-card>
+        <ion-card-header>
+          SPA <span ion-text color="primary">Meta >= 85%</span>
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #spaCanvas></canvas>
         </ion-card-content>
       </ion-card>
     </ion-content>`
@@ -61,6 +64,8 @@ export class ResultadoGeralPage {
   pendenciaChart: Chart;
   @ViewChild("reincidenciaCanvas") reincidenciaCanvas: ElementRef;
   reincidenciaChart: Chart;
+  @ViewChild("spaCanvas") spaCanvas: ElementRef;
+  spaChart: Chart;
   private labels: string[] = [];
   private datasetSLA: any[] = [];
   private datasetPendencia: any[] = [];
@@ -152,6 +157,23 @@ export class ResultadoGeralPage {
     err => {
       this.navCtrl.pop().then(() => { this.exibirAlerta(Config.CONSTANTS.MENSAGENS.ERRO_OBTER_DADOS_SERVIDOR) }).catch();
     });
+
+    this.performanceService.buscarSPAGeral().subscribe((spa: Performance[]) => {
+      let labelsSPA: string[] = spa.map((i) => { return this.carregarNomeMes(i['anoMes']) });
+      let valuesSPA: number[] = spa.map((i) => { return Number(i['spa']) });
+      let colorsSPA: string[] = [];
+      spa.map((i) => { 
+        if (i['spa'] >= Config.CONSTANTS.METAS.SPA.M1) {
+          colorsSPA.push(Config.CONSTANTS.CORES.RGB.VERDE);
+        }
+        else {
+          colorsSPA.push(Config.CONSTANTS.CORES.RGB.VERMELHO);
+        }
+      });
+      
+
+      this.carregarGraficoSPA(labelsSPA, valuesSPA, colorsSPA).then(() => {}).catch(() => {});  
+    }, e => {});
   }
 
   private carregarGraficoSLA(): Promise<any> {
@@ -291,6 +313,59 @@ export class ResultadoGeralPage {
       default:
         return '';
     }
+  }
+
+  private carregarGraficoSPA(labels: string[], values: number[], colorsSPA: string[]): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.spaChart = new Chart(this.spaCanvas.nativeElement, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'SPA',
+              data: values,
+              backgroundColor: colorsSPA,
+              borderWidth: 1
+            },
+            {
+              label: 'Meta',
+              data: [85,85,85,85],
+              backgroundColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+              borderColor: Config.CONSTANTS.CORES.RGB.VERMELHO_ESCURO,
+              borderWidth: 1,
+              pointRadius: 5,
+              pointHoverRadius: 5,
+              type: 'line'
+            }
+          ]
+        },
+        options: {
+          legend: {
+            position: 'top',
+            display: true,
+            labels: {
+              boxWidth: 12,
+              padding: 10
+            }
+          },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true
+                }
+              }
+            ]
+          },
+          elements: {
+            line: {
+              fill: false
+            }
+          }
+        }
+      }).then(() => { resolve() }).catch(e => { reject() });
+    });
   }
 
   private exibirAlerta(msg: string) {

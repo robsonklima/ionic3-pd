@@ -18,6 +18,12 @@ export class PerformanceService {
       .catch((error: any) => Observable.throw(error.json()));
   }
 
+  buscarSPAGeral(): Observable<Performance[]> {
+    return this.http.get(Config.API_URL + 'DashboardSPAGeral')
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
   buscarPerformancePorFilial(codFilial: number): Observable<Performance[]> {
     return this.http.get(Config.API_URL + 'DashboardPerformance/' + codFilial)
       .map((res: Response) => res.json())

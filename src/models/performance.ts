@@ -5,4 +5,5 @@ export class Performance {
     sla: number;
     pendencia: number;
     reincidencia: number;
+    spa: number;
   }
