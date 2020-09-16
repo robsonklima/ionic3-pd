@@ -66,7 +66,7 @@ import { DadosGlobaisService } from '../../services/dados-globais';
         <a ion-item (click)="telaDisponibilidadeRegioes()"> 
           <ion-icon name="podium" color="primary" item-start></ion-icon>
           Disponibilidade BB TS
-          <p>Por Regiões</p>
+          <p>Disponibilidade por Regiões</p>
         </a>
       </ion-list>
     </ion-content>`

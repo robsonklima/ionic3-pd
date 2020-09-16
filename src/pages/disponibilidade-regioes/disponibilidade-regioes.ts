@@ -15,32 +15,45 @@ import { DisponibilidadeRegiaoService } from '../../services/disponibilidade-reg
     <ion-content>
       <ion-card *ngFor="let d of disponibilidades; let i = index">
 
-        <img src="../../assets/imgs/card.png">
-        <ion-fab right top>
-          <button ion-fab>
-            <ion-icon name="pin"></ion-icon>
-          </button>
-        </ion-fab>
-      
         <ion-item>
-          <ion-icon name="football" item-start large></ion-icon>
-          <h2>{{ d.Regiao }}</h2>
-          <p>11 N. Way St, Madison, WI 53703</p>
+          <h2>Região <b>{{ d.regiao }}</b></h2>
         </ion-item>
+
+        <img src="../../assets/imgs/{{ d.regiao }}.png">
       
-        <ion-item>
-          <ion-icon name="wine" item-start large ></ion-icon>
-          <h2>Institute of Fine Cocktails</h2>
-          <p>14 S. Hop Avenue, Madison, WI 53703</p>
+        <ion-item class="ion-item-compact">
+          <ion-icon name="analytics" item-start color="primary"></ion-icon>
+          <h2>Disponibilidade</h2>
+          <p>Média de Disponibilidade</p>
+          <ion-note item-end>{{ d.mediaDisp }}%</ion-note>
         </ion-item>
-      
-        <ion-item>
-          <span item-start>18 min</span>
-          <span item-start>(2.6 mi)</span>
-          <button ion-button icon-start clear item-end>
-            <ion-icon name="navigate"></ion-icon>
-            Start
-          </button>
+
+        <ion-item class="ion-item-compact">
+          <ion-icon name="logo-buffer" item-start color="primary"></ion-icon>
+          <h2>Abertas</h2>
+          <p>Qtd OSs Abertas</p>
+          <ion-note item-end>{{ d.qtdOSAbertas }}</ion-note>
+        </ion-item>
+
+        <ion-item class="ion-item-compact">
+          <ion-icon name="checkmark-circle" item-start color="primary"></ion-icon>
+          <h2>Fechadas</h2>
+          <p>Qtd OSs Fechadas</p>
+          <ion-note item-end>{{ d.qtdOSFechadas }}</ion-note>
+        </ion-item>
+
+        <ion-item class="ion-item-compact">
+          <ion-icon name="copy" item-start color="primary"></ion-icon>
+          <h2>Backlog</h2>
+          <p>Qtd OSs Fechadas</p>
+          <ion-note item-end>{{ d.backlogOS }}</ion-note>
+        </ion-item>
+
+        <ion-item class="ion-item-compact">
+          <ion-icon name="time" item-start color="primary"></ion-icon>
+          <h2>Saldo</h2>
+          <p>Saldo de Horas</p>
+          <ion-note item-end>{{ d.saldoHoras }}</ion-note>
         </ion-item>
       </ion-card>
     </ion-content>`
