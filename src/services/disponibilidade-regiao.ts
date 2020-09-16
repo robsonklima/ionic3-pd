@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable";
 import { DisponibilidadeRegiao } from '../models/disponibilidade-regiao';
 import { Config } from '../models/config';
+import { MultaRegiao } from '../models/multa-regiao';
 
 @Injectable()
 export class DisponibilidadeRegiaoService {
@@ -18,6 +19,12 @@ export class DisponibilidadeRegiaoService {
 
   buscarDisponibilidadeRegioes(): Observable<DisponibilidadeRegiao[]> {
     return this.http.get(Config.API_URL + 'DashboardDisponibilidadeRegiao/')
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  buscarMultasRegioes(): Observable<MultaRegiao[]> {
+    return this.http.get(Config.API_URL + 'DashboardMultaRegiao/')
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
   }
