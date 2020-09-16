@@ -95,7 +95,7 @@ export class IndicadoresFiliaisPage {
           legend: { display: false },
           title: {
             display: true,
-            text: 'SLA - Meta 95%'
+            text: 'SLA - Meta >=95%'
           },
           scales: {
             xAxes: [
@@ -166,7 +166,7 @@ export class IndicadoresFiliaisPage {
           legend: { display: false },
           title: {
             display: true,
-            text: 'Reincidência - Meta 35%'
+            text: 'Reincidência - Meta <=35%'
           },
           scales: {
             xAxes: [
@@ -237,7 +237,7 @@ export class IndicadoresFiliaisPage {
           legend: { display: false },
           title: {
             display: true,
-            text: 'Pendência - Meta 5%'
+            text: 'Pendência - Meta <=5%'
           },
           scales: {
             xAxes: [
@@ -308,7 +308,7 @@ export class IndicadoresFiliaisPage {
           legend: { display: false },
           title: {
             display: true,
-            text: 'SPA - Meta 85%'
+            text: 'SPA - Meta >=85%'
           },
           scales: {
             xAxes: [

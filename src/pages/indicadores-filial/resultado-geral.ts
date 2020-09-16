@@ -19,7 +19,7 @@ import { Performance } from '../../models/performance';
     <ion-content>
       <ion-card>
         <ion-card-header>
-          SLA <span ion-text color="primary">Meta >= 95%</span>
+          SLA <span ion-text>Meta >= 95%</span>
         </ion-card-header>
         
         <ion-card-content>
@@ -29,7 +29,7 @@ import { Performance } from '../../models/performance';
 
       <ion-card>
         <ion-card-header>
-          Pendência <span ion-text color="primary">Meta <= 5%</span>
+          Pendência <span ion-text>Meta <= 5%</span>
         </ion-card-header>
         <ion-card-content>
           <canvas #pendenciaCanvas></canvas>
@@ -38,7 +38,7 @@ import { Performance } from '../../models/performance';
 
       <ion-card>
         <ion-card-header>
-          Reincidência <span ion-text color="primary">Meta <= 35%</span>
+          Reincidência <span ion-text>Meta <= 35%</span>
         </ion-card-header>
         <ion-card-content>
           <canvas #reincidenciaCanvas></canvas>
@@ -47,7 +47,7 @@ import { Performance } from '../../models/performance';
 
       <ion-card>
         <ion-card-header>
-          SPA <span ion-text color="primary">Meta >= 85%</span>
+          SPA <span ion-text>Meta >= 85%</span>
         </ion-card-header>
         <ion-card-content>
           <canvas #spaCanvas></canvas>
