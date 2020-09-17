@@ -4,4 +4,5 @@ export class TecnicoDisponibilidade {
     qtdTecnicosCChamadosCorretivos: number;
     qtdTecnicosCChamadosNaoCorretivos: number;
     qtdTotaldeTecnicos: number;
+    tecnicosSemChamados: string[];
 }

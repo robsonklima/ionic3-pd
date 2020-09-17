@@ -35,7 +35,7 @@ import { DisponibilidadeRegiaoService } from '../../services/disponibilidade-reg
               <h2>Região <b>{{ d.regiao }}</b></h2>
             </ion-item>
 
-            <img src="../../assets/imgs/{{ d.regiao }}.png">
+            <img src="../../assets/imgs/{{ d.imagem }}.png">
           
             <ion-item class="ion-item-compact">
               <ion-icon name="analytics" item-start color="primary"></ion-icon>
@@ -126,6 +126,7 @@ export class DisponibilidadeRegioesPage {
     this.disponibilidadeRegiaoService.buscarDisponibilidadeRegioes()
       .subscribe((dados: DisponibilidadeRegiao[]) => {
         this.disponibilidades = dados;
+        console.log(dados);
 
         loader.dismiss();
       }, 
@@ -136,8 +137,6 @@ export class DisponibilidadeRegioesPage {
     this.disponibilidadeRegiaoService.buscarMultasRegioes()
       .subscribe((dados: MultaRegiao[]) => {
         this.multasRegioes = dados;  
-
-        console.log(dados)
       }, 
       err => {
         

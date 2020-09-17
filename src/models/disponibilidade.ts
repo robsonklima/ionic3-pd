@@ -4,4 +4,5 @@ export class Disponibilidade {
     qtdTecnicosSemChamadosTransferidos: number;
     qtdTecnicosInativos: number;
     qtdTecnicos: number;
+    imagem: string;
 }

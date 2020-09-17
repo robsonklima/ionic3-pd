@@ -94,7 +94,7 @@ export class IndicadoresClientesPage {
         legend: { display: false },
         title: {
           display: true,
-          text: 'SLA - Meta 95%'
+          text: 'SLA - Meta >= 95%'
         },
         scales: {
           xAxes: [

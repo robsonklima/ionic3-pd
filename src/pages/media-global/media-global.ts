@@ -55,8 +55,9 @@ import { MediaGlobalTecnico } from '../../models/media-global-tecnico';
             <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTecnicosEmFerias }}</ion-badge>
           </ion-item>
 
-          <ion-item>
-            Técnicos Sem Chamados
+          <ion-item (click)="exibirTecnicosSemChamados()">
+            <h2>Técnicos Sem Chamados</h2>
+            <p>Clique para visualizar a lista</p>
             <ion-badge item-end>{{ tecnicoDisponibilidade?.qtdTecnicosSemChamados }}</ion-badge>
           </ion-item>
           
@@ -134,6 +135,25 @@ export class MediaGlobalPage {
     this.mediaGlobalService.buscarMediaGlobalPioresTecnicos().subscribe((media: MediaGlobalTecnico[]) => {
       this.mediaGlobalPioresTecnicos = media;
     }, e => {});
+  }
+
+  public exibirTecnicosSemChamados() {
+    let msg: string = "";
+    this.tecnicoDisponibilidade.tecnicosSemChamados.forEach(tecnico => {
+      msg += `<li>${tecnico}.</li>`;
+    });
+
+    const alert = this.alertCtrl.create({
+      title: "Sem Chamados",
+      subTitle: `
+      <ul>
+        ${msg}
+      </ul>
+    `,
+      buttons: ['OK']
+    });
+
+    alert.present();
   }
 
   private exibirAlerta(msg: string) {
