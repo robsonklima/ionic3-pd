@@ -30,9 +30,6 @@ import { DisponibilidadeRegiaoService } from '../services/disponibilidade-regiao
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
-import { BarChartPage } from '../pages/test/bar-chart';
-import { DoughnutChartPage } from '../pages/test/doughnut-chart';
-import { LineChartPage } from '../pages/test/line-chart';
 import { ReincidenciaFilialPage } from '../pages/indicadores-filial/reincidencia-filial';
 import { SLAFilialPage } from '../pages/indicadores-filial/sla-filial';
 import { PendenciaFilialPage } from '../pages/indicadores-filial/pendencia-filial';
@@ -56,9 +53,6 @@ import { DisponibilidadeRegioesPage } from '../pages/disponibilidade-regioes/dis
     MyApp,
     LoginPage,
     HomePage,
-    BarChartPage,
-    DoughnutChartPage,
-    LineChartPage,
     StatusFiliaisPage,
     IndicadoresFilialMenuPage,
     SLAFilialPage,
@@ -87,9 +81,6 @@ import { DisponibilidadeRegioesPage } from '../pages/disponibilidade-regioes/dis
     MyApp,
     LoginPage,
     HomePage,
-    BarChartPage,
-    DoughnutChartPage,
-    LineChartPage,
     StatusFiliaisPage,
     IndicadoresFilialMenuPage,
     SLAFilialPage,
