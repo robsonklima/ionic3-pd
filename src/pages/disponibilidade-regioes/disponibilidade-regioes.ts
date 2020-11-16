@@ -35,7 +35,7 @@ import { DisponibilidadeRegiaoService } from '../../services/disponibilidade-reg
               <h2>Região <b>{{ d.regiao }}</b></h2>
             </ion-item>
 
-            <img src="../../assets/imgs/{{ d.imagem }}.png">
+            <img src="assets/imgs/{{ d.imagem }}.png">
           
             <ion-item class="ion-item-compact">
               <ion-icon name="analytics" item-start color="primary"></ion-icon>
