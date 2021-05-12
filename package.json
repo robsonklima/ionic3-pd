@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.2",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "typescript": "~2.6.2",
     "ws": "3.3.2"
   },
